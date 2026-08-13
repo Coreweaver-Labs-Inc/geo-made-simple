@@ -1,11 +1,11 @@
 import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
-import { createCaseStudyIntake, createContactSubmission, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff } from "./db";
+import { createCaseStudyIntake, createContactSubmission, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, insightDraftSchema, insightSlugSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema } from "./contentSchemas";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -54,6 +54,74 @@ export const appRouter = router({
       return { success: true } as const;
     }),
     listStudio: adminProcedure.query(() => listContactSubmissions()),
+  }),
+  gtm: router({
+    submitRequest: publicProcedure.input(gtmRequestSchema).mutation(async ({ input }) => {
+      if (input.formWebsite) return { success: true } as const;
+      const notificationSent = await notifyOwner({
+        title: input.requestType === "support_request" ? `New support request: ${input.subject}` : `New GTM service inquiry: ${input.fullName}`,
+        content: [`Type: ${input.requestType}`, `Name: ${input.fullName}`, `Email: ${input.email}`, `Organization: ${input.organization || "Not provided"}`, `Service: ${input.serviceInterest || "Not specified"}`, `Urgency: ${input.urgency}`, "", input.message].join("\n"),
+      });
+      try {
+        const { formWebsite: _formWebsite, ...request } = input;
+        await createGtmRequest({ ...request, organization: request.organization ?? null, website: request.website ?? null, serviceInterest: request.serviceInterest ?? null, subject: request.subject ?? null });
+      } catch (error) {
+        console.error("[GTM] Failed to store public request", error);
+        if (notificationSent) return { success: true } as const;
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "We could not save your request. Please try again." });
+      }
+      return { success: true } as const;
+    }),
+    listRequests: adminProcedure.query(() => listGtmRequests()),
+    updateRequest: adminProcedure.input(gtmRequestUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmRequest(input.id, { status: input.status, ownerName: input.ownerName ?? null });
+      return { success: true } as const;
+    }),
+    listAccounts: adminProcedure.query(() => listGtmAccounts()),
+    listContacts: adminProcedure.query(() => listGtmContacts()),
+    listOpportunities: adminProcedure.query(() => listGtmOpportunities()),
+    listSupportCases: adminProcedure.query(() => listGtmSupportCases()),
+    listWorkItems: adminProcedure.query(() => listGtmWorkItems()),
+    createAccount: adminProcedure.input(gtmAccountSchema).mutation(async ({ input }) => {
+      await createGtmAccount({ ...input, website: input.website ?? null, segment: input.segment ?? null, ownerName: input.ownerName ?? null });
+      return { success: true } as const;
+    }),
+    updateAccount: adminProcedure.input(gtmAccountUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmAccount(input.id, { status: input.status, ownerName: input.ownerName ?? null });
+      return { success: true } as const;
+    }),
+    createContact: adminProcedure.input(gtmContactSchema).mutation(async ({ input }) => {
+      await createGtmContact({ ...input, accountId: input.accountId ?? null, roleTitle: input.roleTitle ?? null });
+      return { success: true } as const;
+    }),
+    updateContact: adminProcedure.input(gtmContactUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmContact(input.id, { status: input.status });
+      return { success: true } as const;
+    }),
+    createOpportunity: adminProcedure.input(gtmOpportunitySchema).mutation(async ({ input }) => {
+      await createGtmOpportunity({ ...input, contactId: input.contactId ?? null, ownerName: input.ownerName ?? null, nextStep: input.nextStep ?? null });
+      return { success: true } as const;
+    }),
+    updateOpportunity: adminProcedure.input(gtmOpportunityUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmOpportunity(input.id, { stage: input.stage, nextStep: input.nextStep ?? null });
+      return { success: true } as const;
+    }),
+    createSupportCase: adminProcedure.input(gtmSupportCaseSchema).mutation(async ({ input }) => {
+      await createGtmSupportCase({ ...input, accountId: input.accountId ?? null, contactId: input.contactId ?? null, ownerName: input.ownerName ?? null });
+      return { success: true } as const;
+    }),
+    updateSupportCase: adminProcedure.input(gtmSupportCaseUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmSupportCase(input.id, { status: input.status });
+      return { success: true } as const;
+    }),
+    createWorkItem: adminProcedure.input(gtmWorkItemSchema).mutation(async ({ input }) => {
+      await createGtmWorkItem({ ...input, accountId: input.accountId ?? null, opportunityId: input.opportunityId ?? null, supportCaseId: input.supportCaseId ?? null, detail: input.detail ?? null, ownerName: input.ownerName ?? null, dueDate: input.dueDate ?? null });
+      return { success: true } as const;
+    }),
+    updateWorkItem: adminProcedure.input(gtmWorkItemUpdateSchema).mutation(async ({ input }) => {
+      await updateGtmWorkItem(input.id, { status: input.status });
+      return { success: true } as const;
+    }),
   }),
   insights: router({
     listPublic: publicProcedure.query(() => listPublishedInsights()),

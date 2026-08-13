@@ -1,0 +1,1 @@
+ALTER TABLE `gtm_requests` ADD `ownerName` varchar(160);

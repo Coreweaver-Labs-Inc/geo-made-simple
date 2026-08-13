@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, insightDraftSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, gtmOpportunitySchema, gtmRequestSchema, gtmWorkItemSchema, insightDraftSchema } from "./contentSchemas";
 
 describe("public content validation", () => {
   it("accepts a complete contact submission and normalizes optional blanks", () => {
@@ -93,5 +93,19 @@ describe("public content validation", () => {
     const incomplete = caseStudyHandoffSchema.safeParse({ id: 1, handoffStatus: "ready" });
     expect(ready.success).toBe(true);
     expect(incomplete.success).toBe(false);
+  });
+
+  it("accepts a complete private GTM service request and rejects a support request without a subject", () => {
+    const service = gtmRequestSchema.safeParse({ requestType: "service_inquiry", fullName: "Jordan Lee", email: "jordan@example.com", organization: "Example systems", serviceInterest: "gtm_enablement_sprint", message: "We need to connect sales, marketing, support, and delivery around an evidence-led GTM operating model.", urgency: "standard" });
+    const invalidSupport = gtmRequestSchema.safeParse({ requestType: "support_request", fullName: "Jordan Lee", email: "jordan@example.com", message: "We need help understanding an existing service engagement and its next delivery step.", urgency: "high" });
+    expect(service.success).toBe(true);
+    expect(invalidSupport.success).toBe(false);
+  });
+
+  it("accepts explicit protected commercial and cross-functional work records", () => {
+    const opportunity = gtmOpportunitySchema.safeParse({ accountId: 1, serviceLine: "signal_intelligence_audit", title: "Private discovery scope", stage: "qualified", ownerName: "Sales owner", nextStep: "Schedule a private discovery conversation." });
+    const work = gtmWorkItemSchema.safeParse({ accountId: 1, title: "Review approved evidence inventory", functionalArea: "research", status: "planned", ownerName: "Research owner", dueDate: "2026-08-20" });
+    expect(opportunity.success).toBe(true);
+    expect(work.success).toBe(true);
   });
 });

@@ -43,6 +43,7 @@ export const insightSlugSchema = z.object({
 export const caseStudySlugSchema = z.object({ slug: z.string().trim().min(3).max(180) });
 
 const requiredDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date in YYYY-MM-DD format.");
+const optionalId = z.union([z.number().int().positive(), z.undefined()]);
 
 export const caseStudyIntakeSchema = z.object({
   clientLabel: z.string().trim().min(3, "Please provide an approved client label.").max(160),
@@ -83,7 +84,109 @@ export const caseStudyHandoffSchema = z.object({
   });
 });
 
+export const gtmRequestSchema = z.object({
+  requestType: z.enum(["service_inquiry", "support_request"]),
+  fullName: z.string().trim().min(2, "Please enter your name.").max(160),
+  email: z.string().trim().email("Please enter a valid email address.").max(320),
+  organization: optionalText(160),
+  website: optionalUrl,
+  serviceInterest: z.enum(["signal_intelligence_audit", "gtm_enablement_sprint", "representation_operations", "not_sure"]).optional(),
+  subject: optionalText(220),
+  message: z.string().trim().min(30, "Please share enough context for the team to respond.").max(5000),
+  urgency: z.enum(["standard", "high"]).default("standard"),
+  formWebsite: z.string().max(0).optional(),
+}).superRefine((data, ctx) => {
+  if (data.requestType === "support_request" && !data.subject) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["subject"], message: "Please add a short support subject." });
+});
+
+export const gtmAccountSchema = z.object({
+  name: z.string().trim().min(2).max(180),
+  website: optionalUrl,
+  segment: optionalText(120),
+  status: z.enum(["prospect", "client", "inactive"]),
+  ownerName: optionalText(160),
+});
+
+export const gtmContactSchema = z.object({
+  accountId: optionalId,
+  fullName: z.string().trim().min(2).max(160),
+  email: z.string().trim().email().max(320),
+  roleTitle: optionalText(160),
+  status: z.enum(["active", "archived"]),
+});
+
+export const gtmOpportunitySchema = z.object({
+  accountId: z.number().int().positive(),
+  contactId: optionalId,
+  serviceLine: z.enum(["signal_intelligence_audit", "gtm_enablement_sprint", "representation_operations", "custom"]),
+  title: z.string().trim().min(4).max(220),
+  stage: z.enum(["inquiry", "qualified", "discovery", "proposal", "won", "lost"]),
+  ownerName: optionalText(160),
+  nextStep: optionalText(5000),
+});
+
+export const gtmSupportCaseSchema = z.object({
+  accountId: optionalId,
+  contactId: optionalId,
+  subject: z.string().trim().min(4).max(220),
+  detail: z.string().trim().min(20).max(5000),
+  priority: z.enum(["standard", "high", "urgent"]),
+  status: z.enum(["new", "open", "waiting", "resolved", "closed"]),
+  ownerName: optionalText(160),
+});
+
+export const gtmWorkItemSchema = z.object({
+  accountId: optionalId,
+  opportunityId: optionalId,
+  supportCaseId: optionalId,
+  title: z.string().trim().min(4).max(220),
+  detail: optionalText(5000),
+  functionalArea: z.enum(["sales", "support", "operations", "marketing", "research", "design"]),
+  status: z.enum(["planned", "in_progress", "blocked", "review", "done"]),
+  ownerName: optionalText(160),
+  dueDate: z.union([z.literal(""), requiredDate]).optional().transform(value => value || undefined),
+});
+
+export const gtmOpportunityUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  stage: z.enum(["inquiry", "qualified", "discovery", "proposal", "won", "lost"]),
+  nextStep: optionalText(5000),
+});
+
+export const gtmRequestUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["new", "triaged", "closed"]),
+  ownerName: optionalText(160),
+});
+
+export const gtmAccountUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["prospect", "client", "inactive"]),
+  ownerName: optionalText(160),
+});
+
+export const gtmContactUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["active", "archived"]),
+});
+
+export const gtmSupportCaseUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["new", "open", "waiting", "resolved", "closed"]),
+});
+
+export const gtmWorkItemUpdateSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["planned", "in_progress", "blocked", "review", "done"]),
+});
+
 export type ContactSubmissionInput = z.infer<typeof contactSubmissionSchema>;
 export type InsightDraftInput = z.infer<typeof insightDraftSchema>;
 export type CaseStudyIntakeInput = z.infer<typeof caseStudyIntakeSchema>;
 export type CaseStudyHandoffInput = z.infer<typeof caseStudyHandoffSchema>;
+export type GtmRequestInput = z.infer<typeof gtmRequestSchema>;
+export type GtmAccountInput = z.infer<typeof gtmAccountSchema>;
+export type GtmContactInput = z.infer<typeof gtmContactSchema>;
+export type GtmOpportunityInput = z.infer<typeof gtmOpportunitySchema>;
+export type GtmSupportCaseInput = z.infer<typeof gtmSupportCaseSchema>;
+export type GtmWorkItemInput = z.infer<typeof gtmWorkItemSchema>;

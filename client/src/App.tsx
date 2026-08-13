@@ -8,6 +8,8 @@ import CaseStudyPreview from "./pages/CaseStudyPreview";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import AuthorProfile from "./pages/AuthorProfile";
 import Framework from "./pages/Framework";
+import GtmHub from "./pages/GtmHub";
+import GtmWorkspace from "./pages/GtmWorkspace";
 import Home from "./pages/Home";
 import InsightDetail from "./pages/InsightDetail";
 import Insights from "./pages/Insights";
@@ -20,6 +22,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/framework" component={Framework} />
+      <Route path="/services" component={GtmHub} />
+      <Route path="/workspace" component={GtmWorkspace} />
       <Route path="/products" component={Products} />
       <Route path="/insights" component={Insights} />
       <Route path="/insights/:slug" component={InsightDetail} />

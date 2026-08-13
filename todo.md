@@ -46,3 +46,22 @@
 - [x] Verify template-compliant validation, public-record indexing, and private evidence handling.
 - [x] Recheck the tracked Drizzle migration history for the approved-record source name and confirm no schema changes remain pending.
 - [x] Add an editor-only reviewer-handoff interface for staff reviewer identity and publication-date tracking before a future approval-to-publication workflow is introduced.
+- [x] Define the production GTM operating model, customer segments, service catalogue, and launch metrics.
+- [x] Design the shared data model and permissions for accounts, contacts, opportunities, support cases, service delivery, research, and design work.
+- [x] Build the client-facing GTM service hub with qualification, service discovery, and support entry points.
+- [x] Build the protected internal workspace for sales, customer support, operations, marketing, research, and design teams.
+- [x] Add lifecycle stages, ownership, baseline reporting, and manual handoffs across GTM services.
+- [x] Validate the production GTM workflows, accessibility, security boundaries, SEO, and operational readiness.
+- [x] Establish integrated-foundation defaults: client GTM hub, protected internal workspace, manual cross-team handoffs, and deferred external integrations.
+- [x] Define launch customer segments and baseline-first operating metrics without fabricating targets or performance data.
+- [ ] Confirm customer segment, three launch services, and required launch systems before enabling external integration workflows.
+- [x] Add private account and contact management views to the GTM workspace so operators can review the records they create.
+- [x] Add private request-triage controls with status and owner assignment, while preserving manual-only promotion into sales or support records.
+- [x] Re-run complete GTM foundation validation after finalizing record visibility and request triage.
+- [x] Run and record accessibility-focused validation for GTM hub and workspace controls, labels, keyboard flow, and empty states.
+- [x] Verify the GTM workspace and protected procedures reject non-admin access to private operating records.
+- [x] Re-run and record final GTM SSR, canonical, noindex, and sitemap checks after the registry and triage changes.
+- [x] Add and record a keyboard-focus validation for protected GTM workspace account, contact, and triage controls.
+- [x] Re-run final GTM validation after the workspace keyboard accessibility check.
+- [x] Extend protected-workspace keyboard-focus coverage to contact and request-triage controls.
+- [x] Re-run and record the full GTM validation suite after expanding workspace keyboard coverage.

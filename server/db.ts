@@ -6,8 +6,20 @@ import {
   caseStudies,
   InsertCaseStudyIntake,
   InsertContactSubmission,
+  InsertGtmAccount,
+  InsertGtmContact,
+  InsertGtmOpportunity,
+  InsertGtmRequest,
+  InsertGtmSupportCase,
+  InsertGtmWorkItem,
   InsertInsight,
   InsertUser,
+  gtmAccounts,
+  gtmContacts,
+  gtmOpportunities,
+  gtmRequests,
+  gtmSupportCases,
+  gtmWorkItems,
   insights,
   users,
 } from "../drizzle/schema";
@@ -187,4 +199,112 @@ export async function getPublishedCaseStudyBySlug(slug: string) {
   if (!db) return undefined;
   const result = await db.select().from(caseStudies).where(and(eq(caseStudies.slug, slug), eq(caseStudies.status, "published"))).limit(1);
   return result[0];
+}
+
+export async function createGtmRequest(input: InsertGtmRequest) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmRequests).values(input);
+}
+
+export async function listGtmRequests() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmRequests).orderBy(desc(gtmRequests.createdAt));
+}
+
+export async function updateGtmRequest(id: number, input: Pick<InsertGtmRequest, "status" | "ownerName">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmRequests).set(input).where(eq(gtmRequests.id, id));
+}
+
+export async function createGtmAccount(input: InsertGtmAccount) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmAccounts).values(input);
+}
+
+export async function listGtmAccounts() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmAccounts).orderBy(desc(gtmAccounts.createdAt));
+}
+
+export async function updateGtmAccount(id: number, input: Pick<InsertGtmAccount, "status" | "ownerName">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmAccounts).set(input).where(eq(gtmAccounts.id, id));
+}
+
+export async function createGtmContact(input: InsertGtmContact) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmContacts).values(input);
+}
+
+export async function listGtmContacts() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmContacts).orderBy(desc(gtmContacts.createdAt));
+}
+
+export async function updateGtmContact(id: number, input: Pick<InsertGtmContact, "status">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmContacts).set(input).where(eq(gtmContacts.id, id));
+}
+
+export async function createGtmOpportunity(input: InsertGtmOpportunity) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmOpportunities).values(input);
+}
+
+export async function listGtmOpportunities() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmOpportunities).orderBy(desc(gtmOpportunities.createdAt));
+}
+
+export async function updateGtmOpportunity(id: number, input: Pick<InsertGtmOpportunity, "stage" | "nextStep">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmOpportunities).set(input).where(eq(gtmOpportunities.id, id));
+}
+
+export async function createGtmSupportCase(input: InsertGtmSupportCase) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmSupportCases).values(input);
+}
+
+export async function listGtmSupportCases() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmSupportCases).orderBy(desc(gtmSupportCases.createdAt));
+}
+
+export async function updateGtmSupportCase(id: number, input: Pick<InsertGtmSupportCase, "status">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmSupportCases).set(input).where(eq(gtmSupportCases.id, id));
+}
+
+export async function createGtmWorkItem(input: InsertGtmWorkItem) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gtmWorkItems).values(input);
+}
+
+export async function listGtmWorkItems() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(gtmWorkItems).orderBy(desc(gtmWorkItems.createdAt));
+}
+
+export async function updateGtmWorkItem(id: number, input: Pick<InsertGtmWorkItem, "status">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(gtmWorkItems).set(input).where(eq(gtmWorkItems.id, id));
 }
