@@ -63,6 +63,27 @@ export const caseStudyIntakeSchema = z.object({
   formWebsite: z.string().max(0).optional(),
 }).refine(data => data.reportingEnd >= data.reportingStart, { message: "The reporting end date must be on or after the start date.", path: ["reportingEnd"] });
 
+export const caseStudyHandoffSchema = z.object({
+  id: z.number().int().positive(),
+  sourceOwnerApprovedBy: optionalText(220),
+  swellReviewer: optionalText(220),
+  privacyReviewedBy: optionalText(220),
+  plannedPublicationDate: z.union([z.literal(""), requiredDate]).optional().transform(value => value || undefined),
+  handoffStatus: z.enum(["pending", "returned", "ready"]),
+}).superRefine((data, ctx) => {
+  if (data.handoffStatus !== "ready") return;
+  const requiredFields: Array<[keyof typeof data, string]> = [
+    ["sourceOwnerApprovedBy", "Record the source owner who approved the handoff."],
+    ["swellReviewer", "Record the Swell reviewer."],
+    ["privacyReviewedBy", "Record the privacy reviewer."],
+    ["plannedPublicationDate", "Set the planned publication date."],
+  ];
+  requiredFields.forEach(([field, message]) => {
+    if (!data[field]) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [field], message });
+  });
+});
+
 export type ContactSubmissionInput = z.infer<typeof contactSubmissionSchema>;
 export type InsightDraftInput = z.infer<typeof insightDraftSchema>;
 export type CaseStudyIntakeInput = z.infer<typeof caseStudyIntakeSchema>;
+export type CaseStudyHandoffInput = z.infer<typeof caseStudyHandoffSchema>;

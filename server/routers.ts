@@ -1,11 +1,11 @@
 import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
-import { createCaseStudyIntake, createContactSubmission, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights } from "./db";
+import { createCaseStudyIntake, createContactSubmission, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, insightDraftSchema, insightSlugSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, insightDraftSchema, insightSlugSchema } from "./contentSchemas";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -98,6 +98,16 @@ export const appRouter = router({
       return { success: true } as const;
     }),
     listStudio: adminProcedure.query(() => listCaseStudyIntakes()),
+    updateHandoff: adminProcedure.input(caseStudyHandoffSchema).mutation(async ({ input }) => {
+      const { id, ...handoff } = input;
+      try {
+        await updateCaseStudyHandoff(id, handoff);
+        return { success: true } as const;
+      } catch (error) {
+        console.error("[Case study] Failed to update reviewer handoff", error);
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "We could not save the reviewer handoff." });
+      }
+    }),
   }),
 });
 

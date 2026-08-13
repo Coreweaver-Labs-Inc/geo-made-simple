@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { caseStudyIntakeSchema, contactSubmissionSchema, insightDraftSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, insightDraftSchema } from "./contentSchemas";
 
 describe("public content validation", () => {
   it("accepts a complete contact submission and normalizes optional blanks", () => {
@@ -86,5 +86,12 @@ describe("public content validation", () => {
       claimReviewConfirmed: false,
     });
     expect(result.success).toBe(false);
+  });
+
+  it("requires named reviewer handoffs and a publication date before a private record can be marked ready", () => {
+    const ready = caseStudyHandoffSchema.safeParse({ id: 1, sourceOwnerApprovedBy: "Jordan Lee", swellReviewer: "Swell editorial reviewer", privacyReviewedBy: "Privacy reviewer", plannedPublicationDate: "2026-05-01", handoffStatus: "ready" });
+    const incomplete = caseStudyHandoffSchema.safeParse({ id: 1, handoffStatus: "ready" });
+    expect(ready.success).toBe(true);
+    expect(incomplete.success).toBe(false);
   });
 });

@@ -170,6 +170,12 @@ export async function listCaseStudyIntakes() {
   return db.select().from(caseStudyIntakes).orderBy(desc(caseStudyIntakes.createdAt));
 }
 
+export async function updateCaseStudyHandoff(id: number, input: Pick<InsertCaseStudyIntake, "sourceOwnerApprovedBy" | "swellReviewer" | "privacyReviewedBy" | "plannedPublicationDate" | "handoffStatus">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(caseStudyIntakes).set(input).where(eq(caseStudyIntakes.id, id));
+}
+
 export async function listPublishedCaseStudies() {
   const db = await getDb();
   if (!db) return [];

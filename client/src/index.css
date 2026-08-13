@@ -290,6 +290,8 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .studio-list p { margin: .35rem 0 0; font-size: .86rem; }
 .inquiries-card { margin-top: 1.5rem; }
 .studio-error { color: #9e3c30; font-size: .82rem; }
+.case-handoff-form { margin-top: 1rem; padding: 1rem; border: 1px solid var(--rule); background: var(--paper); }
+.case-handoff-title { margin: 0 0 .9rem; color: var(--teal); font: .68rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .studio-state { display: grid; place-content: center; min-height: 60vh; gap: 1rem; text-align: center; }
 .studio-state h1 { font-size: 2rem; }
 

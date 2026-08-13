@@ -45,4 +45,4 @@
 - [x] Add the compliant evidence-basis and non-guarantee language to the reusable approved public case-study layout.
 - [x] Verify template-compliant validation, public-record indexing, and private evidence handling.
 - [x] Recheck the tracked Drizzle migration history for the approved-record source name and confirm no schema changes remain pending.
-- [ ] Add an editor-only reviewer-handoff interface for staff reviewer identity and publication-date tracking before a future approval-to-publication workflow is introduced.
+- [x] Add an editor-only reviewer-handoff interface for staff reviewer identity and publication-date tracking before a future approval-to-publication workflow is introduced.
