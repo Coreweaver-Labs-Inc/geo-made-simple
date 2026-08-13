@@ -2,6 +2,9 @@ import { and, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   contactSubmissions,
+  caseStudyIntakes,
+  caseStudies,
+  InsertCaseStudyIntake,
   InsertContactSubmission,
   InsertInsight,
   InsertUser,
@@ -151,5 +154,31 @@ export async function createInsight(input: Pick<InsertInsight, "title" | "slug" 
     publishedAt: input.status === "published" ? new Date() : null,
   };
   const result = await db.insert(insights).values(values);
+  return result[0];
+}
+
+export async function createCaseStudyIntake(input: InsertCaseStudyIntake) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  const result = await db.insert(caseStudyIntakes).values(input);
+  return result[0];
+}
+
+export async function listCaseStudyIntakes() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(caseStudyIntakes).orderBy(desc(caseStudyIntakes.createdAt));
+}
+
+export async function listPublishedCaseStudies() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(caseStudies).where(eq(caseStudies.status, "published")).orderBy(desc(caseStudies.publishedAt));
+}
+
+export async function getPublishedCaseStudyBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(caseStudies).where(and(eq(caseStudies.slug, slug), eq(caseStudies.status, "published"))).limit(1);
   return result[0];
 }

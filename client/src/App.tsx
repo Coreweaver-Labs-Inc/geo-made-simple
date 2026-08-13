@@ -2,6 +2,10 @@
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Contact from "./pages/Contact";
+import CaseStudies from "./pages/CaseStudies";
+import CaseStudyIntake from "./pages/CaseStudyIntake";
+import CaseStudyPreview from "./pages/CaseStudyPreview";
+import CaseStudyDetail from "./pages/CaseStudyDetail";
 import AuthorProfile from "./pages/AuthorProfile";
 import Framework from "./pages/Framework";
 import Home from "./pages/Home";
@@ -19,6 +23,10 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/insights" component={Insights} />
       <Route path="/insights/:slug" component={InsightDetail} />
+      <Route path="/case-studies" component={CaseStudies} />
+      <Route path="/case-studies/governance-preview" component={CaseStudyPreview} />
+      <Route path="/case-studies/:slug" component={CaseStudyDetail} />
+      <Route path="/case-study-intake" component={CaseStudyIntake} />
       <Route path="/authors/:slug" component={AuthorProfile} />
       <Route path="/contact" component={Contact} />
       <Route path="/studio" component={Studio} />

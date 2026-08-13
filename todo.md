@@ -32,3 +32,17 @@
 - [x] Add Person and author-aware BlogPosting structured data, sitemap coverage, and metadata.
 - [x] Verify author pages, bylines, article associations, responsive layout, and raw SSR SEO output.
 - [x] Add clearly labelled affiliated authority-channel links to author profiles and verify their SSR output and responsive treatment.
+- [x] Add a client-facing case-study intake questionnaire that captures every required approval field.
+- [x] Store intake records in a governance-first review queue without making them public automatically.
+- [x] Add a reusable public case-study page layout with reporting window, review date, and source attribution.
+- [x] Add a clearly labelled non-publishable governance preview that does not present fabricated client claims as real results.
+- [x] Verify the intake form, preview, public metadata, responsive layout, and review-gate behavior.
+- [x] Add a reusable approved-record case-study detail route and data model that displays governed public fields only.
+- [x] Verify that public case-study routes use approved records only, distinct from private intake records and previews.
+- [x] Run an approved controlled intake verification and confirm it appears only in the private review queue before deleting the test record.
+- [x] Map the supplied Swell compliant template's approval worksheet to private intake fields and approved public fields.
+- [x] Capture conditional metric context, source naming, source-owner approval reference, privacy review, and claim review in the private case-study review record.
+- [x] Add the compliant evidence-basis and non-guarantee language to the reusable approved public case-study layout.
+- [x] Verify template-compliant validation, public-record indexing, and private evidence handling.
+- [x] Recheck the tracked Drizzle migration history for the approved-record source name and confirm no schema changes remain pending.
+- [ ] Add an editor-only reviewer-handoff interface for staff reviewer identity and publication-date tracking before a future approval-to-publication workflow is introduced.

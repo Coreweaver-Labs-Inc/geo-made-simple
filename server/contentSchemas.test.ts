@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { contactSubmissionSchema, insightDraftSchema } from "./contentSchemas";
+import { caseStudyIntakeSchema, contactSubmissionSchema, insightDraftSchema } from "./contentSchemas";
 
 describe("public content validation", () => {
   it("accepts a complete contact submission and normalizes optional blanks", () => {
@@ -47,5 +47,44 @@ describe("public content validation", () => {
     });
 
     expect(result.success).toBe(true);
+  });
+
+  it("accepts all seven required case-study governance fields only with written authorization", () => {
+    const result = caseStudyIntakeSchema.safeParse({
+      clientLabel: "Authorized anonymous B2B platform",
+      sourceName: "Reviewed quarterly visibility report",
+      sourceReference: "Quarterly visibility report, source tab, reviewed internally",
+      supportableFinding: "The cited report supports the approved finding exactly as written, including its method and reporting context.",
+      metricDefinition: "The report's stated unit, denominator, comparison point, and method.",
+      scope: "GEO information architecture review covering public service pages and approved evidence sources.",
+      reportingStart: "2026-01-01",
+      reportingEnd: "2026-03-31",
+      reviewDate: "2026-04-15",
+      sourceOwnerApproval: "Source-owner release ID Q1-2026.",
+      publicationAuthorization: "Jordan Lee, VP Marketing, approved the anonymous label, source attribution, finding language, and public scope on 2026-04-15.",
+      authorizationConfirmed: true,
+      privacyReviewConfirmed: true,
+      claimReviewConfirmed: true,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects a case-study record that lacks authorization or has an inverted reporting window", () => {
+    const result = caseStudyIntakeSchema.safeParse({
+      clientLabel: "Example client",
+      sourceName: "Example source",
+      sourceReference: "A report reference that has sufficient detail.",
+      supportableFinding: "This is an exact and supportable finding written with enough detail for validation.",
+      scope: "A complete scope description containing enough detail for review.",
+      reportingStart: "2026-04-01",
+      reportingEnd: "2026-03-31",
+      reviewDate: "2026-04-15",
+      sourceOwnerApproval: "Source owner reference.",
+      publicationAuthorization: "A sufficiently descriptive record of written authorization for publication.",
+      authorizationConfirmed: false,
+      privacyReviewConfirmed: false,
+      claimReviewConfirmed: false,
+    });
+    expect(result.success).toBe(false);
   });
 });

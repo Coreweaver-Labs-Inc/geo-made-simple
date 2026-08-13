@@ -8,7 +8,7 @@ import { getAuthorBySlug } from "@/lib/authors";
 
 export type HeadMeta = { title: string; description: string; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
 type RouterOutput = inferRouterOutputs<AppRouter>;
-export type SsrPrefetch = { insightBySlug: (slug: string) => Promise<RouterOutput["insights"]["bySlug"]>; insightsListPublic: () => Promise<RouterOutput["insights"]["listPublic"]> };
+export type SsrPrefetch = { insightBySlug: (slug: string) => Promise<RouterOutput["insights"]["bySlug"]>; insightsListPublic: () => Promise<RouterOutput["insights"]["listPublic"]>; caseStudyBySlug: (slug: string) => Promise<RouterOutput["caseStudies"]["bySlug"]> };
 
 const SITE = "Coreweaver Labs";
 const DESCRIPTION = "Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search.";
@@ -24,6 +24,21 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   if (clean === "/framework") return { title: "The ARM Framework | Coreweaver Labs", description: "Learn how the ARM Framework connects authority, representation, and measurement to create a clearer brand signal for AI search.", ogImage: "/manus-storage/coreweaver-framework_2cadabec.jpg", ogImageAlt: "Diagram of the ARM Framework's connected evidence and signal layers", canonicalPath: clean };
   if (clean === "/products") return { title: "GEO Signal Products | Coreweaver Labs", description: "Explore Coreweaver Labs' practical GEO signal architecture, citation intelligence, and knowledge systems services.", ogImage: "/manus-storage/coreweaver-products_9a7c53f2.jpg", ogImageAlt: "Abstract view of Coreweaver Labs signal products and systems", canonicalPath: clean };
   if (clean === "/insights") return { title: "Insights on GEO and AI Representation | Coreweaver Labs", description: "Practical perspectives on GEO, AI answer visibility, brand representation, and the systems that make trusted information easier to understand.", canonicalPath: clean };
+  if (clean === "/case-studies") return { title: "Evidence-Led Case Studies | Coreweaver Labs", description: "Coreweaver Labs publishes case studies only when scope, source evidence, reporting windows, review dates, and written authorization are complete.", canonicalPath: clean };
+  if (clean === "/case-studies/governance-preview") return { title: "Case Study Governance Preview | Coreweaver Labs", description: "A non-publishable layout preview for evidence-led, authorized case-study records.", canonicalPath: clean, noindex: true };
+  if (clean === "/case-study-intake") return { title: "Case Study Evidence Intake | Coreweaver Labs", description: "Private client intake for approved case-study evidence and publication authorization.", canonicalPath: clean, noindex: true };
+  const caseStudyMatch = clean.match(/^\/case-studies\/([^/]+)$/);
+  if (caseStudyMatch) {
+    if (caseStudyMatch[1] === "governance-preview") return { title: "Case Study Governance Preview | Coreweaver Labs", description: "A non-publishable layout preview for evidence-led, authorized case-study records.", canonicalPath: clean, noindex: true };
+    try {
+      const record = await prefetch.caseStudyBySlug(caseStudyMatch[1]);
+      seed(queryClient, getQueryKey(trpc.caseStudies.bySlug, { slug: caseStudyMatch[1] }, "query"), record);
+      return { title: `${record.title} | Coreweaver Labs`, description: record.supportableFinding, ogType: "article", canonicalPath: clean, publishedTime: record.publishedAt?.toISOString() };
+    } catch (error) {
+      if (error instanceof TRPCError && error.code === "NOT_FOUND") return { title: SITE, description: DESCRIPTION, notFound: true };
+      return { title: `Case Study | ${SITE}`, description: DESCRIPTION, canonicalPath: clean, noindex: true };
+    }
+  }
   if (clean === "/contact") return { title: "Contact Coreweaver Labs | Signal Audit", description: "Start a conversation with Coreweaver Labs about a practical signal audit, GEO infrastructure, or AI representation systems.", canonicalPath: clean };
   if (clean === "/studio") return { title: SITE, description: DESCRIPTION, noindex: true };
   const authorMatch = clean.match(/^\/authors\/([^/]+)$/);

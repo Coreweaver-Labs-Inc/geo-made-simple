@@ -6,7 +6,7 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
 import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
-import { listPublishedInsights } from "../db";
+import { listPublishedCaseStudies, listPublishedInsights } from "../db";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 
@@ -47,13 +47,13 @@ async function startServer() {
   );
   app.get("/sitemap.xml", async (_req, res) => {
     const canonicalOrigin = process.env.CANONICAL_ORIGIN || "https://coreweaverlabs.com";
-    const fixedPaths = ["/", "/framework", "/products", "/insights", "/contact", "/authors/mason-nguyen"];
+    const fixedPaths = ["/", "/framework", "/products", "/insights", "/case-studies", "/contact", "/authors/mason-nguyen"];
     const fallbackSlugs = ["a-practical-signal-audit", "representation-is-an-operating-concern", "measurement-without-vanity-metrics"];
 
     try {
-      const articles = await listPublishedInsights();
+      const [articles, caseStudies] = await Promise.all([listPublishedInsights(), listPublishedCaseStudies()]);
       const articleSlugs = Array.from(new Set([...fallbackSlugs, ...articles.map(article => article.slug)]));
-      const urls = [...fixedPaths, ...articleSlugs.map(slug => `/insights/${slug}`)];
+      const urls = [...fixedPaths, ...articleSlugs.map(slug => `/insights/${slug}`), ...caseStudies.map(record => `/case-studies/${record.slug}`)];
       const body = urls
         .map(path => `  <url><loc>${canonicalOrigin}${path}</loc><changefreq>${path.startsWith("/insights/") ? "monthly" : "weekly"}</changefreq><priority>${path === "/" ? "1.0" : "0.8"}</priority></url>`)
         .join("\n");

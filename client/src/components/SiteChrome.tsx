@@ -1,11 +1,12 @@
 /* Shared public-site chrome keeps the expanded SEO pages connected to the Signal Ledger visual system. */
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const navItems = [
   { href: "/framework", label: "Framework" },
   { href: "/products", label: "Products" },
   { href: "/insights", label: "Insights" },
+  { href: "/case-studies", label: "Case studies" },
 ];
 
 const externalChannels = [

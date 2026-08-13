@@ -1,0 +1,20 @@
+CREATE TABLE `case_studies` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`slug` varchar(180) NOT NULL,
+	`title` varchar(220) NOT NULL,
+	`clientLabel` varchar(160) NOT NULL,
+	`sourceAttribution` text NOT NULL,
+	`sourceUrl` varchar(320),
+	`supportableFinding` text NOT NULL,
+	`scope` text NOT NULL,
+	`reportingStart` varchar(10) NOT NULL,
+	`reportingEnd` varchar(10) NOT NULL,
+	`reviewDate` varchar(10) NOT NULL,
+	`publicationAuthorization` text NOT NULL,
+	`status` enum('draft','published') NOT NULL DEFAULT 'draft',
+	`publishedAt` timestamp,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `case_studies_id` PRIMARY KEY(`id`),
+	CONSTRAINT `case_studies_slug_unique` UNIQUE(`slug`)
+);

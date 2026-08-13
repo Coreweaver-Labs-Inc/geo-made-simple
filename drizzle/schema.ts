@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { boolean, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -57,3 +57,53 @@ export const insights = mysqlTable("insights", {
 
 export type Insight = typeof insights.$inferSelect;
 export type InsertInsight = typeof insights.$inferInsert;
+
+/** Private client-provided evidence records. These records are never public by default. */
+export const caseStudyIntakes = mysqlTable("case_study_intakes", {
+  id: int("id").autoincrement().primaryKey(),
+  clientLabel: varchar("clientLabel", { length: 160 }).notNull(),
+  sourceName: varchar("sourceName", { length: 220 }).notNull(),
+  sourceReference: text("sourceReference").notNull(),
+  supportableFinding: text("supportableFinding").notNull(),
+  metricDefinition: text("metricDefinition"),
+  scope: text("scope").notNull(),
+  reportingStart: varchar("reportingStart", { length: 10 }).notNull(),
+  reportingEnd: varchar("reportingEnd", { length: 10 }).notNull(),
+  reviewDate: varchar("reviewDate", { length: 10 }).notNull(),
+  sourceOwnerApproval: text("sourceOwnerApproval").notNull(),
+  publicationAuthorization: text("publicationAuthorization").notNull(),
+  replyEmail: varchar("replyEmail", { length: 320 }),
+  authorizationConfirmed: boolean("authorizationConfirmed").default(false).notNull(),
+  privacyReviewConfirmed: boolean("privacyReviewConfirmed").default(false).notNull(),
+  claimReviewConfirmed: boolean("claimReviewConfirmed").default(false).notNull(),
+  status: mysqlEnum("status", ["received", "under_review", "approved", "declined"]).default("received").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CaseStudyIntake = typeof caseStudyIntakes.$inferSelect;
+export type InsertCaseStudyIntake = typeof caseStudyIntakes.$inferInsert;
+
+/** Approved public records only. Private intake evidence is never copied here automatically. */
+export const caseStudies = mysqlTable("case_studies", {
+  id: int("id").autoincrement().primaryKey(),
+  slug: varchar("slug", { length: 180 }).notNull().unique(),
+  title: varchar("title", { length: 220 }).notNull(),
+  clientLabel: varchar("clientLabel", { length: 160 }).notNull(),
+  sourceName: varchar("sourceName", { length: 220 }).notNull(),
+  sourceAttribution: text("sourceAttribution").notNull(),
+  sourceUrl: varchar("sourceUrl", { length: 320 }),
+  supportableFinding: text("supportableFinding").notNull(),
+  metricDefinition: text("metricDefinition"),
+  scope: text("scope").notNull(),
+  reportingStart: varchar("reportingStart", { length: 10 }).notNull(),
+  reportingEnd: varchar("reportingEnd", { length: 10 }).notNull(),
+  reviewDate: varchar("reviewDate", { length: 10 }).notNull(),
+  publicationAuthorization: text("publicationAuthorization").notNull(),
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CaseStudy = typeof caseStudies.$inferSelect;

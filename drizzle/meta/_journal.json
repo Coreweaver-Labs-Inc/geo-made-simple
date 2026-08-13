@@ -15,6 +15,27 @@
       "when": 1786611813915,
       "tag": "0001_late_zemo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1786613189508,
+      "tag": "0002_square_captain_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1786613621925,
+      "tag": "0003_thick_thunderbolt",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1786613987819,
+      "tag": "0004_little_rhodey",
+      "breakpoints": true
     }
   ]
 }
