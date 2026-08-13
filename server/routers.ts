@@ -35,6 +35,7 @@ export const appRouter = router({
           input.message,
         ].join("\n"),
       });
+      console.info(`[Contact] Owner notification ${notificationSent ? "accepted" : "not accepted"} for ${input.email}`);
 
       try {
         await createContactSubmission({

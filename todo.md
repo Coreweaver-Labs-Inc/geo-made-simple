@@ -8,8 +8,8 @@
 - [x] Add article listing/detail behavior and structured SEO metadata.
 - [x] Update navigation, sitemap, and internal links.
 - [x] Verify type checking, production build, responsive layout, and crawler-visible page metadata.
-- [ ] Apply the generated database migration when the managed database connection is available; current connection attempts time out.
-- [ ] Verify a live contact submission is stored and owner notification is delivered after the database migration succeeds.
+- [x] Apply the generated database migration when the managed database connection is available; current connection attempts time out.
+- [x] Verify a live contact submission is stored and owner notification is delivered after the database migration succeeds.
 - [ ] Save a final checkpoint and deliver the expanded project.
 - [x] Assess the supplied external profiles for brand-ethos alignment and recommend whether and where to link them.
 - [x] Add curated LinkedIn, Substack, X, and GitHub links to the footer and an editorial Substack CTA on Insights; exclude Facebook.
@@ -21,4 +21,6 @@
 - [x] Preserve accessible validation, progress feedback, and successful submission handoff for the streamlined flow.
 - [x] Verify the guided contact experience on desktop and mobile layouts.
 - [x] Verify guided step transitions and contact-detail validation behavior with focused automated coverage.
-- [ ] Verify successful end-to-end submission state after managed-database connectivity returns.
+- [x] Verify successful end-to-end submission state after managed-database connectivity returns.
+- [x] Submit the rendered guided Work With Us flow against the live backend and confirm its real success state.
+- [x] Capture direct notification-service acceptance evidence for the approved live verification submission.

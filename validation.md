@@ -8,4 +8,8 @@ The server-rendering and technical SEO pass verifies one title, description, can
 
 The Work With Us page was simplified to a three-step guided qualification flow. Desktop and 390px mobile views confirm that the first prompt, tap targets, progress indicator, and reassurance copy remain clear without making visitors complete a traditional long form. The new qualification-message helper is covered by two focused Vitest cases.
 
-The managed database hostname was intermittently unavailable during schema application. The generated migration remains in `drizzle/0000_marvelous_smasher.sql`, and the runtime sitemap uses a static fallback whenever the Insights table is not reachable. Contact submissions notify the project owner and persist to the database when those managed services are available; the final live-delivery test remains pending until the migration succeeds.
+The managed database migration later completed successfully. The `users`, `insights`, and `contact_submissions` tables were confirmed present. With owner approval, a clearly labeled live Work With Us verification inquiry was accepted and persisted through the public contact procedure, with no owner-notification delivery warning recorded by the server. The temporary verification record was then removed to keep the inquiry list clean.
+
+A second approved browser-driven verification completed the rendered three-step Work With Us flow against the live backend. The browser displayed the real success message, the generated qualification payload persisted in `contact_submissions`, and the server logged `Owner notification accepted` for that inquiry. The browser-verification record was removed after confirmation.
+
+The runtime sitemap retains a static fallback whenever the Insights table is temporarily unavailable, so public crawlability remains intact during a database service interruption.
