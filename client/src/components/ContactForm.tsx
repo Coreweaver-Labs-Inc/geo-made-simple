@@ -1,21 +1,24 @@
 import { trpc } from "@/lib/trpc";
-import { ArrowRight, CheckCircle2, LoaderCircle } from "lucide-react";
+import { buildQualificationMessage, getQualificationStep, qualificationGoals, qualificationStages, validateQualifiedName, validateQualifiedWorkEmail, type QualificationGoal, type QualificationStage } from "@/lib/contactQualification";
+import { ArrowLeft, ArrowRight, CheckCircle2, LoaderCircle } from "lucide-react";
+import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type ContactFormValues = {
   fullName: string;
   email: string;
-  organization: string;
-  website: string;
-  message: string;
+  note: string;
   formWebsite: string;
 };
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [goal, setGoal] = useState<QualificationGoal | null>(null);
+  const [stage, setStage] = useState<QualificationStage | null>(null);
+  const step = getQualificationStep(goal, stage);
   const form = useForm<ContactFormValues>({
-    defaultValues: { fullName: "", email: "", organization: "", website: "", message: "", formWebsite: "" },
+    defaultValues: { fullName: "", email: "", note: "", formWebsite: "" },
     mode: "onBlur",
   });
   const submit = trpc.contact.submit.useMutation({
@@ -25,28 +28,71 @@ export function ContactForm() {
     },
   });
 
+  const chooseGoal = (value: QualificationGoal) => {
+    setGoal(value);
+    setStage(null);
+  };
+
+  const chooseStage = (value: QualificationStage) => {
+    setStage(value);
+  };
+
   if (submitted) {
     return (
       <div className="form-success" role="status" aria-live="polite">
         <CheckCircle2 size={26} aria-hidden="true" />
-        <div><strong>Your message is in.</strong><p>Thank you. A member of the Coreweaver Labs team will review it and reply by email.</p></div>
+        <div><strong>Your request is in.</strong><p>Thank you. We will review your answers and reply with a useful next step.</p></div>
       </div>
     );
   }
 
   return (
-    <form className="contact-form" onSubmit={form.handleSubmit(values => submit.mutate(values))} noValidate>
+    <form className="contact-form qualification-flow" onSubmit={form.handleSubmit(values => {
+      if (!goal || !stage) return;
+      submit.mutate({
+        fullName: values.fullName,
+        email: values.email,
+        message: buildQualificationMessage(goal, stage, values.note),
+        formWebsite: values.formWebsite,
+      });
+    })} noValidate>
       <div className="form-honeypot" aria-hidden="true"><label htmlFor="form-website">Leave this field empty</label><input id="form-website" tabIndex={-1} autoComplete="off" {...form.register("formWebsite")} /></div>
-      <div className="form-grid">
-        <label className="form-field" htmlFor="fullName"><span>Name <b>*</b></span><input id="fullName" className="contact-input" autoComplete="name" aria-invalid={!!form.formState.errors.fullName} {...form.register("fullName", { required: "Please enter your name.", minLength: { value: 2, message: "Please use at least two characters." }, maxLength: 160 })} />{form.formState.errors.fullName && <em>{form.formState.errors.fullName.message}</em>}</label>
-        <label className="form-field" htmlFor="email"><span>Work email <b>*</b></span><input id="email" className="contact-input" type="email" autoComplete="email" aria-invalid={!!form.formState.errors.email} {...form.register("email", { required: "Please enter your email address.", pattern: { value: /^\S+@\S+\.\S+$/, message: "Please enter a valid email address." }, maxLength: 320 })} />{form.formState.errors.email && <em>{form.formState.errors.email.message}</em>}</label>
-        <label className="form-field" htmlFor="organization"><span>Organization</span><input id="organization" className="contact-input" autoComplete="organization" maxLength={160} {...form.register("organization")} /></label>
-        <label className="form-field" htmlFor="website"><span>Website</span><input id="website" className="contact-input" type="url" placeholder="https://" autoComplete="url" aria-invalid={!!form.formState.errors.website} {...form.register("website", { validate: value => !value || /^https?:\/\/\S+$/i.test(value) || "Please enter a full URL, including https://." })} />{form.formState.errors.website && <em>{form.formState.errors.website.message}</em>}</label>
+      <div className="qualification-progress" aria-label={`Step ${step} of 3`}>
+        {["Your focus", "Your stage", "Where to reply"].map((label, index) => <span key={label} className={index + 1 === step ? "is-current" : index + 1 < step ? "is-complete" : ""}><b>{String(index + 1).padStart(2, "0")}</b>{label}</span>)}
       </div>
-      <label className="form-field" htmlFor="message"><span>What would you like to understand? <b>*</b></span><textarea id="message" className="contact-textarea" rows={7} aria-invalid={!!form.formState.errors.message} {...form.register("message", { required: "Please share a little context.", minLength: { value: 20, message: "Please add at least 20 characters so we have useful context." }, maxLength: 5000 })} />{form.formState.errors.message && <em>{form.formState.errors.message.message}</em>}</label>
-      {submit.error && <div className="form-alert" role="alert">{submit.error.message}</div>}
-      <button className="button button-primary" type="submit" disabled={submit.isPending}>{submit.isPending ? <><LoaderCircle className="spin" size={16} /> Sending</> : <>Send message <ArrowRight size={16} /></>}</button>
-      <p className="form-note">We use these details only to respond to your inquiry.</p>
+
+      {step === 1 && <section className="qualification-step" aria-labelledby="goal-question">
+        <p className="page-kicker">A quick first question</p>
+        <h2 id="goal-question">What would make this conversation useful?</h2>
+        <p>Choose the closest fit. You can add context later if it helps.</p>
+        <div className="qualification-options" role="group" aria-label="Conversation goal">
+          {qualificationGoals.map(option => <button type="button" className="qualification-option" key={option} onClick={() => chooseGoal(option)} aria-pressed={goal === option}><span>{option}</span><ArrowRight size={17} aria-hidden="true" /></button>)}
+        </div>
+      </section>}
+
+      {step === 2 && <section className="qualification-step" aria-labelledby="stage-question">
+        <button className="step-back" type="button" onClick={() => { setGoal(null); setStage(null); }}><ArrowLeft size={14} /> Change focus</button>
+        <p className="page-kicker">One more question</p>
+        <h2 id="stage-question">Where are you today?</h2>
+        <p>This helps us suggest the right kind of next step—not a generic sales sequence.</p>
+        <div className="qualification-options" role="group" aria-label="Current stage">
+          {qualificationStages.map(option => <button type="button" className="qualification-option" key={option} onClick={() => chooseStage(option)} aria-pressed={stage === option}><span>{option}</span><ArrowRight size={17} aria-hidden="true" /></button>)}
+        </div>
+      </section>}
+
+      {step === 3 && <section className="qualification-step" aria-labelledby="contact-question">
+        <button className="step-back" type="button" onClick={() => setStage(null)}><ArrowLeft size={14} /> Change stage</button>
+        <p className="page-kicker">Last step</p>
+        <h2 id="contact-question">Where should we send the next step?</h2>
+        <p>We only need a name and work email. An optional note is there if the choices did not tell the full story.</p>
+        <div className="form-grid">
+          <label className="form-field" htmlFor="fullName"><span>Name <b>*</b></span><input id="fullName" className="contact-input" autoComplete="name" aria-invalid={!!form.formState.errors.fullName} {...form.register("fullName", { validate: validateQualifiedName })} />{form.formState.errors.fullName && <em>{form.formState.errors.fullName.message}</em>}</label>
+          <label className="form-field" htmlFor="email"><span>Work email <b>*</b></span><input id="email" className="contact-input" type="email" autoComplete="email" aria-invalid={!!form.formState.errors.email} {...form.register("email", { validate: validateQualifiedWorkEmail })} />{form.formState.errors.email && <em>{form.formState.errors.email.message}</em>}</label>
+        </div>
+        <label className="form-field" htmlFor="note"><span>Anything else we should know? <i>Optional</i></span><textarea id="note" className="contact-textarea qualification-note" rows={3} placeholder="A useful deadline, system, or question is plenty." maxLength={1000} {...form.register("note")} /></label>
+        {submit.error && <div className="form-alert" role="alert">{submit.error.message}</div>}
+        <div className="qualification-actions"><button className="button button-primary" type="submit" disabled={submit.isPending || !goal || !stage}>{submit.isPending ? <><LoaderCircle className="spin" size={16} /> Sending</> : <>Send my answers <ArrowRight size={16} /></>}</button><p className="form-note">No sales sequence. You will hear back from a person.</p></div>
+      </section>}
     </form>
   );
 }

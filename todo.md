@@ -17,3 +17,8 @@
 - [x] Audit SSR and the current technical SEO implementation across all public routes.
 - [x] Harden major SEO fundamentals: canonical metadata, indexing directives, structured data, sitemap, robots policy, and social previews.
 - [x] Verify raw server-rendered SEO output for every public route and record the results.
+- [x] Replace the long Work With Us form with an interactive, minimum-question qualification flow.
+- [x] Preserve accessible validation, progress feedback, and successful submission handoff for the streamlined flow.
+- [x] Verify the guided contact experience on desktop and mobile layouts.
+- [x] Verify guided step transitions and contact-detail validation behavior with focused automated coverage.
+- [ ] Verify successful end-to-end submission state after managed-database connectivity returns.

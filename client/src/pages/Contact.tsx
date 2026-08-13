@@ -7,7 +7,7 @@ export default function Contact() {
     <MarketingShell>
       <SeoHead title="Contact Coreweaver Labs | Signal Audit" description="Start a conversation with Coreweaver Labs about a practical signal audit, GEO infrastructure, or AI representation systems." path="/contact" />
       <main>
-        <section className="contact-page section-pad"><div className="contact-intro"><SectionLabel>Start a conversation</SectionLabel><h1>Start with the signal you already have.</h1><p className="page-lede">Tell us what you want to understand. We will review the context and respond with a useful next step.</p><p className="contact-aside">No sales sequence. You will hear back from a person.</p></div><ContactForm /></section>
+        <section className="contact-page section-pad"><div className="contact-intro"><SectionLabel>Work with us</SectionLabel><h1>Find the next useful move.</h1><p className="page-lede">Three quick prompts give us enough context to respond thoughtfully—without making you write a brief.</p><p className="contact-aside">Usually under a minute. No sales sequence.</p></div><ContactForm /></section>
       </main>
     </MarketingShell>
   );

@@ -149,6 +149,27 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .form-success p { margin: 0; }
 .contact-form .button { justify-self: start; }
 .contact-form .button:disabled { cursor: wait; opacity: .72; }
+.qualification-flow { gap: 1.6rem; }
+.qualification-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: .35rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--rule); }
+.qualification-progress span { display: flex; align-items: center; gap: .45rem; color: var(--ink-soft); font: .58rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.qualification-progress b { display: inline-grid; place-content: center; width: 1.3rem; height: 1.3rem; border: 1px solid var(--rule); border-radius: 50%; color: var(--brass); font-weight: 400; }
+.qualification-progress .is-current { color: var(--ink); }
+.qualification-progress .is-current b, .qualification-progress .is-complete b { border-color: var(--teal); background: var(--teal); color: var(--white); }
+.qualification-step { display: grid; gap: 1.05rem; }
+.qualification-step .page-kicker { margin: 0; }
+.qualification-step h2 { max-width: 11ch; margin: 0; font-size: clamp(2rem, 3vw, 3.1rem); }
+.qualification-step > p:not(.page-kicker) { max-width: 37rem; margin: 0; }
+.qualification-options { display: grid; gap: .7rem; margin-top: .5rem; }
+.qualification-option { display: flex; align-items: center; justify-content: space-between; gap: 1rem; width: 100%; padding: 1rem 1.05rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink); text-align: left; font: 500 .97rem var(--sans); transition: border-color .18s ease, background .18s ease, transform .16s var(--ease-out); }
+.qualification-option:hover, .qualification-option[aria-pressed="true"] { border-color: var(--teal); background: #e8f3ed; }
+.qualification-option:active { transform: scale(.985); }
+.qualification-option svg { flex: 0 0 auto; color: var(--teal); }
+.step-back { display: inline-flex; align-items: center; gap: .35rem; justify-self: start; padding: 0; border: 0; background: none; color: var(--ink-soft); font: .62rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.step-back:hover { color: var(--teal); }
+.form-field i { color: var(--brass); font-size: .58rem; font-style: normal; }
+.qualification-note { min-height: 6.4rem; }
+.qualification-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem 1.25rem; }
+.qualification-actions .form-note { max-width: 22rem; }
 .spin { animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -229,6 +250,10 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .insight-card h2 { margin-top: 2.4rem; }
   .insights-substack { display: grid; align-items: start; gap: 2rem; }
   .contact-page { padding-top: 5rem; }
+  .qualification-progress { gap: .2rem; }
+  .qualification-progress span { font-size: .52rem; }
+  .qualification-progress b { width: 1.1rem; height: 1.1rem; }
+  .qualification-actions { align-items: flex-start; }
   .studio-wrap { padding: 1rem; }
 }
 
