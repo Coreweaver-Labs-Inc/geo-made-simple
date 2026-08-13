@@ -156,6 +156,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .qualification-progress .is-current { color: var(--ink); }
 .qualification-progress .is-current b, .qualification-progress .is-complete b { border-color: var(--teal); background: var(--teal); color: var(--white); }
 .qualification-step { display: grid; gap: 1.05rem; }
+.qualification-step[data-motion] { will-change: transform, opacity; }
 .qualification-step .page-kicker { margin: 0; }
 .qualification-step h2 { max-width: 11ch; margin: 0; font-size: clamp(2rem, 3vw, 3.1rem); }
 .qualification-step > p:not(.page-kicker) { max-width: 37rem; margin: 0; }
@@ -188,6 +189,12 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .article-excerpt { max-width: 42rem; color: var(--ink); font-size: clamp(1.15rem, 2vw, 1.5rem); line-height: 1.45; }
 .article-body { max-width: 40rem; margin-top: 4rem; }
 .article-body p { margin-bottom: 1.8rem; font-size: 1.04rem; }
+.article-share { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem; margin-top: 2.2rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--brass); font: .62rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.article-share > span { margin-right: .2rem; }
+.article-share a { display: inline-flex; align-items: center; gap: .3rem; padding: .5rem .62rem; border: 1px solid var(--rule); color: var(--ink); transition: color .18s ease, border-color .18s ease, background .18s ease, transform .16s var(--ease-out); }
+.article-share a:hover { border-color: var(--teal); background: #e8f3ed; color: var(--teal); }
+.article-share a:active { transform: scale(.97); }
+.article-share a b { font: 600 .82rem var(--sans); line-height: 1; }
 .back-link { display: inline-flex; align-items: center; gap: .45rem; margin-bottom: 4rem; font: .66rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .back-link:hover { color: var(--teal); }
 .insights-substack { display: flex; align-items: end; justify-content: space-between; gap: 3rem; }
@@ -254,6 +261,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .qualification-progress span { font-size: .52rem; }
   .qualification-progress b { width: 1.1rem; height: 1.1rem; }
   .qualification-actions { align-items: flex-start; }
+  .article-share { gap: .5rem; }
   .studio-wrap { padding: 1rem; }
 }
 

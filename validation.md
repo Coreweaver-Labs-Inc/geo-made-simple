@@ -12,4 +12,6 @@ The managed database migration later completed successfully. The `users`, `insig
 
 A second approved browser-driven verification completed the rendered three-step Work With Us flow against the live backend. The browser displayed the real success message, the generated qualification payload persisted in `contact_submissions`, and the server logged `Owner notification accepted` for that inquiry. The browser-verification record was removed after confirmation.
 
+The Work With Us flow now animates step changes with a short directional opacity-and-position transition and disables nonessential motion for visitors who request reduced motion. Insight article pages now expose visible, labelled LinkedIn and X sharing controls with encoded canonical destinations. Desktop and 390px mobile reviews confirmed the controls remain clear and finger-friendly; raw SSR output also contains both sharing URLs.
+
 The runtime sitemap retains a static fallback whenever the Insights table is temporarily unavailable, so public crawlability remains intact during a database service interruption.

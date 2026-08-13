@@ -1,9 +1,10 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Linkedin } from "lucide-react";
 import { useParams } from "wouter";
 import { MarketingShell, SectionLabel } from "@/components/SiteChrome";
 import { SeoHead } from "@/components/SeoHead";
 import { fallbackInsights, formatInsightDate } from "@/lib/insightContent";
 import { trpc } from "@/lib/trpc";
+import { createArticleShareUrls } from "@/lib/articleSharing";
 
 export default function InsightDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -29,12 +30,13 @@ export default function InsightDetail() {
     author: { "@type": "Organization", "@id": "https://coreweaverlabs.com/#organization", name: "Coreweaver Labs" },
     publisher: { "@type": "Organization", "@id": "https://coreweaverlabs.com/#organization", name: "Coreweaver Labs", logo: { "@type": "ImageObject", url: "https://coreweaverlabs.com/manus-storage/coreweaver-mark_e04a456c.png" } },
   }).replace(/</g, "\\u003c");
+  const shareUrls = createArticleShareUrls(article.slug, article.title);
 
   return (
     <MarketingShell>
       <SeoHead title={`${article.title} | Coreweaver Labs`} description={article.excerpt} path={`/insights/${article.slug}`} ogType="article" />
       <main>
-        <article className="article-page section-pad"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleSchema }} /><a className="back-link" href="/insights"><ArrowLeft size={15} /> All insights</a><SectionLabel>{article.category}</SectionLabel><p className="page-kicker">{formatInsightDate(article.publishedAt)}</p><h1>{article.title}</h1><p className="article-excerpt">{article.excerpt}</p><div className="article-body">{article.content.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div></article>
+        <article className="article-page section-pad"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleSchema }} /><a className="back-link" href="/insights"><ArrowLeft size={15} /> All insights</a><SectionLabel>{article.category}</SectionLabel><p className="page-kicker">{formatInsightDate(article.publishedAt)}</p><h1>{article.title}</h1><p className="article-excerpt">{article.excerpt}</p><nav className="article-share" aria-label="Share this insight"><span>Share</span><a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on LinkedIn`}><Linkedin size={15} aria-hidden="true" /> LinkedIn <ArrowUpRight size={12} aria-hidden="true" /></a><a href={shareUrls.x} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on X`}><b aria-hidden="true">X</b> X <ArrowUpRight size={12} aria-hidden="true" /></a></nav><div className="article-body">{article.content.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div></article>
       </main>
     </MarketingShell>
   );

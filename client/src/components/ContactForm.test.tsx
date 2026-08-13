@@ -35,17 +35,18 @@ describe("ContactForm", () => {
     render(<ContactForm />);
 
     await user.click(screen.getByRole("button", { name: /make our brand easier/i }));
-    expect(screen.getByRole("heading", { name: "Where are you today?" })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Where are you today?" })).toBeTruthy();
 
     await user.click(screen.getByRole("button", { name: /change focus/i }));
-    expect(screen.getByRole("heading", { name: /what would make this conversation useful/i })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: /what would make this conversation useful/i })).toBeTruthy();
 
     await user.click(screen.getByRole("button", { name: /build accountable ai systems/i }));
+    await screen.findByRole("heading", { name: "Where are you today?" });
     await user.click(screen.getByRole("button", { name: /we need a practical plan/i }));
-    expect(screen.getByRole("heading", { name: /where should we send the next step/i })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: /where should we send the next step/i })).toBeTruthy();
 
     await user.click(screen.getByRole("button", { name: /change stage/i }));
-    expect(screen.getByRole("heading", { name: "Where are you today?" })).toBeTruthy();
+    expect(await screen.findByRole("heading", { name: "Where are you today?" })).toBeTruthy();
   });
 
   it("renders validation feedback and then the success state after a valid guided submission", async () => {
@@ -53,7 +54,9 @@ describe("ContactForm", () => {
     render(<ContactForm />);
 
     await user.click(screen.getByRole("button", { name: /talk through a different challenge/i }));
+    await screen.findByRole("heading", { name: "Where are you today?" });
     await user.click(screen.getByRole("button", { name: /we are ready to move/i }));
+    await screen.findByRole("heading", { name: /where should we send the next step/i });
     await user.click(screen.getByRole("button", { name: /send my answers/i }));
 
     expect(await screen.findByText("Please enter your name.")).toBeTruthy();

@@ -10,7 +10,7 @@
 - [x] Verify type checking, production build, responsive layout, and crawler-visible page metadata.
 - [x] Apply the generated database migration when the managed database connection is available; current connection attempts time out.
 - [x] Verify a live contact submission is stored and owner notification is delivered after the database migration succeeds.
-- [ ] Save a final checkpoint and deliver the expanded project.
+- [x] Save a final checkpoint and deliver the expanded project.
 - [x] Assess the supplied external profiles for brand-ethos alignment and recommend whether and where to link them.
 - [x] Add curated LinkedIn, Substack, X, and GitHub links to the footer and an editorial Substack CTA on Insights; exclude Facebook.
 - [x] Verify the curated external-link layout, accessibility labels, and safe external-link behavior.
@@ -24,3 +24,6 @@
 - [x] Verify successful end-to-end submission state after managed-database connectivity returns.
 - [x] Submit the rendered guided Work With Us flow against the live backend and confirm its real success state.
 - [x] Capture direct notification-service acceptance evidence for the approved live verification submission.
+- [x] Add smooth, reduced-motion-safe transitions between Work With Us form steps.
+- [x] Add accessible LinkedIn and X sharing controls to Insight article pages.
+- [x] Verify animation, sharing URLs, and responsive presentation across desktop and mobile.
