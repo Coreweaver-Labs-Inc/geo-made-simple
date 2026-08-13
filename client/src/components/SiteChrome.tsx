@@ -55,11 +55,22 @@ export function SiteFooter() {
 export function MarketingShell({ children }: { children: React.ReactNode }) {
   const organization = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Coreweaver Labs",
-    url: "https://coreweaver.io/",
-    description: "Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search.",
-    sameAs: externalChannels.map(channel => channel.href),
+    "@graph": [{
+      "@type": "Organization",
+      "@id": "https://coreweaverlabs.com/#organization",
+      name: "Coreweaver Labs",
+      url: "https://coreweaverlabs.com/",
+      logo: "https://coreweaverlabs.com/manus-storage/coreweaver-mark_e04a456c.png",
+      description: "Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search.",
+      sameAs: externalChannels.map(channel => channel.href),
+    }, {
+      "@type": "WebSite",
+      "@id": "https://coreweaverlabs.com/#website",
+      url: "https://coreweaverlabs.com/",
+      name: "Coreweaver Labs",
+      publisher: { "@id": "https://coreweaverlabs.com/#organization" },
+      inLanguage: "en-US",
+    }],
   }).replace(/</g, "\\u003c");
   return <div className="site-shell"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: organization }} /><SiteHeader />{children}<SiteFooter /></div>;
 }

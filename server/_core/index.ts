@@ -46,7 +46,7 @@ async function startServer() {
     })
   );
   app.get("/sitemap.xml", async (_req, res) => {
-    const canonicalOrigin = process.env.CANONICAL_ORIGIN || "https://coreweaver.io";
+    const canonicalOrigin = process.env.CANONICAL_ORIGIN || "https://coreweaverlabs.com";
     const fixedPaths = ["/", "/framework", "/products", "/insights", "/contact"];
     const fallbackSlugs = ["a-practical-signal-audit", "representation-is-an-operating-concern", "measurement-without-vanity-metrics"];
 

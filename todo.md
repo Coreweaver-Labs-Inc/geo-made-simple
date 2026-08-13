@@ -14,3 +14,6 @@
 - [x] Assess the supplied external profiles for brand-ethos alignment and recommend whether and where to link them.
 - [x] Add curated LinkedIn, Substack, X, and GitHub links to the footer and an editorial Substack CTA on Insights; exclude Facebook.
 - [x] Verify the curated external-link layout, accessibility labels, and safe external-link behavior.
+- [x] Audit SSR and the current technical SEO implementation across all public routes.
+- [x] Harden major SEO fundamentals: canonical metadata, indexing directives, structured data, sitemap, robots policy, and social previews.
+- [x] Verify raw server-rendered SEO output for every public route and record the results.
