@@ -27,3 +27,8 @@
 - [x] Add smooth, reduced-motion-safe transitions between Work With Us form steps.
 - [x] Add accessible LinkedIn and X sharing controls to Insight article pages.
 - [x] Verify animation, sharing URLs, and responsive presentation across desktop and mobile.
+- [x] Create a reusable author profile model with biography, expertise, and social authority signals.
+- [x] Add crawlable author profile routes and article-byline links to their published Insights.
+- [x] Add Person and author-aware BlogPosting structured data, sitemap coverage, and metadata.
+- [x] Verify author pages, bylines, article associations, responsive layout, and raw SSR SEO output.
+- [x] Add clearly labelled affiliated authority-channel links to author profiles and verify their SSR output and responsive treatment.

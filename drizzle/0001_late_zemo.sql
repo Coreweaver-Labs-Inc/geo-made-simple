@@ -1,0 +1,1 @@
+ALTER TABLE `insights` MODIFY COLUMN `author` varchar(120) NOT NULL DEFAULT 'Mason Nguyen';

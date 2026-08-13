@@ -147,7 +147,7 @@ export async function createInsight(input: Pick<InsertInsight, "title" | "slug" 
 
   const values: InsertInsight = {
     ...input,
-    author: "Coreweaver Labs",
+    author: "Mason Nguyen",
     publishedAt: input.status === "published" ? new Date() : null,
   };
   const result = await db.insert(insights).values(values);

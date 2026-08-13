@@ -48,7 +48,7 @@ export const insights = mysqlTable("insights", {
   excerpt: text("excerpt").notNull(),
   content: text("content").notNull(),
   category: varchar("category", { length: 80 }).notNull(),
-  author: varchar("author", { length: 120 }).default("Coreweaver Labs").notNull(),
+  author: varchar("author", { length: 120 }).default("Mason Nguyen").notNull(),
   status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
   publishedAt: timestamp("publishedAt"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

@@ -3,6 +3,7 @@ export type FallbackInsight = {
   title: string;
   excerpt: string;
   category: string;
+  author: string;
   publishedAt: string;
   content: string[];
 };
@@ -14,6 +15,7 @@ export const fallbackInsights: FallbackInsight[] = [
     title: "What a practical signal audit should reveal",
     excerpt: "A useful audit turns scattered claims, sources, and gaps into a prioritized picture of how a brand is represented in AI answers.",
     category: "Signal systems",
+    author: "Mason Nguyen",
     publishedAt: "2026-08-12",
     content: [
       "A signal audit is not a scorecard for its own sake. It is a working read of the evidence around a company: the facts it publishes, the sources that corroborate those facts, and the language that keeps the story coherent across channels.",
@@ -26,6 +28,7 @@ export const fallbackInsights: FallbackInsight[] = [
     title: "Representation is now an operating concern",
     excerpt: "When AI systems summarize a category, a company, or a founder, the public evidence around that brand becomes part of its operating environment.",
     category: "AI governance",
+    author: "Mason Nguyen",
     publishedAt: "2026-07-28",
     content: [
       "Brand representation used to be discussed mainly as a communications problem. Today, it is also a systems problem. The way a company appears in AI answers is shaped by the availability, consistency, and authority of its public information.",
@@ -38,6 +41,7 @@ export const fallbackInsights: FallbackInsight[] = [
     title: "Measure presence without chasing vanity metrics",
     excerpt: "A better AI-visibility measurement practice starts with the questions, sources, and audience contexts that matter to the business—not a single dashboard number.",
     category: "Measurement",
+    author: "Mason Nguyen",
     publishedAt: "2026-07-11",
     content: [
       "A single visibility score is tempting because it is easy to present. It can also hide the conditions that make a result meaningful. A company can appear frequently in unimportant contexts while remaining absent from the questions that move a decision.",

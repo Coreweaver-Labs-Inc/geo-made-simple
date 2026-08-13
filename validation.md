@@ -14,4 +14,8 @@ A second approved browser-driven verification completed the rendered three-step 
 
 The Work With Us flow now animates step changes with a short directional opacity-and-position transition and disables nonessential motion for visitors who request reduced motion. Insight article pages now expose visible, labelled LinkedIn and X sharing controls with encoded canonical destinations. Desktop and 390px mobile reviews confirmed the controls remain clear and finger-friendly; raw SSR output also contains both sharing URLs.
 
+The new Mason Nguyen author profile and article byline links were reviewed at desktop and 390px mobile widths. The author profile retains a readable hierarchy, compact authority topics, and a clearly separated article list. The linked article byline is visible without competing with the title or sharing controls.
+
+The author profile now labels its LinkedIn, Substack, X, and GitHub links as Coreweaver Labs channels rather than personal accounts. Raw server-rendered HTML contains the authority links with safe external-link semantics, while desktop and mobile checks confirm the compact links remain readable and wrap cleanly.
+
 The runtime sitemap retains a static fallback whenever the Insights table is temporarily unavailable, so public crawlability remains intact during a database service interruption.

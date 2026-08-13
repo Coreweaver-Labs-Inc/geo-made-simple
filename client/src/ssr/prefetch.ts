@@ -4,10 +4,11 @@ import { TRPCError, type inferRouterOutputs } from "@trpc/server";
 import type { AppRouter } from "../../../server/routers";
 import { trpc } from "@/lib/trpc";
 import { fallbackInsights } from "@/lib/insightContent";
+import { getAuthorBySlug } from "@/lib/authors";
 
 export type HeadMeta = { title: string; description: string; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
 type RouterOutput = inferRouterOutputs<AppRouter>;
-export type SsrPrefetch = { insightBySlug: (slug: string) => Promise<RouterOutput["insights"]["bySlug"]> };
+export type SsrPrefetch = { insightBySlug: (slug: string) => Promise<RouterOutput["insights"]["bySlug"]>; insightsListPublic: () => Promise<RouterOutput["insights"]["listPublic"]> };
 
 const SITE = "Coreweaver Labs";
 const DESCRIPTION = "Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search.";
@@ -25,6 +26,14 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   if (clean === "/insights") return { title: "Insights on GEO and AI Representation | Coreweaver Labs", description: "Practical perspectives on GEO, AI answer visibility, brand representation, and the systems that make trusted information easier to understand.", canonicalPath: clean };
   if (clean === "/contact") return { title: "Contact Coreweaver Labs | Signal Audit", description: "Start a conversation with Coreweaver Labs about a practical signal audit, GEO infrastructure, or AI representation systems.", canonicalPath: clean };
   if (clean === "/studio") return { title: SITE, description: DESCRIPTION, noindex: true };
+  const authorMatch = clean.match(/^\/authors\/([^/]+)$/);
+  if (authorMatch) {
+    const author = getAuthorBySlug(authorMatch[1]);
+    if (!author) return { title: SITE, description: DESCRIPTION, notFound: true };
+    const articles = await prefetch.insightsListPublic();
+    seed(queryClient, getQueryKey(trpc.insights.listPublic, undefined, "query"), articles);
+    return { title: `${author.name} | Coreweaver Labs`, description: author.shortBio, canonicalPath: clean };
+  }
   const articleMatch = clean.match(/^\/insights\/([^/]+)$/);
   if (articleMatch) {
     const slug = articleMatch[1];
