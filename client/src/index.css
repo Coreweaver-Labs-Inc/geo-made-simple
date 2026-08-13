@@ -169,6 +169,9 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .article-body p { margin-bottom: 1.8rem; font-size: 1.04rem; }
 .back-link { display: inline-flex; align-items: center; gap: .45rem; margin-bottom: 4rem; font: .66rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .back-link:hover { color: var(--teal); }
+.insights-substack { display: flex; align-items: end; justify-content: space-between; gap: 3rem; }
+.insights-substack h2 { max-width: 11ch; margin-bottom: 1rem; font-size: clamp(2.4rem, 4vw, 4.8rem); }
+.insights-substack p { max-width: 36rem; margin: 0; }
 
 .studio-wrap { max-width: 1280px; margin: 0 auto; padding: 2rem; color: var(--ink); }
 .studio-heading { max-width: 46rem; margin-bottom: 2.5rem; }
@@ -193,8 +196,13 @@ p { color: var(--ink-soft); line-height: 1.7; }
 
 .site-footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; padding-top: 2rem; padding-bottom: 2rem; border-top: 1px solid var(--ink); }
 .footer-brand { align-self: start; }
-.footer-links { display: flex; gap: 1rem; flex-wrap: wrap; font: .66rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.footer-navigation { display: grid; gap: 1.1rem; }
+.footer-links, .footer-external { display: flex; gap: 1rem; flex-wrap: wrap; font: .66rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
 .footer-links a:hover { color: var(--teal); }
+.footer-external { align-items: center; font-size: .6rem; }
+.footer-external > span { color: var(--brass); }
+.footer-external a { display: inline-flex; align-items: center; gap: .25rem; color: var(--ink-soft); }
+.footer-external a:hover { color: var(--teal); }
 .footer-meta { justify-self: end; text-align: right; }
 .footer-meta p { margin: 0; font: .62rem var(--mono); line-height: 1.7; }
 
@@ -219,6 +227,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .form-grid, .insight-list { grid-template-columns: 1fr; }
   .insight-card, .insight-card:nth-child(2n) { min-height: auto; padding: 1.6rem 0; border-right: 0; }
   .insight-card h2 { margin-top: 2.4rem; }
+  .insights-substack { display: grid; align-items: start; gap: 2rem; }
   .contact-page { padding-top: 5rem; }
   .studio-wrap { padding: 1rem; }
 }

@@ -11,3 +11,6 @@
 - [ ] Apply the generated database migration when the managed database connection is available; current connection attempts time out.
 - [ ] Verify a live contact submission is stored and owner notification is delivered after the database migration succeeds.
 - [ ] Save a final checkpoint and deliver the expanded project.
+- [x] Assess the supplied external profiles for brand-ethos alignment and recommend whether and where to link them.
+- [x] Add curated LinkedIn, Substack, X, and GitHub links to the footer and an editorial Substack CTA on Insights; exclude Facebook.
+- [x] Verify the curated external-link layout, accessibility labels, and safe external-link behavior.
