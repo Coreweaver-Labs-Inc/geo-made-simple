@@ -1,12 +1,13 @@
 /* Signal Ledger direction: editorial modernism, warm paper, deep ink, brass rules, and restrained signal teal. This page explains one idea per section and keeps the reading path obvious. */
-import { ArrowDownRight, ArrowUpRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ContactForm } from "@/components/ContactForm";
+import { MarketingShell, SectionLabel } from "@/components/SiteChrome";
+import { SeoHead } from "@/components/SeoHead";
 
 const sections = [
-  { href: "#why", label: "Why it matters" },
-  { href: "#framework", label: "The framework" },
-  { href: "#products", label: "What we build" },
-  { href: "#engagement", label: "Work with us" },
+  { href: "/framework", label: "Framework" },
+  { href: "/products", label: "Products" },
+  { href: "/insights", label: "Insights" },
 ];
 
 const products = [
@@ -27,41 +28,10 @@ const products = [
   },
 ];
 
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <p className="section-label">
-      <span className="signal-dot" aria-hidden="true" />
-      {children}
-    </p>
-  );
-}
-
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <div className="site-shell">
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Coreweaver Labs home">
-          <span className="brand-mark" aria-hidden="true">
-            <span />
-            <span />
-            <span />
-          </span>
-          <span className="brand-name">Coreweaver <em>Labs</em></span>
-        </a>
-        <button className="menu-toggle" type="button" aria-expanded={menuOpen} aria-controls="site-nav" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={18} /> : <Menu size={18} />}
-          <span>{menuOpen ? "Close" : "Menu"}</span>
-        </button>
-        <nav id="site-nav" className={`site-nav ${menuOpen ? "is-open" : ""}`} aria-label="Primary navigation">
-          {sections.map((section) => (
-            <a key={section.href} href={section.href} onClick={() => setMenuOpen(false)}>{section.label}</a>
-          ))}
-          <a className="nav-cta" href="#engagement" onClick={() => setMenuOpen(false)}>Start a conversation <ArrowUpRight size={15} /></a>
-        </nav>
-      </header>
-
+    <MarketingShell>
+      <SeoHead title="Coreweaver Labs — Make your brand easier for AI to understand." description="Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search." path="/" />
       <main id="top">
         <section className="hero section-pad" aria-labelledby="hero-title">
           <div className="hero-copy">
@@ -69,8 +39,8 @@ export default function Home() {
             <h1 id="hero-title">Make your brand easier for AI to understand.</h1>
             <p className="hero-lede">Coreweaver Labs builds the frameworks that help credible companies become clearer, more consistent, and more citable in AI search.</p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#framework">See how it works <ArrowDownRight size={16} /></a>
-              <a className="text-link" href="#engagement">Begin with a signal audit <ArrowUpRight size={16} /></a>
+              <a className="button button-primary" href="/framework">See how it works <ArrowDownRight size={16} /></a>
+              <a className="text-link" href="/contact">Begin with a signal audit <ArrowUpRight size={16} /></a>
             </div>
             <div className="hero-note"><span className="note-line" /> No black-box promises. Just better signals.</div>
           </div>
@@ -105,7 +75,7 @@ export default function Home() {
               <li><span>01</span><div><strong>Authority</strong><p>Build the evidence that earns trust.</p></div></li>
               <li><span>02</span><div><strong>Representation</strong><p>Make the right story structurally clear.</p></div></li>
               <li><span>03</span><div><strong>Measurement</strong><p>See what AI systems actually return.</p></div></li>
-            </ol>
+            </ol><a className="text-link" href="/framework">Explore the framework <ArrowUpRight size={16} /></a>
           </div>
         </section>
 
@@ -126,6 +96,7 @@ export default function Home() {
             </div>
             <div className="products-art"><img src="/manus-storage/coreweaver-products_9a7c53f2.jpg" alt="Three abstract signal instruments arranged on a workbench" loading="lazy" /></div>
           </div>
+          <a className="text-link" href="/products">Explore the products <ArrowUpRight size={16} /></a>
         </section>
 
         <section id="engagement" className="engagement-section section-pad section-rule" aria-labelledby="engagement-title">
@@ -134,17 +105,10 @@ export default function Home() {
             <SectionLabel>Work with us</SectionLabel>
             <h2 id="engagement-title">Start with the signal you already have.</h2>
             <p>Every engagement begins with a plain-language read of your current AI visibility. We find the gaps, name the opportunities, and recommend the smallest useful next step.</p>
-            <a className="button button-primary" href="mailto:hello@coreweaver.io?subject=Signal%20audit%20for%20my%20brand">Request a signal audit <ArrowUpRight size={16} /></a>
-            <p className="small-note">No sales sequence. You will hear back from a person.</p>
+            <ContactForm />
           </div>
         </section>
       </main>
-
-      <footer className="site-footer section-pad">
-        <div className="footer-brand"><span className="brand-mark" aria-hidden="true"><span /><span /><span /></span><span>Coreweaver Labs</span></div>
-        <div className="footer-links">{sections.slice(0, 3).map((section) => <a key={section.href} href={section.href}>{section.label}</a>)}</div>
-        <div className="footer-meta"><p>GEO / AI governance / signal systems</p><p>© {new Date().getFullYear()} Coreweaver Labs</p></div>
-      </footer>
-    </div>
+    </MarketingShell>
   );
 }

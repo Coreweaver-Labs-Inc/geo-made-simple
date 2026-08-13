@@ -1,13 +1,25 @@
 /* Signal Ledger direction: keep the app shell quiet so the landing page's editorial hierarchy stays in control. */
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Contact from "./pages/Contact";
+import Framework from "./pages/Framework";
 import Home from "./pages/Home";
+import InsightDetail from "./pages/InsightDetail";
+import Insights from "./pages/Insights";
 import NotFound from "./pages/NotFound";
-
+import Products from "./pages/Products";
+import Studio from "./pages/Studio";
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/framework" component={Framework} />
+      <Route path="/products" component={Products} />
+      <Route path="/insights" component={Insights} />
+      <Route path="/insights/:slug" component={InsightDetail} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/studio" component={Studio} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
