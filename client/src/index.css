@@ -354,6 +354,22 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .research-agenda-list h3 { margin: 0 0 .45rem; font-size: 1.15rem; }
 .research-agenda-list p { margin: 0; font-size: .9rem; }
 .research-agenda-list article > p { color: var(--brass); font: .68rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.ai-policy-summary, .ai-policy-controls, .ai-policy-sources { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(3rem, 9vw, 10rem); }
+.ai-policy-summary h2, .ai-policy-controls h2, .ai-policy-sources h2 { max-width: 14ch; }
+.ai-policy-summary p, .ai-policy-controls p, .ai-policy-sources p { max-width: 42rem; }
+.ai-policy-grid { display: grid; grid-template-columns: minmax(16rem, .62fr) minmax(0, 1.38fr); gap: clamp(2rem, 7vw, 8rem); }
+.ai-policy-section-heading { display: flex; align-items: flex-start; gap: .75rem; }
+.ai-policy-section-heading > svg { flex: 0 0 auto; color: var(--teal); margin-top: .25rem; }
+.ai-policy-section-heading h2 { max-width: 12ch; }
+.ai-policy-card-list { border-top: 1px solid var(--rule); }
+.ai-policy-card-list article { display: grid; grid-template-columns: 3rem 1fr; gap: .8rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.ai-policy-card-list article > span { color: var(--teal); font: .68rem var(--mono); letter-spacing: .08em; }
+.ai-policy-card-list-restricted article > span { color: var(--brass); }
+.ai-policy-card-list h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+.ai-policy-card-list p { margin: 0; max-width: 42rem; font-size: .94rem; }
+.ai-policy-contact { display: flex; align-items: end; justify-content: space-between; gap: 2rem; }
+.ai-policy-contact h2 { max-width: 18ch; }
+.ai-policy-contact p { max-width: 42rem; margin-bottom: 0; }
 .insights-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
 .gtm-operating-model h2, .gtm-request-intro h2 { max-width: 12ch; }
 .gtm-operating-list { border-top: 1px solid var(--rule); }
@@ -443,7 +459,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .case-preview-card { display: grid; align-items: start; gap: 2rem; }
   .case-record-grid { grid-template-columns: 1fr; }
   .gtm-service-grid { grid-template-columns: 1fr; }
-  .gtm-operating-model, .gtm-request-section, .gtm-support-section, .research-principles, .research-citation-section { grid-template-columns: 1fr; gap: 2.5rem; }
+  .gtm-operating-model, .gtm-request-section, .gtm-support-section, .research-principles, .research-citation-section, .ai-policy-summary, .ai-policy-controls, .ai-policy-sources, .ai-policy-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .gtm-request-toggle { grid-template-columns: 1fr; }
   .gtm-support-input { grid-template-columns: 1fr; }
   .gtm-metric-grid, .gtm-workspace-grid, .gtm-queue-grid { grid-template-columns: 1fr; }
@@ -456,6 +472,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .research-source-grid article:last-child { border-bottom: 0; }
   .research-agenda-list article { grid-template-columns: 2.4rem 1fr; }
   .research-agenda-list article > p { grid-column: 2; }
+  .ai-policy-contact { align-items: flex-start; flex-direction: column; }
   .case-facts { grid-template-columns: 1fr; }
   .case-facts > div:nth-child(odd), .case-facts > div:nth-child(even) { padding-left: 0; padding-right: 0; border-left: 0; }
   .studio-wrap { padding: 1rem; }

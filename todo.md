@@ -104,3 +104,6 @@
 - [x] Draft an AI-friendly Organization schema and metadata language package using the canonical audience, service, and evidence-led positioning.
 - [x] Draft a homepage hero that pairs the emotional AI-understanding tagline with explicit mid-market B2B service positioning.
 - [x] Define machine-readable, evidence-led case-study proof points that preserve existing authorization, source, scope, and claim-review safeguards.
+- [x] Create a public AI Data Policy page that states permitted AI-crawler use, prohibited use, attribution expectations, and a contact path without asserting unimplemented technical enforcement.
+- [x] Link the AI Data Policy from the public footer and add canonical, metadata, SSR, and sitemap coverage.
+- [x] Validate the AI Data Policy at desktop/mobile sizes and verify its server-rendered indexing and policy language.

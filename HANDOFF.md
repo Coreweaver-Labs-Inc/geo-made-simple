@@ -28,6 +28,7 @@ The site now includes an **integrated GTM foundation** selected by the user as o
 |---|---|---|
 | `/services` | Public GTM services and private request intake | Public, canonical, sitemap-listed |
 | `/research` | Public research methods, source standards, and agenda | Public, canonical, sitemap-listed |
+| `/ai-data-policy` | Public AI crawler permissions, restrictions, attribution expectations, and contact path | Public, canonical, sitemap-listed |
 | `/workspace` | Protected GTM control workspace | `noindex`, sitemap-excluded |
 | `/studio` | Existing protected publishing and governance studio | `noindex` |
 | `/case-study-intake` | Private compliant evidence intake | `noindex` |
@@ -52,6 +53,8 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 |---|---|
 | `presence-first-strategy.md` | Evidence-led research thesis, source hierarchy, claim ledger, agenda, and authority indicators. |
 | `client/src/pages/Research.tsx` | Public research-methods and source-standard page. |
+| `client/src/pages/AiDataPolicy.tsx` | Public AI Data Policy with permitted retrieval use, prohibited training/bulk reuse, provider documentation, and contact path. |
+| `client/public/robots.txt` | General search permission plus named crawler directives that distinguish known retrieval agents from named training/model-development agents. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |
