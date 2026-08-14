@@ -54,9 +54,17 @@ Before placing a real call, test the number with an unambiguous Operations scena
 
 > Do not treat a provider connection as permission for autonomous action. The gateway is deliberately a narrow intake and draft-review layer; human approval remains the only path to any external action.
 
+## API-Control Note for the Remaining Vapi Setup
+
+Vapi’s private API key is now validated by a one-assistant read and may be used only server-side. The remaining Squad and phone-number configuration should use Vapi’s documented update endpoints because the current Squad Builder does not expose a reliable destination selector for the generic handoff tool. The API supports explicit assistant-ID or assistant-name handoff destinations, and the assistant-specific server URL has precedence over phone-number and organization-level server URLs. [3] [5] [6]
+
+The API configuration must keep the Router limited to explicit Operations and Development destinations, use minimal user-and-assistant context for handoffs, and defer People & Feedback until a dedicated consent-bound specialist is created. It must not add a transfer, calendar, SMS, email, computer, shell, or external-action tool.
+
 ## References
 
 [1] [Hostinger: Agentic Mail](https://docs.hostinger.com/emails/agentic-mail)  
 [2] [Vapi: Server Authentication](https://docs.vapi.ai/server-url/server-authentication)  
 [3] [Vapi: Setting Server URLs](https://docs.vapi.ai/server-url/setting-server-urls)  
 [4] [Vapi: Server URL Events](https://docs.vapi.ai/server-url/events)
+[5] [Vapi: Handoff Tool](https://docs.vapi.ai/squads/handoff)  
+[6] [Vapi: Update Assistant API](https://docs.vapi.ai/api-reference/assistants/update-assistant)

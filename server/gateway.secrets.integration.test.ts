@@ -44,4 +44,30 @@ describe("gateway production credential configuration", () => {
     expect(secrets.every(Boolean)).toBe(true);
     expect(new Set(secrets).size).toBe(secrets.length);
   });
+
+  it("validates the Vapi bearer token through the local gateway with a non-terminal event", async () => {
+    const configuration = readGatewayConfiguration();
+    const response = await fetch("http://localhost:3000/webhooks/vapi", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${configuration.vapiWebhookToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message: { type: "transcript", call: { id: "credential-validation" } } }),
+    });
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ accepted: true, state: "ignored_nonterminal_event" });
+  }, 20_000);
+
+  it("validates the Vapi private management key with a one-assistant read", async () => {
+    expect(process.env.VAPI_API_KEY).toBeTruthy();
+    const response = await fetch("https://api.vapi.ai/assistant?limit=1", {
+      headers: { Authorization: `Bearer ${process.env.VAPI_API_KEY}` },
+    });
+
+    expect(response.ok).toBe(true);
+    const body = (await response.json()) as unknown;
+    expect(Array.isArray(body)).toBe(true);
+  }, 20_000);
 });
