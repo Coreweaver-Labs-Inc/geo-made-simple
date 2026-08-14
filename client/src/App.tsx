@@ -15,6 +15,7 @@ import InsightDetail from "./pages/InsightDetail";
 import Insights from "./pages/Insights";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
+import Research from "./pages/Research";
 import Studio from "./pages/Studio";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/workspace" component={GtmWorkspace} />
       <Route path="/products" component={Products} />
       <Route path="/insights" component={Insights} />
+      <Route path="/research" component={Research} />
       <Route path="/insights/:slug" component={InsightDetail} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/case-studies/governance-preview" component={CaseStudyPreview} />

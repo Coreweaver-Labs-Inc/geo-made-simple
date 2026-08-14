@@ -54,7 +54,9 @@
 - [x] Validate the production GTM workflows, accessibility, security boundaries, SEO, and operational readiness.
 - [x] Establish integrated-foundation defaults: client GTM hub, protected internal workspace, manual cross-team handoffs, and deferred external integrations.
 - [x] Define launch customer segments and baseline-first operating metrics without fabricating targets or performance data.
-- [ ] Confirm customer segment, three launch services, and required launch systems before enabling external integration workflows.
+- [x] Confirm the mid-market B2B target segment and three launch services: SEO, Content Marketing, and Paid Ads.
+- [ ] Obtain explicit approval for the exact published commercial prices or retain research-estimate labels until approved.
+- [ ] Confirm required launch systems before enabling external integration workflows.
 - [x] Add private account and contact management views to the GTM workspace so operators can review the records they create.
 - [x] Add private request-triage controls with status and owner assignment, while preserving manual-only promotion into sales or support records.
 - [x] Re-run complete GTM foundation validation after finalizing record visibility and request triage.
@@ -66,3 +68,35 @@
 - [x] Extend protected-workspace keyboard-focus coverage to contact and request-triage controls.
 - [x] Re-run and record the full GTM validation suite after expanding workspace keyboard coverage.
 - [x] Prepare next-session handoff notes for the integrated GTM foundation.
+- [x] Replace the public launch-service catalogue with SEO, Content Marketing, and Paid Ads details for mid-market B2B buyers.
+- [x] Add reviewed pricing presentation for the three launch services without making unsupported commercial claims.
+- [x] Build an AI-assisted customer-support form and chatbot that gathers initial context and produces a reviewable sales-routing recommendation.
+- [x] Validate AI support routing, accessibility, public SEO, protected data handling, and production readiness for the launch-service expansion.
+- [x] Research defensible premium positioning for mid-market B2B SEO, Content Marketing, and Paid Ads services.
+- [x] Document the evidence-backed premium differentiation, claim guardrails, and pricing rationale for the service catalogue.
+- [x] Write publication-ready premium-positioning copy with naturally integrated source links and a reference list.
+- [x] Assess the current Clutch digital-marketing category, published ranking methodology, and leading competitive profiles.
+- [x] Define the verified profile, portfolio, review, service, and operational evidence needed for credible Clutch readiness.
+- [x] Implement only supportable site proof and positioning improvements; do not fabricate reviews, rankings, clients, or results.
+- [x] Deliver a staged Clutch competitiveness plan that distinguishes controllable work from independently determined rankings.
+- [x] Review the supplied URL dashboard for supportable service, market-presence, and portfolio evidence.
+- [x] Aggregate credible market-pricing benchmarks into a premium starting-price recommendation for SEO, Content Marketing, and Paid Ads.
+- [x] Prepare the truthful company, service, review, and portfolio input checklist required to establish a new Clutch profile.
+- [x] Create and verify a dashboard-review artifact that records only supportable findings from the supplied URL inventory.
+- [x] Fix the public services SSR regression caused by the chat presentation dependency while preserving AI-assisted routing behavior.
+- [x] Constrain AI support responses to deterministic approved routing copy so the chatbot cannot invent internal process or policy details.
+- [x] Label the current SEO, Content Marketing, and Paid Ads amounts as research-based starting estimates pending owner approval.
+- [ ] Confirm final commercial pricing and the long-term leading indicators for premium mid-market B2B growth.
+- [ ] Create a verified proof and portfolio-readiness pipeline for authorized completed client work.
+- [ ] Establish an ethical customer-review program and new Clutch profile foundation without fabricated or incentivized feedback.
+- [ ] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
+- [x] Publish an original-research cadence and authorized thought-leadership plan to strengthen independent market presence.
+- [ ] Track controllable Clutch-readiness leading indicators and review the long-term growth roadmap quarterly.
+- [x] Define a presence-first research thesis, source hierarchy, claim-review standard, and publication cadence.
+- [x] Create the first three sourceable research briefs for mid-market B2B SEO, Content Marketing, and Paid Ads.
+- [x] Define authority leading indicators that distinguish owned publishing activity from independent market recognition.
+- [x] Implement a governed research-publishing workflow with author attribution, citations, and review gates.
+- [x] Extend private Insights records and the Studio form with research type, source references, method note, reviewer, and claim-review confirmation before research can publish.
+- [x] Add a public research-methods page that explains the source, authorship, claim-review, and correction standards without inventing research findings.
+- [x] Add an Insights entry point and SEO/sitemap coverage for the public research-methods page.
+- [x] Fix the research-methods page test runtime so its public publishing safeguards are covered by automated tests.

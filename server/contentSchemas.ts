@@ -33,7 +33,28 @@ export const insightDraftSchema = z.object({
   excerpt: z.string().trim().min(40, "Write a short summary of at least 40 characters.").max(1200),
   content: z.string().trim().min(120, "Add at least 120 characters of article content.").max(50000),
   category: z.string().trim().min(2).max(80),
+  contentType: z.enum(["article", "research_brief", "field_brief"]).default("article"),
+  sourceReferences: optionalText(8000),
+  methodNote: optionalText(5000),
+  claimReviewer: optionalText(220),
+  claimReviewConfirmed: z.boolean().default(false),
   status: z.enum(["draft", "published"]),
+}).superRefine((data, ctx) => {
+  if (data.contentType === "article" || data.status !== "published") return;
+
+  const requiredFields: Array<["sourceReferences" | "methodNote" | "claimReviewer", string]> = [
+    ["sourceReferences", "Add source references before publishing a research record."],
+    ["methodNote", "Add a method note before publishing a research record."],
+    ["claimReviewer", "Name the reviewer who checked the research claims before publishing."],
+  ];
+
+  requiredFields.forEach(([field, message]) => {
+    if (!data[field]) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [field], message });
+  });
+
+  if (!data.claimReviewConfirmed) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["claimReviewConfirmed"], message: "Confirm the research claim review before publishing." });
+  }
 });
 
 export const insightSlugSchema = z.object({
@@ -90,13 +111,19 @@ export const gtmRequestSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address.").max(320),
   organization: optionalText(160),
   website: optionalUrl,
-  serviceInterest: z.enum(["signal_intelligence_audit", "gtm_enablement_sprint", "representation_operations", "not_sure"]).optional(),
+  serviceInterest: z.enum(["seo", "content_marketing", "paid_ads", "not_sure"]).optional(),
   subject: optionalText(220),
   message: z.string().trim().min(30, "Please share enough context for the team to respond.").max(5000),
   urgency: z.enum(["standard", "high"]).default("standard"),
   formWebsite: z.string().max(0).optional(),
 }).superRefine((data, ctx) => {
   if (data.requestType === "support_request" && !data.subject) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["subject"], message: "Please add a short support subject." });
+});
+
+export const supportAssistantSchema = z.object({
+  requestType: z.enum(["service_inquiry", "support_request"]),
+  serviceInterest: z.enum(["seo", "content_marketing", "paid_ads", "not_sure"]).optional(),
+  message: z.string().trim().min(8, "Please share a little more context.").max(2000, "Please keep your message under 2,000 characters."),
 });
 
 export const gtmAccountSchema = z.object({
@@ -118,7 +145,7 @@ export const gtmContactSchema = z.object({
 export const gtmOpportunitySchema = z.object({
   accountId: z.number().int().positive(),
   contactId: optionalId,
-  serviceLine: z.enum(["signal_intelligence_audit", "gtm_enablement_sprint", "representation_operations", "custom"]),
+  serviceLine: z.enum(["signal_intelligence_audit", "gtm_enablement_sprint", "representation_operations", "seo", "content_marketing", "paid_ads", "custom"]),
   title: z.string().trim().min(4).max(220),
   stage: z.enum(["inquiry", "qualified", "discovery", "proposal", "won", "lost"]),
   ownerName: optionalText(160),

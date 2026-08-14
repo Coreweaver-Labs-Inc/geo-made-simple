@@ -7,6 +7,19 @@ import { trpc } from "@/lib/trpc";
 import { createArticleShareUrls } from "@/lib/articleSharing";
 import { getAuthorByName, getAuthorHref } from "@/lib/authors";
 
+function sourceLines(sourceReferences: string | null | undefined) {
+  return (sourceReferences || "").split(/\n+/).map(reference => reference.trim()).filter(Boolean);
+}
+
+function asExternalUrl(reference: string) {
+  try {
+    const url = new URL(reference);
+    return url.protocol === "https:" || url.protocol === "http:" ? url.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
 export default function InsightDetail() {
   const { slug } = useParams<{ slug: string }>();
   const fallback = fallbackInsights.find(article => article.slug === slug);
@@ -33,12 +46,14 @@ export default function InsightDetail() {
   }).replace(/</g, "\\u003c");
   const shareUrls = createArticleShareUrls(article.slug, article.title);
   const authorHref = getAuthorHref(article.author);
+  const researchDetails = query.data && query.data.contentType !== "article" ? query.data : null;
+  const references = sourceLines(researchDetails?.sourceReferences);
 
   return (
     <MarketingShell>
       <SeoHead title={`${article.title} | Coreweaver Labs`} description={article.excerpt} path={`/insights/${article.slug}`} ogType="article" />
       <main>
-        <article className="article-page section-pad"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleSchema }} /><a className="back-link" href="/insights"><ArrowLeft size={15} /> All insights</a><SectionLabel>{article.category}</SectionLabel><p className="page-kicker">{formatInsightDate(article.publishedAt)}</p><p className="article-byline">Written by {authorHref ? <a href={authorHref}>{article.author}</a> : article.author}</p><h1>{article.title}</h1><p className="article-excerpt">{article.excerpt}</p><nav className="article-share" aria-label="Share this insight"><span>Share</span><a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on LinkedIn`}><Linkedin size={15} aria-hidden="true" /> LinkedIn <ArrowUpRight size={12} aria-hidden="true" /></a><a href={shareUrls.x} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on X`}><b aria-hidden="true">X</b> X <ArrowUpRight size={12} aria-hidden="true" /></a></nav><div className="article-body">{article.content.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div></article>
+        <article className="article-page section-pad"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: articleSchema }} /><a className="back-link" href="/insights"><ArrowLeft size={15} /> All insights</a><SectionLabel>{article.category}</SectionLabel><p className="page-kicker">{formatInsightDate(article.publishedAt)}</p><p className="article-byline">Written by {authorHref ? <a href={authorHref}>{article.author}</a> : article.author}</p><h1>{article.title}</h1><p className="article-excerpt">{article.excerpt}</p><nav className="article-share" aria-label="Share this insight"><span>Share</span><a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on LinkedIn`}><Linkedin size={15} aria-hidden="true" /> LinkedIn <ArrowUpRight size={12} aria-hidden="true" /></a><a href={shareUrls.x} target="_blank" rel="noopener noreferrer" aria-label={`Share “${article.title}” on X`}><b aria-hidden="true">X</b> X <ArrowUpRight size={12} aria-hidden="true" /></a></nav><div className="article-body">{article.content.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</div>{researchDetails && <aside className="article-research-record" aria-label="Research publication record"><SectionLabel>{researchDetails.contentType === "research_brief" ? "Research record" : "Field record"}</SectionLabel><h2>How this publication was reviewed</h2><p><b>Method:</b> {researchDetails.methodNote}</p><p><b>Claim review:</b> Confirmed by {researchDetails.claimReviewer} before publication.</p><h3>Source references</h3>{references.length ? <ol>{references.map((reference, index) => { const url = asExternalUrl(reference); return <li key={`${reference}-${index}`}>{url ? <a href={url} target="_blank" rel="noopener noreferrer">{reference}</a> : reference}</li>; })}</ol> : <p>Source references are recorded with this publication.</p>}</aside>}</article>
       </main>
     </MarketingShell>
   );

@@ -49,6 +49,43 @@ describe("public content validation", () => {
     expect(result.success).toBe(true);
   });
 
+  it("requires sources, a method, named review, and confirmation before research can publish", () => {
+    const base = {
+      title: "What mid-market B2B teams need from a research publishing record",
+      slug: "research-publishing-record",
+      excerpt: "A concise explanation of the evidence and review information that make a research publication inspectable by a reader.",
+      content: "A useful research record makes its question, source selection, limitations, and review accountable to a reader. It does not treat a working hypothesis as a completed market finding, and it distinguishes documented evidence from sales language.",
+      category: "Research methods",
+      contentType: "research_brief" as const,
+      status: "published" as const,
+    };
+    const incomplete = insightDraftSchema.safeParse(base);
+    const complete = insightDraftSchema.safeParse({
+      ...base,
+      sourceReferences: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      methodNote: "Reviewed primary documentation and recorded the publication scope, source date, and limits before drafting.",
+      claimReviewer: "Research editor",
+      claimReviewConfirmed: true,
+    });
+
+    expect(incomplete.success).toBe(false);
+    expect(complete.success).toBe(true);
+  });
+
+  it("allows an incomplete research record to remain a private draft", () => {
+    const result = insightDraftSchema.safeParse({
+      title: "A draft record for a future mid-market B2B field brief",
+      slug: "future-mid-market-field-brief",
+      excerpt: "A draft field brief may collect a question and initial working language before sources and reviewers are ready.",
+      content: "The draft is deliberately not a publication claim. It gives an editor a workspace for outlining a question, source plan, and the evidence that could later support a reader-facing explanation with accountable review.",
+      category: "Research methods",
+      contentType: "field_brief",
+      status: "draft",
+    });
+
+    expect(result.success).toBe(true);
+  });
+
   it("accepts all seven required case-study governance fields only with written authorization", () => {
     const result = caseStudyIntakeSchema.safeParse({
       clientLabel: "Authorized anonymous B2B platform",
@@ -96,7 +133,7 @@ describe("public content validation", () => {
   });
 
   it("accepts a complete private GTM service request and rejects a support request without a subject", () => {
-    const service = gtmRequestSchema.safeParse({ requestType: "service_inquiry", fullName: "Jordan Lee", email: "jordan@example.com", organization: "Example systems", serviceInterest: "gtm_enablement_sprint", message: "We need to connect sales, marketing, support, and delivery around an evidence-led GTM operating model.", urgency: "standard" });
+    const service = gtmRequestSchema.safeParse({ requestType: "service_inquiry", fullName: "Jordan Lee", email: "jordan@example.com", organization: "Example systems", serviceInterest: "seo", message: "We need to connect sales, marketing, support, and delivery around an evidence-led GTM operating model.", urgency: "standard" });
     const invalidSupport = gtmRequestSchema.safeParse({ requestType: "support_request", fullName: "Jordan Lee", email: "jordan@example.com", message: "We need help understanding an existing service engagement and its next delivery step.", urgency: "high" });
     expect(service.success).toBe(true);
     expect(invalidSupport.success).toBe(false);

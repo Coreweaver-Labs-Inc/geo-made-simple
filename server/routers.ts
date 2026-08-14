@@ -3,9 +3,10 @@ import { TRPCError } from "@trpc/server";
 import { createCaseStudyIntake, createContactSubmission, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
+import { guideSupportInquiry } from "./supportAssistant";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema, supportAssistantSchema } from "./contentSchemas";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -56,6 +57,7 @@ export const appRouter = router({
     listStudio: adminProcedure.query(() => listContactSubmissions()),
   }),
   gtm: router({
+    supportAssistant: publicProcedure.input(supportAssistantSchema).mutation(({ input }) => guideSupportInquiry(input)),
     submitRequest: publicProcedure.input(gtmRequestSchema).mutation(async ({ input }) => {
       if (input.formWebsite) return { success: true } as const;
       const notificationSent = await notifyOwner({

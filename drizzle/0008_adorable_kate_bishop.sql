@@ -1,0 +1,1 @@
+ALTER TABLE `gtm_opportunities` MODIFY COLUMN `serviceLine` enum('signal_intelligence_audit','gtm_enablement_sprint','representation_operations','seo','content_marketing','paid_ads','custom') NOT NULL;

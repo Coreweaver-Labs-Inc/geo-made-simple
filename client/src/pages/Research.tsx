@@ -1,0 +1,27 @@
+import React from "react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { MarketingShell, SectionLabel } from "@/components/SiteChrome";
+import { SeoHead } from "@/components/SeoHead";
+
+const sourceStandards = [
+  ["01", "Owned, auditable evidence", "Authorized project records, documented methods, de-identified observations, and original analysis may support a finding only after claims, privacy, and publication review."],
+  ["02", "Primary and official sources", "Platform documentation, government data, source datasets, and published methodologies supply context that readers can inspect for themselves."],
+  ["03", "Credible secondary analysis", "Trade research and editorial analysis can frame a question or counterargument, but they never stand alone for a material performance claim."],
+];
+
+const researchAgenda = [
+  ["The B2B language-consistency audit", "A method for finding disagreement between websites, sales materials, paid ads, and support entry points.", "Framework and blank worksheet"],
+  ["Content that changes a buyer’s question", "A study of what makes a B2B insight useful enough to reframe a working assumption.", "Editorial quality rubric"],
+  ["Paid media as message testing", "A checklist for testing a coherent B2B story before treating spend as a scaling mechanism.", "Campaign-readiness checklist"],
+];
+
+export default function Research() {
+  return <MarketingShell><SeoHead title="Research Methods and Editorial Standards | Coreweaver Labs" description="How Coreweaver Labs develops sourceable mid-market B2B research, reviews claims, attributes authorship, and publishes useful thought leadership." path="/research" /><main>
+    <section className="page-hero section-pad"><SectionLabel>Research methods</SectionLabel><p className="page-kicker">Evidence before amplification</p><h1>Research with a method—and a record.</h1><p className="page-lede">Coreweaver Labs publishes practical research for mid-market B2B teams working across SEO, Content Marketing, Paid Ads, sales context, and customer support. The goal is useful understanding, not content volume or a promise of visibility.</p></section>
+    <section className="research-principles section-pad section-rule"><div><SectionLabel>Publication standard</SectionLabel><h2>Every public finding must explain who is responsible, how it was developed, and why it is useful.</h2></div><div className="research-principle-list"><p><b>Who</b> Each publication has a named author and, where relevant, a named reviewer who can explain the work.</p><p><b>How</b> We disclose the evidence base, source links, method, scope, and relevant limitations instead of presenting a conclusion as self-evident.</p><p><b>Why</b> We publish to help a reader inspect a decision or improve a handoff—not to manufacture search demand.</p><p><b>Correct</b> When evidence changes, we update, qualify, archive, or correct the work rather than merely changing the date.</p></div></section>
+    <section className="research-source-grid section-pad section-rule">{sourceStandards.map(([number, title, detail]) => <article key={number}><p className="page-kicker">{number}</p><h2>{title}</h2><p>{detail}</p></article>)}</section>
+    <section className="research-citation-section section-pad section-rule"><div><SectionLabel>Sourceable by design</SectionLabel><h2>Research is only useful when a reader can inspect the reasoning.</h2></div><div><p>Google’s guidance on helpful, reliable content asks whether a publication provides original information, reporting, research, or analysis, makes clear who created it, and adds value beyond rewriting other sources. <a className="case-source-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener noreferrer">Read the people-first content guidance <ArrowUpRight size={14} aria-hidden="true" /></a></p><p>The program also treats AI as an assistive tool, not a source of authority. A named human is accountable for the published claim, citation, method note, and any explanation of how automation assisted the work.</p><div className="research-governance-note"><CheckCircle2 size={18} aria-hidden="true" /><p>Client evidence follows the existing authorization, privacy, claims, and reviewer-handoff workflow. An intake is never converted into public proof automatically.</p></div></div></section>
+    <section className="research-agenda section-pad section-rule"><div className="split-intro"><div><SectionLabel>Research agenda</SectionLabel><h2>Three questions we are prepared to study—not conclusions we have already claimed.</h2></div><p>Each brief begins with a documented method, source ledger, and publication review. The public output may be a framework, checklist, or original briefing once the evidence is ready.</p></div><div className="research-agenda-list">{researchAgenda.map(([title, question, output], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{question}</p></div><p>{output}</p></article>)}</div></section>
+    <section className="insights-substack section-pad section-rule"><div><SectionLabel>Follow the work</SectionLabel><h2>Read the current Insights, then hold the research to its method.</h2><p>We will add original research only when the source, scope, author, method, and claim-review record are complete.</p></div><a className="button button-primary" href="/insights">Explore Insights <ArrowUpRight size={16} aria-hidden="true" /></a></section>
+  </main></MarketingShell>;
+}

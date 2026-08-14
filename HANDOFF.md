@@ -2,7 +2,7 @@
 
 **Project:** `coreweaver-labs-simple`  
 **Path:** `/home/ubuntu/coreweaver-labs-simple`  
-**Latest live checkpoint:** `bd8b1db9`  
+**Latest live checkpoint:** `2a2f4203` (the research experience and governed publication workflow are implemented and awaiting the next checkpoint)  
 **Published preview domain:** `https://coregeo-aqp8tam3.manus.space`  
 **Canonical production domain in metadata:** `https://coreweaverlabs.com`
 
@@ -17,13 +17,17 @@ The site now includes an **integrated GTM foundation** selected by the user as o
 | Manual handoffs | A request can be assigned an owner and moved through `new`, `triaged`, or `closed`. Operators must separately create accounts, opportunities, or support cases after review. |
 | Functions covered | Sales, customer support, operations, marketing, research, and design have explicit work-item ownership and lifecycle fields. |
 | Reporting | The foundation defines baseline-first launch metrics in `gtm-foundation.md`; it intentionally does not claim results or set fabricated performance targets. |
-| Existing governance | Case-study intake, reviewer handoff, author pages, Insights, SSR, SEO, and owner notification workflows remain in place. |
+| Research credibility | `/research` explains sources, authorship, claim review, correction, and client-evidence safeguards without presenting agenda topics as completed findings. |
+| Governed publishing | The private Studio supports articles, research briefs, and field briefs. Research records may stay drafts; publishing requires source references, a method note, a named reviewer, and explicit claim-review confirmation. |
+| Public transparency | Published research records display their method, reviewer confirmation, and plain-text source references in the public Insight detail page. |
+| Existing governance | Case-study intake, reviewer handoff, author pages, SSR, SEO, and owner notification workflows remain in place. |
 
 ## Key Routes
 
 | Route | Purpose | Indexing |
 |---|---|---|
 | `/services` | Public GTM services and private request intake | Public, canonical, sitemap-listed |
+| `/research` | Public research methods, source standards, and agenda | Public, canonical, sitemap-listed |
 | `/workspace` | Protected GTM control workspace | `noindex`, sitemap-excluded |
 | `/studio` | Existing protected publishing and governance studio | `noindex` |
 | `/case-study-intake` | Private compliant evidence intake | `noindex` |
@@ -37,6 +41,8 @@ The GTM foundation adds six private/controlled tables: `gtm_requests`, `gtm_acco
 |---|---|
 | `drizzle/0006_smiling_orphan.sql` | Creates the GTM foundation tables without inserting customer or performance data. |
 | `drizzle/0007_wide_molten_man.sql` | Adds the nullable private `ownerName` field to `gtm_requests` for manual triage. |
+| `drizzle/0008_adorable_kate_bishop.sql` | Extends the private GTM opportunity service-line enum for the three launch services. |
+| `drizzle/0009_flashy_sir_ram.sql` | Adds governed research publication type, source-reference, method, reviewer, and claim-review fields to `insights`. |
 
 The most recent Drizzle parity check reported **no pending schema changes**.
 
@@ -44,6 +50,10 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 
 | File | Responsibility |
 |---|---|
+| `presence-first-strategy.md` | Evidence-led research thesis, source hierarchy, claim ledger, agenda, and authority indicators. |
+| `client/src/pages/Research.tsx` | Public research-methods and source-standard page. |
+| `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
+| `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `gtm-foundation.md` | Operating model, default segments, lifecycle, metrics, and non-automatic boundaries. |
 | `client/src/pages/GtmHub.tsx` | Public services hub and request form. |
 | `client/src/pages/GtmWorkspace.tsx` | Private GTM workspace creation and lifecycle views. |
@@ -59,24 +69,24 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 
 ## Validation Completed
 
-The current build passed `pnpm run check`, the full Vitest suite (**23 tests**), and `pnpm run build` for both client and SSR output. `/services` was verified server-rendered with canonical metadata and sitemap inclusion. `/workspace` was verified `noindex` and absent from the sitemap. A request to `gtm.listRequests` without an authenticated admin session returned **HTTP 403**. Accessibility coverage verifies labelled controls and the keyboard focus path across account, contact, and request-triage controls.
+The current build passed `pnpm run check`, the full Vitest suite (**29 tests**), and `pnpm run build` for both client and SSR output. `/research` was verified server-rendered with canonical metadata and sitemap inclusion, and was reviewed at desktop plus 390px mobile widths. The reviewed additive migration `0009_flashy_sir_ram.sql` was applied. `/services` was verified server-rendered with canonical metadata and sitemap inclusion. `/workspace` was verified `noindex` and absent from the sitemap. A request to `gtm.listRequests` without an authenticated admin session returned **HTTP 403**. Accessibility coverage verifies labelled controls and the keyboard focus path across account, contact, and request-triage controls.
 
 > The build reports a non-blocking client bundle-size warning above 500 kB. No active TypeScript errors remain. Historical browser-console output may show a stale pre-fix missing-export message; final type checks and production builds are clean.
 
-## One Pending Product Decision
+## Remaining Product Decisions
 
-The only remaining checklist item is blocked on the user. Before enabling external integrations or advanced automation, obtain:
+The launch segment and three launch services are now defined. The remaining user decisions are:
 
-1. The **primary customer segment**.
-2. The **three launch services** to prioritize.
-3. The required **launch systems**—CRM, help desk, email, calendar, analytics, or none.
+1. Approve the research-based starting estimates for SEO ($6,500/month), Content Marketing ($7,500/month), and Paid Ads ($7,500/month), or provide revised commercial prices.
+2. Confirm the first authorized evidence/proof pipeline and the ethical customer-review program timing.
+3. Confirm which external launch systems—if any—are required before they are configured.
 
 Until then, preserve the current native database workflow and manual handoffs. Do not enable, simulate, or configure external connectors prematurely.
 
 ## Recommended Next Session
 
-1. Read `HANDOFF.md`, `todo.md`, `gtm-foundation.md`, and `validation.md`.
-2. Ask the user for the three pending launch decisions if they have not replied.
-3. Translate those choices into a prioritized service catalogue and, only if requested, integration requirements.
+1. Read `HANDOFF.md`, `todo.md`, `presence-first-strategy.md`, and `validation.md`.
+2. Obtain the remaining commercial, proof-pipeline, review-program, and external-system decisions if the user is ready to make them.
+3. Keep research records in draft until their sources, method, reviewer, and claim-review confirmation are complete; never insert fabricated findings, client proof, or testimonials.
 4. For any integration or scheduled workflow, read the relevant integration and automation guidance before changing schema or code.
 5. Run `pnpm run check`, `pnpm test`, `pnpm run build`, review `todo.md`, and create a checkpoint after the next discrete feature set.

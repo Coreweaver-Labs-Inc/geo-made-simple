@@ -156,7 +156,7 @@ export async function listInsightsForStudio() {
   return db.select().from(insights).orderBy(desc(insights.updatedAt));
 }
 
-export async function createInsight(input: Pick<InsertInsight, "title" | "slug" | "excerpt" | "content" | "category" | "status">) {
+export async function createInsight(input: Pick<InsertInsight, "title" | "slug" | "excerpt" | "content" | "category" | "contentType" | "sourceReferences" | "methodNote" | "claimReviewer" | "claimReviewConfirmed" | "status">) {
   const db = await getDb();
   if (!db) throw new Error("Database is unavailable");
 
