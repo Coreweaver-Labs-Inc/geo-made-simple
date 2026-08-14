@@ -2,7 +2,7 @@
 
 **Project:** `coreweaver-labs-simple`  
 **Path:** `/home/ubuntu/coreweaver-labs-simple`  
-**Latest live checkpoint:** `2a2f4203` (the research experience and governed publication workflow are implemented and awaiting the next checkpoint)  
+**Latest live checkpoint:** `4bf05b95` (the approved pricing and scorecard posture are live; the completed emotion-led visual refresh is awaiting its next checkpoint)  
 **Published preview domain:** `https://coregeo-aqp8tam3.manus.space`  
 **Canonical production domain in metadata:** `https://coreweaverlabs.com`
 
@@ -61,6 +61,9 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `client/src/pages/Home.tsx` | Homepage copy with plain-language definitions for signals, operating system, AI answer/source review, shared knowledge, and governance-adjacent review routines. |
 | `owner-decisions.md` | Active owner decision: approved commercial starting prices are public, manual workflows remain active, and any future integration requires an approved data flow. |
 | `authority-scorecard.md` | Manual leading-indicator scorecard: first formal review January 1, 2027; then April 1, July 1, and October 1. |
+| `quarterly-review-2027-q1-template.md` | Unpopulated Q4 2026 evidence-capture and decision template for the first formal January 1, 2027 scorecard review. |
+| `coreweaver-visual-system.md` | Image-by-image emotional visual system, asset direction, alternative text, social metadata, delivery map, and acceptance rules. |
+| `client/src/components/SeoHead.tsx` | Browser-side metadata updater with Open Graph and Twitter image URL and alternative-text support. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |

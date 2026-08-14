@@ -45,8 +45,8 @@ export default function Home() {
             </div>
             <div className="hero-note"><span className="note-line" /> No black-box promises. Clear information, reviewed sources, and practical next steps.</div>
           </div>
-          <div className="hero-art" role="img" aria-label="Abstract woven lattice representing connected brand signals">
-            <img src="/manus-storage/coreweaver-hero_eb9a774a.jpg" alt="Abstract woven lattice of connected brand signals" />
+          <div className="hero-art" role="img" aria-label="Identity signal alignment">
+            <img src="/manus-storage/coreweaver-hero-identity_7f2f7654.jpg" alt="Graphite and pale mineral ribbons converging through a single teal alignment point in an abstract architectural weave." title="Identity signal alignment" />
             <div className="art-caption"><span>01</span><span>Signal, made visible</span></div>
           </div>
         </section>
@@ -65,7 +65,7 @@ export default function Home() {
 
         <section id="framework" className="framework-section section-pad section-rule" aria-labelledby="framework-title">
           <div className="framework-art">
-            <img src="/manus-storage/coreweaver-framework_2cadabec.jpg" alt="Abstract measurement lines and connected nodes on paper" loading="lazy" />
+            <img src="/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg" alt="A translucent measurement plane with brass reference pins and a teal datum line arranged over a quiet paper grid." title="Evidence and measurement plane" loading="lazy" />
             <div className="image-tag">ARM / 01</div>
           </div>
           <div className="framework-copy">
@@ -95,13 +95,13 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <div className="products-art"><img src="/manus-storage/coreweaver-products_9a7c53f2.jpg" alt="Three abstract signal instruments arranged on a workbench" loading="lazy" /></div>
+            <div className="products-art"><img src="/manus-storage/coreweaver-products-clarity-v2_36185701.jpg" alt="A graphite lens, folded teal plane, and brass calibration ring arranged as three connected precision tools on a pale work surface." title="Three tools for brand clarity" loading="lazy" /></div>
           </div>
           <a className="text-link" href="/products">Explore the products <ArrowUpRight size={16} /></a>
         </section>
 
         <section id="engagement" className="engagement-section section-pad section-rule" aria-labelledby="engagement-title">
-          <div className="engagement-art"><img src="/manus-storage/coreweaver-engagement_712865bb.jpg" alt="Drafting table with a map, ruler, and connected signal thread" loading="lazy" /></div>
+          <div className="engagement-art"><img src="/manus-storage/coreweaver-engagement-desire-v2_3ad920b9.jpg" alt="A graphite ruler and open paper route with a single teal thread leading toward a softly lit edge of a drafting surface." title="A visible next step" loading="lazy" /></div>
           <div className="engagement-copy">
             <SectionLabel>Work with us</SectionLabel>
             <h2 id="engagement-title">Start with the information you already have.</h2>

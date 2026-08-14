@@ -11,8 +11,8 @@ import type { HeadMeta } from "../../client/src/ssr/prefetch";
 
 const CANONICAL_ORIGIN = process.env.CANONICAL_ORIGIN || "https://coreweaverlabs.com";
 const SITE_NAME = process.env.SITE_NAME || "Coreweaver Labs";
-const DEFAULT_SOCIAL_IMAGE = "/manus-storage/coreweaver-hero_eb9a774a.jpg";
-const DEFAULT_SOCIAL_IMAGE_ALT = "Abstract woven lattice representing connected brand signals";
+const DEFAULT_SOCIAL_IMAGE = "/manus-storage/coreweaver-hero-identity_7f2f7654.jpg";
+const DEFAULT_SOCIAL_IMAGE_ALT = "Abstract architectural weave representing a brand becoming clearer to search and AI systems.";
 const escapeHtml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 const compact = (value: string, max: number) => {
   const clean = value.replace(/\s+/g, " ").trim();

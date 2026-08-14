@@ -94,6 +94,10 @@
 - [x] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
 - [x] Publish an original-research cadence and authorized thought-leadership plan to strengthen independent market presence.
 - [ ] Track controllable Clutch-readiness leading indicators and review the long-term growth roadmap quarterly.
+- [ ] Assign named review and indicator owners in the January 1, 2027 scorecard-capture template; the record structure is prepared but role assignments remain open.
+- [x] Inventory every public visual asset and define its emotional function, strategic message, composition, alt text, title, caption, and social/SEO metadata.
+- [x] Recreate each approved public visual one by one with emotion-led Coreweaver art direction: challenge identity, bring safety, bring clarity, and awaken desire without inventing proof or results.
+- [x] Integrate replacement assets with accessible text alternatives and validate responsive presentation, visual coherence, and metadata coverage.
 - [x] Create a manual authority and Clutch-readiness scorecard with definitions, source rules, limitations, owners, and a quarterly review sequence.
 - [x] Define a presence-first research thesis, source hierarchy, claim-review standard, and publication cadence.
 - [x] Create the first three sourceable research briefs for mid-market B2B SEO, Content Marketing, and Paid Ads.

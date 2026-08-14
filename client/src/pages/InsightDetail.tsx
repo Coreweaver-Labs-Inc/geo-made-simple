@@ -40,7 +40,7 @@ export default function InsightDetail() {
     dateModified: article.publishedAt ? new Date(article.publishedAt).toISOString() : undefined,
     articleSection: article.category,
     inLanguage: "en-US",
-    image: "https://coreweaverlabs.com/manus-storage/coreweaver-hero_eb9a774a.jpg",
+    image: { "@type": "ImageObject", url: "https://coreweaverlabs.com/manus-storage/coreweaver-hero-identity_7f2f7654.jpg", name: "Identity signal alignment", caption: "Clarity begins when the information around a business can align." },
     author: getAuthorByName(article.author) ? { "@type": "Person", "@id": `https://coreweaverlabs.com/authors/${getAuthorByName(article.author)?.slug}#person`, name: article.author } : { "@type": "Organization", "@id": "https://coreweaverlabs.com/#organization", name: article.author },
     publisher: { "@type": "Organization", "@id": "https://coreweaverlabs.com/#organization", name: "Coreweaver Labs", logo: { "@type": "ImageObject", url: "https://coreweaverlabs.com/manus-storage/coreweaver-mark_e04a456c.png" } },
   }).replace(/</g, "\\u003c");
