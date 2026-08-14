@@ -63,6 +63,7 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `authority-scorecard.md` | Manual leading-indicator scorecard: first formal review January 1, 2027; then April 1, July 1, and October 1. |
 | `quarterly-review-2027-q1-template.md` | Unpopulated Q4 2026 evidence-capture and decision template for the first formal January 1, 2027 scorecard review. |
 | Scorecard role assignment | ops@coreweaverlabs.com is review chair, decision recorder, and evidence-archive administrator; dev@coreweaverlabs.com is technical measurement and systems owner. |
+| HR scorecard boundary | hr@coreweaverlabs.com provides research-quality-feedback and ethical-review-program input only; no evidence-archive administration or confidential-record access by default. |
 | `coreweaver-visual-system.md` | Image-by-image emotional visual system, asset direction, alternative text, social metadata, delivery map, and acceptance rules. |
 | `client/src/components/SeoHead.tsx` | Browser-side metadata updater with Open Graph and Twitter image URL and alternative-text support. |
 | `content-hub-spoke-architecture.md` | Evidence-led hub-and-spoke architecture, first cluster map, link standards, metadata rules, publication gates, and authoritative references. |

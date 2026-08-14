@@ -11,6 +11,7 @@
 | Review chair | ops@coreweaverlabs.com |
 | Decision recorder | ops@coreweaverlabs.com |
 | Evidence archive location | Approved internal evidence archive, administered by ops@coreweaverlabs.com |
+| People-and-feedback stakeholder | hr@coreweaverlabs.com — research-quality feedback and ethical review-program input only; no evidence-archive administration or confidential-record access by default |
 | Scope changes since prior period | Not yet collected |
 
 ## Evidence Register
@@ -27,9 +28,9 @@ Every reported number must have a private evidence location. Do not put confiden
 |---|---:|---:|---|---|---|---|---|
 | Governed public research rate | Not yet collected | Not yet collected | Not yet collected | Not yet assigned | Not yet collected | dev@coreweaverlabs.com (measurement) with ops@coreweaverlabs.com review | Not yet decided |
 | Original-method share | Not yet collected | Not yet collected | Not yet collected | Not yet assigned | Not yet collected | dev@coreweaverlabs.com (measurement) with ops@coreweaverlabs.com review | Not yet decided |
-| Research quality feedback | Not yet collected | Not applicable | Not yet collected | Not yet assigned | Not yet collected | Shared review: ops@coreweaverlabs.com chair; dev@coreweaverlabs.com systems check | Not yet decided |
+| Research quality feedback | Not yet collected | Not applicable | Not yet collected | Not yet assigned | Not yet collected | hr@coreweaverlabs.com feedback input; ops@coreweaverlabs.com chair; dev@coreweaverlabs.com systems check | Not yet decided |
 | Authorized proof readiness | Not yet collected | Not yet collected | Not yet collected | Not yet assigned | Not yet collected | ops@coreweaverlabs.com | Not yet decided |
-| Verified independent reviews | Not yet collected | Not applicable | Not yet collected | Not yet assigned | Not yet collected | ops@coreweaverlabs.com | Not yet decided |
+| Verified independent reviews | Not yet collected | Not applicable | Not yet collected | Not yet assigned | Not yet collected | hr@coreweaverlabs.com ethical-review input; ops@coreweaverlabs.com owner | Not yet decided |
 | Independent mentions | Not yet collected | Not applicable | Not yet collected | Not yet assigned | Not yet collected | ops@coreweaverlabs.com with dev@coreweaverlabs.com systems check | Not yet decided |
 | Service consistency | Not yet collected | Not yet collected | Not yet collected | Not yet assigned | Not yet collected | dev@coreweaverlabs.com (systems) with ops@coreweaverlabs.com review | Not yet decided |
 
