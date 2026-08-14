@@ -55,8 +55,8 @@
 - [x] Establish integrated-foundation defaults: client GTM hub, protected internal workspace, manual cross-team handoffs, and deferred external integrations.
 - [x] Define launch customer segments and baseline-first operating metrics without fabricating targets or performance data.
 - [x] Confirm the mid-market B2B target segment and three launch services: SEO, Content Marketing, and Paid Ads.
-- [ ] Obtain explicit approval for the exact published commercial prices or retain research-estimate labels until approved.
-- [ ] Confirm required launch systems before enabling external integration workflows.
+- [x] Obtain explicit approval for the exact published commercial prices or retain research-estimate labels until approved.
+- [x] Confirm required launch systems before enabling external integration workflows.
 - [x] Add private account and contact management views to the GTM workspace so operators can review the records they create.
 - [x] Add private request-triage controls with status and owner assignment, while preserving manual-only promotion into sales or support records.
 - [x] Re-run complete GTM foundation validation after finalizing record visibility and request triage.
