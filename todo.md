@@ -94,7 +94,8 @@
 - [x] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
 - [x] Publish an original-research cadence and authorized thought-leadership plan to strengthen independent market presence.
 - [ ] Track controllable Clutch-readiness leading indicators and review the long-term growth roadmap quarterly.
-- [ ] Assign named review and indicator owners in the January 1, 2027 scorecard-capture template; the record structure is prepared but role assignments remain open.
+- [x] Assign named review and indicator owners in the January 1, 2027 scorecard-capture template; the record structure is prepared but role assignments remain open.
+- [x] Record ops@coreweaverlabs.com as operational review/evidence owner and dev@coreweaverlabs.com as technical measurement/systems owner for the January 1, 2027 scorecard.
 - [x] Inventory every public visual asset and define its emotional function, strategic message, composition, alt text, title, caption, and social/SEO metadata.
 - [x] Recreate each approved public visual one by one with emotion-led Coreweaver art direction: challenge identity, bring safety, bring clarity, and awaken desire without inventing proof or results.
 - [x] Integrate replacement assets with accessible text alternatives and validate responsive presentation, visual coherence, and metadata coverage.

@@ -36,17 +36,25 @@ Leading indicators are **early, reviewable signs that Coreweaver Labs is buildin
 
 The first formal review is scheduled for **January 1, 2027**. Subsequent quarterly checkpoints occur on **April 1, July 1, and October 1**. If a date falls on a non-working day, the owner records the review on the next working day while preserving the closed reporting window.
 
+## Named Review Roles
+
+| Role | Assigned mailbox | Responsibility |
+|---|---|---|
+| Review chair, decision recorder, and evidence-archive administrator | ops@coreweaverlabs.com | Freeze the review window, maintain the private evidence register, record limitations and decisions, and approve operational completeness before review close. |
+| Technical measurement and systems owner | dev@coreweaverlabs.com | Validate measurement definitions, calculation reproducibility, service-consistency inputs, and systems-derived evidence. |
+| Shared review controls | ops@coreweaverlabs.com and dev@coreweaverlabs.com | Research quality feedback, independent mentions, and any indicator where evidence interpretation and systems validation both matter. Neither mailbox may substitute an estimate for a missing record. |
+
 ## Scorecard Template
 
 | Indicator | Definition | Data source | Q__ result | Limitations | Decision / owner |
 |---|---|---|---|---|---|
-| Governed public research rate | Public research records with named author, source references, method note, reviewer, and claim confirmation ÷ all public research records | Insights database and review records | Not yet collected | New program; do not compare prior quarters | Research owner |
-| Original-method share | Public research records that include documented original method/data/analysis ÷ all public research records | Research record | Not yet collected | Must distinguish original analysis from synthesis | Research owner |
-| Research quality feedback | Count and qualitative summary of voluntary, attributable operator feedback | Direct replies / approved sales-support notes | Not yet collected | Not pipeline or revenue attribution | Editorial owner |
-| Authorized proof readiness | Approved public case studies plus private records with complete reviewer handoff | Case-study governance queue | Not yet collected | Private records are not public proof | Evidence reviewer |
-| Verified independent reviews | Voluntary reviews submitted and verified by the relevant platform | Platform record / client confirmation | Not yet collected | Sentiment and platform outcome remain independent | Review-program owner |
-| Independent mentions | Verifiable, third-party editorial citations, invitations, or recognition | Source URLs | Not yet collected | Exclude self-published announcements | Marketing owner |
-| Service consistency | Public site and provider-profile descriptions aligned to active services | Website/profile audit | Not yet collected | Requires profile launch approval | Operations owner |
+| Governed public research rate | Public research records with named author, source references, method note, reviewer, and claim confirmation ÷ all public research records | Insights database and review records | Not yet collected | New program; do not compare prior quarters | dev@coreweaverlabs.com measurement; ops@coreweaverlabs.com review |
+| Original-method share | Public research records that include documented original method/data/analysis ÷ all public research records | Research record | Not yet collected | Must distinguish original analysis from synthesis | dev@coreweaverlabs.com measurement; ops@coreweaverlabs.com review |
+| Research quality feedback | Count and qualitative summary of voluntary, attributable operator feedback | Direct replies / approved sales-support notes | Not yet collected | Not pipeline or revenue attribution | Shared review: ops chair; dev systems check |
+| Authorized proof readiness | Approved public case studies plus private records with complete reviewer handoff | Case-study governance queue | Not yet collected | Private records are not public proof | ops@coreweaverlabs.com |
+| Verified independent reviews | Voluntary reviews submitted and verified by the relevant platform | Platform record / client confirmation | Not yet collected | Sentiment and platform outcome remain independent | ops@coreweaverlabs.com |
+| Independent mentions | Verifiable, third-party editorial citations, invitations, or recognition | Source URLs | Not yet collected | Exclude self-published announcements | ops@coreweaverlabs.com with dev systems check |
+| Service consistency | Public site and provider-profile descriptions aligned to active services | Website/profile audit | Not yet collected | Requires profile launch approval | dev@coreweaverlabs.com systems; ops@coreweaverlabs.com review |
 
 ## Quarterly Review Sequence
 

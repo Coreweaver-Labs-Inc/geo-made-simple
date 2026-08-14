@@ -29,6 +29,8 @@ The owner approved the seven leading indicators in `authority-scorecard.md`: gov
 
 The first formal manual authority and Clutch-readiness review is scheduled for **January 1, 2027**. The recurring quarterly checkpoints are April 1, July 1, and October 1.
 
+**Named role assignment recorded:** ops@coreweaverlabs.com is the January 1 review chair, decision recorder, and evidence-archive administrator. dev@coreweaverlabs.com is the technical measurement and systems owner. Indicators that require both evidence interpretation and systems validation use the shared-review controls documented in `authority-scorecard.md`; missing data remains “not collected” and is never estimated.
+
 ## Remaining Owner Decisions
 
 The following items remain intentionally open:
