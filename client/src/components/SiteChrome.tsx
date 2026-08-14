@@ -3,12 +3,12 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import React, { useState } from "react";
 
 const navItems = [
-  { href: "/framework", label: "Framework" },
-  { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
+  { href: "/framework", label: "How it works" },
+  { href: "/case-studies", label: "Case studies" },
   { href: "/insights", label: "Insights" },
   { href: "/research", label: "Research" },
-  { href: "/case-studies", label: "Case studies" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 const externalChannels = [
@@ -47,7 +47,7 @@ export function SiteFooter() {
     <footer className="site-footer section-pad">
       <div className="footer-brand"><BrandMark /><span>Coreweaver Labs</span></div>
       <div className="footer-navigation">
-        <div className="footer-links">{navItems.map(item => <a key={item.href} href={item.href}>{item.label}</a>)}<a href="/contact">Contact</a><a href="/ai-data-policy">AI Data Policy</a></div>
+        <div className="footer-links">{navItems.map(item => <a key={item.href} href={item.href}>{item.label}</a>)}<a href="/products">Products</a><a href="/contact">Contact</a><a href="/ai-data-policy">AI Data Policy</a></div>
         <div className="footer-external" aria-label="Official external channels"><span>Elsewhere</span>{externalChannels.map(channel => <a key={channel.href} href={channel.href} target="_blank" rel="noopener noreferrer">{channel.label} <ArrowUpRight size={12} aria-hidden="true" /></a>)}</div>
       </div>
       <div className="footer-meta"><p>GEO / AI governance / signal systems</p><p>© {new Date().getFullYear()} Coreweaver Labs</p></div>

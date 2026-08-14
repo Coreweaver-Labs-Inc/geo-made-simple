@@ -107,3 +107,7 @@
 - [x] Create a public AI Data Policy page that states permitted AI-crawler use, prohibited use, attribution expectations, and a contact path without asserting unimplemented technical enforcement.
 - [x] Link the AI Data Policy from the public footer and add canonical, metadata, SSR, and sitemap coverage.
 - [x] Validate the AI Data Policy at desktop/mobile sizes and verify its server-rendered indexing and policy language.
+- [x] Document Coreweaver Labs’ demonstrated strengths using only current capabilities, governance systems, and supported positioning.
+- [x] Reorder the primary navigation around buyer intent while preserving access to the framework, research, case-study, and policy content.
+- [x] Add a comprehensive, evidence-led FAQ page with category navigation, accessible answers, FAQPage structured data, canonical metadata, and sitemap coverage.
+- [x] Validate the FAQ’s content safeguards, navigation order, responsive presentation, and server-rendered SEO output.

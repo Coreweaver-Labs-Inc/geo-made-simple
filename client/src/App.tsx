@@ -8,6 +8,7 @@ import CaseStudyPreview from "./pages/CaseStudyPreview";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import AuthorProfile from "./pages/AuthorProfile";
 import AiDataPolicy from "./pages/AiDataPolicy";
+import Faq from "./pages/Faq";
 import Framework from "./pages/Framework";
 import GtmHub from "./pages/GtmHub";
 import GtmWorkspace from "./pages/GtmWorkspace";
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/insights" component={Insights} />
       <Route path="/research" component={Research} />
       <Route path="/ai-data-policy" component={AiDataPolicy} />
+      <Route path="/faq" component={Faq} />
       <Route path="/insights/:slug" component={InsightDetail} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/case-studies/governance-preview" component={CaseStudyPreview} />
