@@ -12,6 +12,8 @@ import {
   InsertGtmRequest,
   InsertGtmSupportCase,
   InsertGtmWorkItem,
+  InsertGatewayAuditRecord,
+  InsertGatewayRoleProject,
   InsertInsight,
   InsertUser,
   gtmAccounts,
@@ -20,6 +22,8 @@ import {
   gtmRequests,
   gtmSupportCases,
   gtmWorkItems,
+  gatewayAuditRecords,
+  gatewayRoleProjects,
   insights,
   users,
 } from "../drizzle/schema";
@@ -307,4 +311,50 @@ export async function updateGtmWorkItem(id: number, input: Pick<InsertGtmWorkIte
   const db = await getDb();
   if (!db) throw new Error("Database is unavailable");
   return db.update(gtmWorkItems).set(input).where(eq(gtmWorkItems.id, id));
+}
+
+export async function findGatewayAuditRecord(provider: "hostinger" | "vapi", eventKey: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db
+    .select()
+    .from(gatewayAuditRecords)
+    .where(and(eq(gatewayAuditRecords.provider, provider), eq(gatewayAuditRecords.eventKey, eventKey)))
+    .limit(1);
+  return result[0];
+}
+
+export async function createGatewayAuditRecord(input: InsertGatewayAuditRecord) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gatewayAuditRecords).values(input);
+}
+
+export async function updateGatewayAuditRecord(
+  provider: "hostinger" | "vapi",
+  eventKey: string,
+  input: Pick<InsertGatewayAuditRecord, "validationStatus" | "actionStatus" | "manusTaskId" | "manusTaskUrl" | "errorCode">
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db
+    .update(gatewayAuditRecords)
+    .set(input)
+    .where(and(eq(gatewayAuditRecords.provider, provider), eq(gatewayAuditRecords.eventKey, eventKey)));
+}
+
+export async function getGatewayRoleProjectIds() {
+  const db = await getDb();
+  if (!db) return {} as Partial<Record<"ops" | "dev" | "hr", string>>;
+  const records = await db.select().from(gatewayRoleProjects);
+  return records.reduce<Partial<Record<"ops" | "dev" | "hr", string>>>((accumulator, record) => {
+    accumulator[record.role] = record.projectId;
+    return accumulator;
+  }, {});
+}
+
+export async function upsertGatewayRoleProject(input: InsertGatewayRoleProject) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(gatewayRoleProjects).values(input).onDuplicateKeyUpdate({ set: { projectId: input.projectId } });
 }

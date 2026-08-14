@@ -16,6 +16,8 @@ This design lets each function keep its own instructions and review boundary whi
 | Result destination | Not yet specified | Keep results in the private Manus task thread and internal gateway audit record. Do not send automatic external email, text, or webhook notifications. |
 | External actions | Not approved | Draft-only. All email sends, transfers, account actions, scheduling, deployments, and HR decisions require a person’s explicit approval. |
 
+The server-side `MANUS_HOSTINGER` credential was verified on August 14, 2026 through Hostinger Mail’s non-mutating authenticated-account endpoint. Its manageable mailbox scope is exactly `ops@coreweaverlabs.com`, `dev@coreweaverlabs.com`, and `hr@coreweaverlabs.com`; it is not an all-mailbox token. The credential is not used to read messages, send email, or change mailbox state during validation.
+
 These defaults are intentionally restrictive. They make a pilot safe to test without deciding who external callers or senders should be.
 
 > **Critical distinction:** Hostinger Agentic Mail’s allow/block lists govern **outbound sending from a mailbox**. They do not by themselves decide which inbound sender can trigger a workflow. The gateway must maintain its own inbound sender/domain allowlist and verify every webhook request. [1]
@@ -63,6 +65,12 @@ Use the same gateway for voice and mail, but do not send the raw full transcript
 | **Human escalation** | Emergency, ambiguity, sensitive data, HR issue, external commitment, or caller requests a person | Pause automation and present/execute a human handoff configured separately | No agent decision substitutes for a human handoff |
 
 For the first release, the Vapi Router can talk to the three specialized voice assistants inside a Vapi Squad, but its **only** gateway call should create a draft-only internal task. It should not call the Hostinger send API or the Manus API directly from Vapi. The gateway owns validation, rate limits, idempotency, transcript minimization, and the server-side Manus API key.
+
+### Operations Entry Point
+
+The user designated `ops@coreweaverlabs.com` with **+1 (650) 484-0415** as the private Vapi Operations entry point. Assign this number only to the approved Vapi Router/Squad after the deployed `/webhooks/vapi` URL and its separate Vapi gateway credential have passed a controlled test. Do not assign a direct specialist assistant to the number, enable outbound calling, or expose the number in public site content as part of this work.
+
+The number must be associated directly with the Router/Squad in Vapi, rather than relying on a dynamic `assistant-request` from this gateway. Vapi requires a fast, meaningful response to that call-setup event; the Coreweaver gateway is intentionally not a call-assignment service. Configure the authenticated server URL on the Router assistant and restrict its gateway-relevant delivery to the **end-of-call report**. The implementation ignores non-terminal Vapi events—including transcripts, status updates, tool calls, and assistant requests—so interim call data never creates an internal task or alters call behavior. [4]
 
 ## Hostinger Configuration
 

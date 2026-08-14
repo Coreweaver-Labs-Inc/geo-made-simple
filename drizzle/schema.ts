@@ -1,4 +1,4 @@
-import { boolean, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { boolean, int, mysqlEnum, mysqlTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -221,3 +221,44 @@ export const gtmWorkItems = mysqlTable("gtm_work_items", {
 
 export type GtmWorkItem = typeof gtmWorkItems.$inferSelect;
 export type InsertGtmWorkItem = typeof gtmWorkItems.$inferInsert;
+
+/**
+ * Private audit records for validated Hostinger and Vapi events. Raw mailbox
+ * bodies and complete call transcripts are intentionally excluded; those stay
+ * within the provider and, when routed, the private Manus task thread.
+ */
+export const gatewayAuditRecords = mysqlTable(
+  "gateway_audit_records",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    provider: mysqlEnum("provider", ["hostinger", "vapi"]).notNull(),
+    eventKey: varchar("eventKey", { length: 255 }).notNull(),
+    eventType: varchar("eventType", { length: 120 }).notNull(),
+    mailbox: mysqlEnum("mailbox", ["ops", "dev", "hr"]).notNull(),
+    senderReference: varchar("senderReference", { length: 320 }),
+    contentDigest: varchar("contentDigest", { length: 128 }),
+    route: mysqlEnum("route", ["ops", "dev", "hr", "manual_review", "human_escalation", "ignored"]).notNull(),
+    validationStatus: mysqlEnum("validationStatus", ["accepted", "rejected", "duplicate", "manual_review", "failed"]).notNull(),
+    actionStatus: mysqlEnum("actionStatus", ["none", "draft_task_created", "human_review_required", "ignored", "failed"]).notNull(),
+    manusTaskId: varchar("manusTaskId", { length: 128 }),
+    manusTaskUrl: varchar("manusTaskUrl", { length: 320 }),
+    errorCode: varchar("errorCode", { length: 160 }),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("gateway_audit_records_provider_event_key_unique").on(table.provider, table.eventKey)]
+);
+
+export type GatewayAuditRecord = typeof gatewayAuditRecords.$inferSelect;
+export type InsertGatewayAuditRecord = typeof gatewayAuditRecords.$inferInsert;
+
+/** Private mapping from a bounded gateway role to its durable Manus project. */
+export const gatewayRoleProjects = mysqlTable("gateway_role_projects", {
+  role: mysqlEnum("role", ["ops", "dev", "hr"]).primaryKey(),
+  projectId: varchar("projectId", { length: 128 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type GatewayRoleProject = typeof gatewayRoleProjects.$inferSelect;
+export type InsertGatewayRoleProject = typeof gatewayRoleProjects.$inferInsert;

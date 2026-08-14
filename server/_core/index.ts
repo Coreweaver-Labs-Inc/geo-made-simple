@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { listPublishedCaseStudies, listPublishedInsights } from "../db";
+import { registerGatewayRoutes } from "../gatewayRoutes";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 
@@ -37,6 +38,8 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  app.disable("x-powered-by");
+  registerGatewayRoutes(app);
   // tRPC API
   app.use(
     "/api/trpc",

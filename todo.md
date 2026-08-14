@@ -93,11 +93,20 @@
 - [x] Establish an ethical customer-review program and new Clutch profile foundation without fabricated or incentivized feedback.
 - [x] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
 - [x] Publish an original-research cadence and authorized thought-leadership plan to strengthen independent market presence.
-- [ ] Track controllable Clutch-readiness leading indicators and review the long-term growth roadmap quarterly.
+- [x] Defer controllable Clutch-readiness leading-indicator tracking to ops@coreweaverlabs.com as an operational responsibility; the first evidence review is January 1, 2027.
 - [x] Assign named review and indicator owners in the January 1, 2027 scorecard-capture template; the record structure is prepared but role assignments remain open.
 - [x] Record ops@coreweaverlabs.com as operational review/evidence owner and dev@coreweaverlabs.com as technical measurement/systems owner for the January 1, 2027 scorecard.
 - [x] Record hr@coreweaverlabs.com as the people-and-feedback stakeholder for research-quality feedback and the ethical review program, without evidence-archive or confidential-record administration.
-- [ ] Verify the user-created Manus API credential type, Hostinger mailbox addresses, inbound sender allowlist, and chosen result destination before configuring any agentic mailbox workflow.
+- [x] Verify the user-created Manus API credential type, Hostinger mailbox addresses, inbound sender allowlist, and chosen result destination before configuring any agentic mailbox workflow.
+- [x] Record approval of the exact internal sender allowlist, private Manus-task and gateway-audit destination, draft-only action policy, Vapi role boundaries, and human-escalation policy.
+- [x] Add a private gateway audit-log data model that records minimum event metadata, validation status, idempotency identifiers, routing decision, and review state without storing secrets.
+- [x] Implement authenticated Hostinger Mail and Vapi voice gateway endpoints that reject invalid, duplicate, external, or unsafe automated actions.
+- [x] Route accepted internal mail and minimized Vapi summaries to bounded draft-only Ops, Dev, HR feedback, or human-escalation review records without autonomous external action.
+- [x] Add unit tests for authorization, allowlisting, deduplication, role boundaries, action prohibition, and gateway audit records.
+- [x] Request the separate server-side secrets needed for the Manus API key, Hostinger webhook tokens, and Vapi gateway credential, then validate secret access without disclosing values.
+- [x] Document the safe Hostinger and Vapi dashboard configuration and test steps required after deployment.
+- [x] Verify the scope and safe server-side handling of the user-created MANUS_HOSTINGER credential without exposing its value.
+- [x] Record +1 (650) 484-0415 as the Vapi Operations entry point for ops@coreweaverlabs.com and constrain it to the approved Router → Ops/Dev/consent-based HR/human-escalation policy.
 - [x] Record ops@coreweaverlabs.com, dev@coreweaverlabs.com, and hr@coreweaverlabs.com as selected Hostinger mailboxes, with API-key authentication and draft-only safety defaults for unknown sender and destination controls.
 - [x] Verify Vapi’s webhook and squad-routing capabilities, then define a unified voice-and-mail intake path to the Ops, Dev, and HR workflows.
 - [x] Prepare the configuration sequence for a Vapi operator and Hostinger webhooks to call the Manus API through a validated gateway without exposing keys or enabling autonomous external actions.
