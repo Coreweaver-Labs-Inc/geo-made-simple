@@ -1,0 +1,17 @@
+{
+  "name": "Coreweaver Labs",
+  "short_name": "Coreweaver",
+  "description": "Evidence-led SEO, Content Marketing, and Paid Ads for mid-market B2B teams.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#f4f1ea",
+  "theme_color": "#f4f1ea",
+  "icons": [
+    {
+      "src": "/manus-storage/coreweaver-favicon_42d5aba9.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

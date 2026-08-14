@@ -160,3 +160,8 @@
 - [x] Implement the second priority child route for B2B buyer enablement content with governed content, internal links, metadata, SSR, and sitemap coverage.
 - [x] Add an accessible deterministic natural-language topic search widget that routes readers to the best matching hub, pillar, or implemented child page without using external AI or storing search input.
 - [x] Add focused automated coverage and validate responsive, server-rendered, metadata, sitemap, and search-widget behavior for the topic expansion.
+- [x] Audit Coreweaver’s current favicon, entity/schema signals, keyword-cluster coverage, crawler controls, and linked social profiles for overlooked discovery gaps.
+- [x] Research current evidence-led platform relevance and operating patterns for LinkedIn, Substack, X, GitHub, Reddit, Quora, Pinterest, and other appropriate B2B authority channels.
+- [x] Create a prioritized brand-discovery roadmap that separates owned technical improvements from external-profile and community work requiring human participation.
+- [x] Implement approved low-risk, claim-safe favicon and technical entity/AI-discovery improvements without fabricating social activity or external recognition.
+- [x] Validate brand asset rendering, structured data, crawler-visible output, and the resulting discovery roadmap.

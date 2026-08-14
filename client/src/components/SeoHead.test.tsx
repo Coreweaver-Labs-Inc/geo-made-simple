@@ -8,6 +8,7 @@ beforeEach(() => {
     <meta name="description" content="" />
     <meta property="og:title" content="" />
     <meta property="og:description" content="" />
+    <meta property="og:site_name" content="" />
     <meta property="og:url" content="" />
     <meta property="og:type" content="" />
     <meta property="og:image" content="" />
@@ -31,5 +32,6 @@ describe("SeoHead", () => {
     expect(document.querySelector('meta[property="og:image:alt"]')?.getAttribute("content")).toBe("A measured evidence plane representing the Authority, Representation, and Measurement framework.");
     expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute("content")).toBe("https://coreweaverlabs.com/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg");
     expect(document.querySelector('meta[name="twitter:image:alt"]')?.getAttribute("content")).toBe("A measured evidence plane representing the Authority, Representation, and Measurement framework.");
+    expect(document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe("Coreweaver Labs");
   });
 });

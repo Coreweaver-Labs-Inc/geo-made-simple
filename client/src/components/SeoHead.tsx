@@ -15,6 +15,7 @@ export function SeoHead({ title, description, path, noIndex = false, ogType = "w
     updateMeta('meta[name="description"]', description);
     updateMeta('meta[property="og:title"]', title);
     updateMeta('meta[property="og:description"]', description);
+    updateMeta('meta[property="og:site_name"]', "Coreweaver Labs");
     updateMeta('meta[property="og:url"]', `${canonicalOrigin}${path}`);
     updateMeta('meta[property="og:type"]', ogType);
     updateMeta('meta[property="og:image"]', socialImage);

@@ -50,7 +50,7 @@ async function startServer() {
   );
   app.get("/sitemap.xml", async (_req, res) => {
     const canonicalOrigin = process.env.CANONICAL_ORIGIN || "https://coreweaverlabs.com";
-    const fixedPaths = ["/", "/framework", "/products", "/services", "/topics", "/topics/b2b-seo", "/topics/b2b-content-marketing", "/topics/b2b-paid-ads", "/topics/ai-representation", "/topics/content-governance", "/insights", "/research", "/faq", "/ai-data-policy", "/case-studies", "/contact", "/authors/mason-nguyen"];
+    const fixedPaths = ["/", "/framework", "/products", "/services", "/topics", "/topics/b2b-seo", "/topics/b2b-seo/website-information-architecture", "/topics/b2b-content-marketing", "/topics/b2b-content-marketing/buyer-enablement", "/topics/b2b-paid-ads", "/topics/ai-representation", "/topics/content-governance", "/insights", "/research", "/faq", "/ai-data-policy", "/case-studies", "/contact", "/authors/mason-nguyen"];
     const fallbackSlugs = ["a-practical-signal-audit", "representation-is-an-operating-concern", "measurement-without-vanity-metrics"];
 
     try {
