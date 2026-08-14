@@ -97,6 +97,9 @@
 - [x] Assign named review and indicator owners in the January 1, 2027 scorecard-capture template; the record structure is prepared but role assignments remain open.
 - [x] Record ops@coreweaverlabs.com as operational review/evidence owner and dev@coreweaverlabs.com as technical measurement/systems owner for the January 1, 2027 scorecard.
 - [x] Record hr@coreweaverlabs.com as the people-and-feedback stakeholder for research-quality feedback and the ethical review program, without evidence-archive or confidential-record administration.
+- [ ] Verify the user-created Manus API credential type, Hostinger mailbox addresses, inbound sender allowlist, and chosen result destination before configuring any agentic mailbox workflow.
+- [x] Define a secure Hostinger Mail-to-Manus workflow with approved-sender controls, role routing, human review, data minimization, and no autonomous external send action by default.
+- [x] Provide a verified setup plan for shared intake versus role-specific ops, dev, and HR workflows, including the minimum configuration and webhook/forwarding requirements.
 - [x] Inventory every public visual asset and define its emotional function, strategic message, composition, alt text, title, caption, and social/SEO metadata.
 - [x] Recreate each approved public visual one by one with emotion-led Coreweaver art direction: challenge identity, bring safety, bring clarity, and awaken desire without inventing proof or results.
 - [x] Integrate replacement assets with accessible text alternatives and validate responsive presentation, visual coherence, and metadata coverage.
