@@ -19,6 +19,8 @@ import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import Research from "./pages/Research";
 import Studio from "./pages/Studio";
+import TopicDetail from "./pages/TopicDetail";
+import Topics from "./pages/Topics";
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
@@ -32,6 +34,8 @@ function Router() {
       <Route path="/research" component={Research} />
       <Route path="/ai-data-policy" component={AiDataPolicy} />
       <Route path="/faq" component={Faq} />
+      <Route path="/topics" component={Topics} />
+      <Route path="/topics/:slug" component={TopicDetail} />
       <Route path="/insights/:slug" component={InsightDetail} />
       <Route path="/case-studies" component={CaseStudies} />
       <Route path="/case-studies/governance-preview" component={CaseStudyPreview} />

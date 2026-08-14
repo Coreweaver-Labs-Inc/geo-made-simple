@@ -98,6 +98,10 @@
 - [x] Inventory every public visual asset and define its emotional function, strategic message, composition, alt text, title, caption, and social/SEO metadata.
 - [x] Recreate each approved public visual one by one with emotion-led Coreweaver art direction: challenge identity, bring safety, bring clarity, and awaken desire without inventing proof or results.
 - [x] Integrate replacement assets with accessible text alternatives and validate responsive presentation, visual coherence, and metadata coverage.
+- [x] Audit existing public content, audience intent, and internal links to define a mid-market B2B hub-and-spoke content architecture.
+- [x] Define evidence-led hub pages, source-safe spoke briefs, internal-link rules, publication metadata, and review gates for SEO, Content Marketing, Paid Ads, AI representation, and governance topics.
+- [x] Implement the priority public content hub and its first discovery spokes without inventing completed research, results, or client evidence.
+- [x] Validate the hub-and-spoke paths for indexing, canonical metadata, internal navigation, claim safety, responsive presentation, and server-rendered output.
 - [x] Create a manual authority and Clutch-readiness scorecard with definitions, source rules, limitations, owners, and a quarterly review sequence.
 - [x] Define a presence-first research thesis, source hierarchy, claim-review standard, and publication cadence.
 - [x] Create the first three sourceable research briefs for mid-market B2B SEO, Content Marketing, and Paid Ads.

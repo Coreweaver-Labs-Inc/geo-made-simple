@@ -5,6 +5,7 @@ import type { AppRouter } from "../../../server/routers";
 import { trpc } from "@/lib/trpc";
 import { fallbackInsights } from "@/lib/insightContent";
 import { getAuthorBySlug } from "@/lib/authors";
+import { getTopic } from "@/lib/topicContent";
 
 export type HeadMeta = { title: string; description: string; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
 type RouterOutput = inferRouterOutputs<AppRouter>;
@@ -28,6 +29,7 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   if (clean === "/research") return { title: "Research Methods and Editorial Standards | Coreweaver Labs", description: "How Coreweaver Labs develops sourceable mid-market B2B research, reviews claims, attributes authorship, and publishes useful thought leadership.", canonicalPath: clean };
   if (clean === "/ai-data-policy") return { title: "AI Data Policy | Coreweaver Labs", description: "How Coreweaver Labs permits AI crawlers to use public content for search and answer retrieval, while restricting model training, bulk reuse, and protected information.", canonicalPath: clean };
   if (clean === "/faq") return { title: "FAQ | Coreweaver Labs", description: "Answers to common questions about Coreweaver Labs, its mid-market B2B SEO, Content Marketing, and Paid Ads services, AI governance, research, proof, and support.", canonicalPath: clean };
+  if (clean === "/topics") return { title: "B2B Growth Topics | Coreweaver Labs", description: "Evidence-led mid-market B2B topics covering SEO, Content Marketing, Paid Ads, AI representation, and content governance.", canonicalPath: clean };
   if (clean === "/case-studies") return { title: "Evidence-Led Case Studies | Coreweaver Labs", description: "Coreweaver Labs publishes case studies only when scope, source evidence, reporting windows, review dates, and written authorization are complete.", canonicalPath: clean };
   if (clean === "/case-studies/governance-preview") return { title: "Case Study Governance Preview | Coreweaver Labs", description: "A non-publishable layout preview for evidence-led, authorized case-study records.", canonicalPath: clean, noindex: true };
   if (clean === "/case-study-intake") return { title: "Case Study Evidence Intake | Coreweaver Labs", description: "Private client intake for approved case-study evidence and publication authorization.", canonicalPath: clean, noindex: true };
@@ -43,6 +45,12 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
       if (error instanceof TRPCError && error.code === "NOT_FOUND") return { title: SITE, description: DESCRIPTION, notFound: true };
       return { title: `Case Study | ${SITE}`, description: DESCRIPTION, canonicalPath: clean, noindex: true };
     }
+  }
+  const topicMatch = clean.match(/^\/topics\/([^/]+)$/);
+  if (topicMatch) {
+    const topic = getTopic(topicMatch[1]);
+    if (!topic) return { title: SITE, description: DESCRIPTION, notFound: true };
+    return { title: `${topic.title} | Coreweaver Labs`, description: topic.description, canonicalPath: clean };
   }
   if (clean === "/contact") return { title: "Contact Coreweaver Labs | Signal Audit", description: "Start a conversation with Coreweaver Labs about a practical signal audit, GEO infrastructure, or AI representation systems.", canonicalPath: clean };
   if (clean === "/studio") return { title: SITE, description: DESCRIPTION, noindex: true };

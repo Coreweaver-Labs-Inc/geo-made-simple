@@ -64,6 +64,10 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `quarterly-review-2027-q1-template.md` | Unpopulated Q4 2026 evidence-capture and decision template for the first formal January 1, 2027 scorecard review. |
 | `coreweaver-visual-system.md` | Image-by-image emotional visual system, asset direction, alternative text, social metadata, delivery map, and acceptance rules. |
 | `client/src/components/SeoHead.tsx` | Browser-side metadata updater with Open Graph and Twitter image URL and alternative-text support. |
+| `content-hub-spoke-architecture.md` | Evidence-led hub-and-spoke architecture, first cluster map, link standards, metadata rules, publication gates, and authoritative references. |
+| `client/src/pages/Topics.tsx` | Public B2B Growth Topics hub for the five current clusters. |
+| `client/src/pages/TopicDetail.tsx` | Reusable source-safe topic-spoke template with buyer problem, approach, boundaries, real resources, related topics, and private CTA. |
+| `client/src/lib/topicContent.ts` | Five initial niche topic records: B2B SEO, Content Marketing, Paid Ads, AI representation, and content governance. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |
