@@ -101,3 +101,6 @@
 - [x] Add a public research-methods page that explains the source, authorship, claim-review, and correction standards without inventing research findings.
 - [x] Add an Insights entry point and SEO/sitemap coverage for the public research-methods page.
 - [x] Fix the research-methods page test runtime so its public publishing safeguards are covered by automated tests.
+- [x] Draft an AI-friendly Organization schema and metadata language package using the canonical audience, service, and evidence-led positioning.
+- [x] Draft a homepage hero that pairs the emotional AI-understanding tagline with explicit mid-market B2B service positioning.
+- [x] Define machine-readable, evidence-led case-study proof points that preserve existing authorization, source, scope, and claim-review safeguards.
