@@ -52,8 +52,8 @@ describe("GtmHub", () => {
     expect(screen.getByRole("button", { name: /talk to sales/i })).toBeTruthy();
     expect(screen.getByRole("button", { name: /request customer support/i })).toBeTruthy();
     expect(screen.getByRole("button", { name: /send private request/i })).toBeTruthy();
-    expect(screen.getByText("Research estimate: from $6,500/month")).toBeTruthy();
-    expect(screen.getAllByText("Research estimate: from $7,500/month")).toHaveLength(2);
+    expect(screen.getByText("From $6,500/month")).toBeTruthy();
+    expect(screen.getAllByText("From $7,500/month")).toHaveLength(2);
   });
 
   it("submits a private service inquiry without turning it into a public engagement", async () => {

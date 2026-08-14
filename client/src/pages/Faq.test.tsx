@@ -24,4 +24,9 @@ describe("Faq", () => {
     const answers = faqCategories.flatMap((category) => category.items.map((item) => item.schemaAnswer));
     expect(answers).toContain("Coreweaver Labs does not guarantee rankings, AI citations, leads, revenue, or return on ad spend.");
   });
+
+  it("states approved starting prices while preserving the scope and separate-cost boundary", () => {
+    const answers = faqCategories.flatMap((category) => category.items.map((item) => item.schemaAnswer));
+    expect(answers).toContain("Coreweaver Labs’ approved commercial starting prices are from $6,500 per month for SEO, from $7,500 per month for Content Marketing, and from $7,500 per month for Paid Ads. A statement of work confirms final scope, timing, and separate costs such as paid-media spend.");
+  });
 });

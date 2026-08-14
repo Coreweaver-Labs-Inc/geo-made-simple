@@ -86,7 +86,9 @@
 - [x] Fix the public services SSR regression caused by the chat presentation dependency while preserving AI-assisted routing behavior.
 - [x] Constrain AI support responses to deterministic approved routing copy so the chatbot cannot invent internal process or policy details.
 - [x] Label the current SEO, Content Marketing, and Paid Ads amounts as research-based starting estimates pending owner approval.
-- [ ] Confirm final commercial pricing and the long-term leading indicators for premium mid-market B2B growth.
+- [x] Obtain explicit owner approval for the proposed long-term leading-indicator set for premium mid-market B2B growth.
+- [x] Record owner approval of the seven leading indicators and the January 1, 2027 first formal scorecard review.
+- [x] Publish the owner-approved starting prices and establish the January 1 quarterly authority/Clutch-readiness leading-indicator review.
 - [x] Create a verified proof and portfolio-readiness pipeline for authorized completed client work.
 - [x] Establish an ethical customer-review program and new Clutch profile foundation without fabricated or incentivized feedback.
 - [x] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.

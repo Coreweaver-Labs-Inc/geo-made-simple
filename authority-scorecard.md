@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This scorecard supports a **quarterly manual review** of controllable evidence quality and independent market signals. It does not rank the company, predict a Clutch outcome, or convert activity into a commercial-performance claim. No schedule, external integration, or automated data collection is enabled until the owner approves the required systems and definitions.
+This scorecard supports a **quarterly manual review** of controllable evidence quality and independent market signals. It does not rank the company, predict a Clutch outcome, or convert activity into a commercial-performance claim. No external integration or automated data collection is enabled; owners enter evidence manually from approved sources.
 
 ## Quarterly Review Rules
 
@@ -15,6 +15,26 @@ The scorecard owner records the reporting window, source location, calculation, 
 | Capture limits | Note source changes, missing data, small samples, and attribution uncertainty |
 | Link to evidence | Save URLs, dashboard exports, approved internal reports, or decision records privately |
 | End with a decision | Continue, revise, pause, archive, or investigate—never “optimize” without a stated reason |
+
+## Leading Indicators
+
+Leading indicators are **early, reviewable signs that Coreweaver Labs is building credible market readiness**. They are not rankings, revenue forecasts, or proof that any platform will reward the work. The owner-approved indicators are:
+
+| Leading indicator | What it tells the team | Why it is early rather than an outcome |
+|---|---|---|
+| Governed public research rate | Whether published research carries a complete author, source, method, reviewer, and claim-confirmation record | It measures publication quality before independent attention appears |
+| Original-method share | Whether public work contributes original analysis rather than only commentary | It measures distinctiveness before citations or referrals occur |
+| Research quality feedback | Whether identifiable operators describe the research as useful or decision-relevant | It captures qualitative usefulness, not attributed revenue |
+| Authorized proof readiness | Whether client evidence is complete enough for a reviewer to assess publication | It measures evidence readiness before any public case study is released |
+| Verified independent reviews | Whether voluntary reviews have been submitted and verified by the relevant platform | It measures a real foundation for profile credibility, not a ranking outcome |
+| Independent mentions | Whether third parties cite, invite, or recognize Coreweaver Labs without self-publication | It measures external recognition before any directory outcome |
+| Service consistency | Whether public site and provider-profile language accurately matches active services | It measures controllable clarity before buyer or platform response |
+
+**Owner approval:** Approved August 13, 2026. These definitions may be revised only through a documented owner decision so quarter-to-quarter comparisons preserve their meaning.
+
+## Approved Review Cadence
+
+The first formal review is scheduled for **January 1, 2027**. Subsequent quarterly checkpoints occur on **April 1, July 1, and October 1**. If a date falls on a non-working day, the owner records the review on the next working day while preserving the closed reporting window.
 
 ## Scorecard Template
 

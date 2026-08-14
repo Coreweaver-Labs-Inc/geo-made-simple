@@ -59,7 +59,8 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `client/src/pages/Faq.tsx` | Searchable, category-led public FAQ with accessible accordions, claim-safe answers, FAQPage JSON-LD, and contact handoff. |
 | `brand-strengths.md` | Supportable external strengths, recommended buyer-first navigation order, and explicit claim boundaries. |
 | `client/src/pages/Home.tsx` | Homepage copy with plain-language definitions for signals, operating system, AI answer/source review, shared knowledge, and governance-adjacent review routines. |
-| `owner-decisions.md` | Active interim owner decision: research-estimate labels remain public, manual workflows remain active, and final pricing/integration approval remains future work. |
+| `owner-decisions.md` | Active owner decision: approved commercial starting prices are public, manual workflows remain active, and any future integration requires an approved data flow. |
+| `authority-scorecard.md` | Manual leading-indicator scorecard: first formal review January 1, 2027; then April 1, July 1, and October 1. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |

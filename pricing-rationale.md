@@ -1,14 +1,14 @@
 # Premium Starting-Price Architecture
 
-## Proposed Research-Based Estimates — Owner Approval Required
+## Approved Commercial Starting Prices
 
-The figures below are **research-based starting estimates**, not approved commercial prices. They are shown publicly as estimates until the owner confirms the exact commercial amounts. They are transparent reference points for a defined operating cadence, not all-inclusive promises or fixed prices for every scope. Final scope, channel mix, content volume, technical dependencies, sales enablement, reporting requirements, and ad spend remain subject to a documented statement of work.
+The figures below are **owner-approved commercial starting prices**. They are transparent entry points for a defined operating cadence, not all-inclusive promises or fixed prices for every scope. Final scope, channel mix, content volume, technical dependencies, sales enablement, reporting requirements, and ad spend remain subject to a documented statement of work.
 
 | Launch service | Published starting price | Commercial structure | What is separate |
 |---|---:|---|---|
-| SEO | **From $6,500/month** | Research-based strategic and operating estimate | Development implementation, third-party tools, localization, and unusually large content production |
-| Content Marketing | **From $7,500/month** | Research-based strategy, editorial, distribution, and measurement estimate | Large-format production, video, paid distribution, and subject-matter-expert access beyond agreed scope |
-| Paid Ads | **From $7,500/month** | Research-based paid-media strategy, campaign operations, creative coordination, and reporting estimate | **Media spend is client-funded and separate.** Any additional scope is documented in the statement of work. |
+| SEO | **From $6,500/month** | Approved strategic and operating starting price | Development implementation, third-party tools, localization, and unusually large content production |
+| Content Marketing | **From $7,500/month** | Approved strategy, editorial, distribution, and measurement starting price | Large-format production, video, paid distribution, and subject-matter-expert access beyond agreed scope |
+| Paid Ads | **From $7,500/month** | Approved paid-media strategy, campaign operations, creative coordination, and reporting starting price | **Media spend is client-funded and separate.** Any additional scope is documented in the statement of work. |
 
 ## Market Benchmark Context
 
