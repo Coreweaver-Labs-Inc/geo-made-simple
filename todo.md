@@ -117,6 +117,7 @@
 - [ ] Deploy the temporary public webhook edge without granting it permission to create external actions or expose Manus, Hostinger, Vapi, or gateway credentials.
 - [ ] Retarget the three Hostinger webhooks and Vapi callback to the public edge, then run their controlled provider test deliveries.
 - [ ] Enable public access for the Manus deployment while retaining the private repository, then verify provider-facing webhook paths no longer redirect to OAuth.
+- [ ] Store the replacement Coreweaver Gateway — Production v2 bearer credential securely, bind all Vapi callback surfaces to it, and validate the public terminal callback.
 - [x] Record ops@coreweaverlabs.com, dev@coreweaverlabs.com, and hr@coreweaverlabs.com as selected Hostinger mailboxes, with API-key authentication and draft-only safety defaults for unknown sender and destination controls.
 - [x] Verify Vapi’s webhook and squad-routing capabilities, then define a unified voice-and-mail intake path to the Ops, Dev, and HR workflows.
 - [x] Prepare the configuration sequence for a Vapi operator and Hostinger webhooks to call the Manus API through a validated gateway without exposing keys or enabling autonomous external actions.
