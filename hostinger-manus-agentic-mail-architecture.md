@@ -6,6 +6,18 @@ Use **one secure mail gateway with three bounded role workflows**, rather than t
 
 This design lets each function keep its own instructions and review boundary while preserving a single audit trail, one sender-validation rule set, and one mechanism for stopping a bad workflow. It also avoids using `coreweaverlabs711@manus.bot` as an uncontrolled catch-all relay. Keep that address as an optional human command or escalation channel unless its exact provider behavior and access controls are independently confirmed.
 
+## Confirmed Inputs and Safe Defaults
+
+| Input | Current decision | Safe launch behavior |
+|---|---|---|
+| Hostinger mailboxes | `ops@coreweaverlabs.com`, `dev@coreweaverlabs.com`, and `hr@coreweaverlabs.com` | Create selected-mailbox access only; do not grant all-mailbox access. |
+| Manus integration | API-key-based integration | Store the key only in server-side secret storage. Do not place it in a webhook URL, Vapi, Hostinger UI text, browser code, or chat. |
+| Inbound sender authorization | Not yet specified | Start with the three confirmed internal addresses as exact-address allowlist entries only. Do not allow an entire domain or external sender until approved. |
+| Result destination | Not yet specified | Keep results in the private Manus task thread and internal gateway audit record. Do not send automatic external email, text, or webhook notifications. |
+| External actions | Not approved | Draft-only. All email sends, transfers, account actions, scheduling, deployments, and HR decisions require a person’s explicit approval. |
+
+These defaults are intentionally restrictive. They make a pilot safe to test without deciding who external callers or senders should be.
+
 > **Critical distinction:** Hostinger Agentic Mail’s allow/block lists govern **outbound sending from a mailbox**. They do not by themselves decide which inbound sender can trigger a workflow. The gateway must maintain its own inbound sender/domain allowlist and verify every webhook request. [1]
 
 ## Viable Approaches
@@ -36,6 +48,21 @@ The recommended approach is the first one. It offers the practical separation th
 6. The workflow returns a structured classification, internal summary, risk flag, and a draft-only recommendation. It does **not** send email by itself.
 7. Operations reviews any proposed external communication. Only an explicitly approved, separate action may call Hostinger’s send endpoint.
 8. The gateway records the review decision, task identifier, message identifier, and any external-send confirmation for audit.
+
+## Vapi Voice Operator → Coreweaver Squad
+
+Vapi’s current documentation confirms that a public server URL can receive call status, transcript, function, assistant-request, and end-of-call events. Its Squad model is designed for a focused Router assistant that hands a conversation to specialized assistants with explicit handoff conditions; Vapi also supports reusable bearer-token or HMAC credentials for server authentication. [4] [5] [6]
+
+Use the same gateway for voice and mail, but do not send the raw full transcript to every role. The Vapi **Router** should collect only the minimum intake context—caller intent, organization, urgency, and consent where required—then route as follows:
+
+| Vapi route | Handoff condition | Gateway action | Initial external action policy |
+|---|---|---|---|
+| **Operations** | Customer, prospect, scheduling, vendor, service, or general operating question | Create a private Ops review task with a concise call summary and transcript reference | No automatic email, booking, transfer, or commitment |
+| **Development** | Product, site, integration, access, incident, or technical support question | Create a private Dev review task with a redacted technical summary and any approved diagnostics | No deployment, credential change, or production operation |
+| **People & Feedback** | Explicit voluntary research feedback or ethical review-program question | Create a private HR feedback task only after consent and purpose are clear | No employment, legal, testimonial, or public-proof action |
+| **Human escalation** | Emergency, ambiguity, sensitive data, HR issue, external commitment, or caller requests a person | Pause automation and present/execute a human handoff configured separately | No agent decision substitutes for a human handoff |
+
+For the first release, the Vapi Router can talk to the three specialized voice assistants inside a Vapi Squad, but its **only** gateway call should create a draft-only internal task. It should not call the Hostinger send API or the Manus API directly from Vapi. The gateway owns validation, rate limits, idempotency, transcript minimization, and the server-side Manus API key.
 
 ## Hostinger Configuration
 
@@ -71,13 +98,15 @@ The receiving gateway should call the Manus task-creation endpoint only with an 
 
 Do **not** enable automatic external replies, calendar changes, deployments, credential changes, HR decisions, or any agentic send action in the first release. Do not forward all Hostinger mail to `coreweaverlabs711@manus.bot` and assume that approved senders will prevent untrusted inbound triggers. Do not give a single API token all-mailbox access when selected-mailbox access is available. Do not pass full attachments to an agent by default; allow only a small approved file-type list after a separate review.
 
+Do not expose the Manus API key in Vapi configuration. Configure Vapi with a separate gateway credential—prefer HMAC with a timestamp for replay protection, or a unique bearer token if HMAC is not available. Vapi’s custom credentials are designed to keep endpoint secrets managed in its dashboard rather than embedded in every assistant configuration. [5]
+
 ## Minimum Approval Needed Before Build
 
 1. Confirm **Approach 1** (shared gateway plus three bounded role workflows) or choose another row above.
-2. Name the three Hostinger mailbox addresses to monitor. Do not share passwords or API keys in chat.
-3. Confirm the inbound sender/domain allowlist. The current internal addresses may be a starting set, but outbound “approved senders” are not the same control.
-4. Confirm that version one is **draft-only** with no autonomous external sending.
-5. Confirm the desired result destination: private internal dashboard, selected internal mailbox, or Manus task thread.
+2. Confirm the initial inbound allowlist: the three exact internal addresses only, or provide additional approved sender addresses/domains. Outbound “approved senders” are not the same control.
+3. Confirm that version one is **draft-only** with no autonomous external sending. This is the safe default.
+4. Confirm whether the private Manus task thread and gateway audit record are acceptable as the first result destination.
+5. Confirm that external callers should never reach the People & Feedback route unless they explicitly volunteer research feedback or ask an ethical review-program question.
 
 After approval, create the Hostinger token with selected-mailbox scope, add the webhook endpoint, store the Hostinger and Manus secrets server-side, test with Hostinger’s test delivery, and keep the workflow disabled until the draft-only audit log is verified.
 
@@ -85,4 +114,7 @@ After approval, create the Hostinger token with selected-mailbox scope, add the 
 
 [1] [Hostinger: How to use Agentic Mail](https://www.hostinger.com/support/how-to-use-agentic-mail-in-hostinger/)  
 [2] [Manus API v2: `task.create`](https://open.manus.ai/docs/v2/task.create)  
-[3] [Manus API Integration Guide](https://open.manus.ai/docs/v2/webhooks-overview)
+[3] [Manus API Integration Guide](https://open.manus.ai/docs/v2/webhooks-overview)  
+[4] [Vapi: Server URLs](https://docs.vapi.ai/server-url)  
+[5] [Vapi: Server Authentication](https://docs.vapi.ai/server-url/server-authentication)  
+[6] [Vapi: Squads](https://docs.vapi.ai/squads)

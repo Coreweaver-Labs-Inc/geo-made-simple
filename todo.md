@@ -98,6 +98,9 @@
 - [x] Record ops@coreweaverlabs.com as operational review/evidence owner and dev@coreweaverlabs.com as technical measurement/systems owner for the January 1, 2027 scorecard.
 - [x] Record hr@coreweaverlabs.com as the people-and-feedback stakeholder for research-quality feedback and the ethical review program, without evidence-archive or confidential-record administration.
 - [ ] Verify the user-created Manus API credential type, Hostinger mailbox addresses, inbound sender allowlist, and chosen result destination before configuring any agentic mailbox workflow.
+- [x] Record ops@coreweaverlabs.com, dev@coreweaverlabs.com, and hr@coreweaverlabs.com as selected Hostinger mailboxes, with API-key authentication and draft-only safety defaults for unknown sender and destination controls.
+- [x] Verify Vapi’s webhook and squad-routing capabilities, then define a unified voice-and-mail intake path to the Ops, Dev, and HR workflows.
+- [x] Prepare the configuration sequence for a Vapi operator and Hostinger webhooks to call the Manus API through a validated gateway without exposing keys or enabling autonomous external actions.
 - [x] Define a secure Hostinger Mail-to-Manus workflow with approved-sender controls, role routing, human review, data minimization, and no autonomous external send action by default.
 - [x] Provide a verified setup plan for shared intake versus role-specific ops, dev, and HR workflows, including the minimum configuration and webhook/forwarding requirements.
 - [x] Inventory every public visual asset and define its emotional function, strategic message, composition, alt text, title, caption, and social/SEO metadata.
