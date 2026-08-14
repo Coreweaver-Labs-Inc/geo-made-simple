@@ -111,3 +111,5 @@
 - [x] Reorder the primary navigation around buyer intent while preserving access to the framework, research, case-study, and policy content.
 - [x] Add a comprehensive, evidence-led FAQ page with category navigation, accessible answers, FAQPage structured data, canonical metadata, and sitemap coverage.
 - [x] Validate the FAQ’s content safeguards, navigation order, responsive presentation, and server-rendered SEO output.
+- [x] Clarify specialized homepage vocabulary—frameworks, operating system, signals, citation intelligence, knowledge systems, and governance—in plain buyer language.
+- [x] Verify the revised homepage remains concise, readable, responsive, and server-rendered with intact SEO metadata.

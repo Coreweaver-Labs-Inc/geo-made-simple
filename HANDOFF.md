@@ -58,6 +58,7 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `client/public/robots.txt` | General search permission plus named crawler directives that distinguish known retrieval agents from named training/model-development agents. |
 | `client/src/pages/Faq.tsx` | Searchable, category-led public FAQ with accessible accordions, claim-safe answers, FAQPage JSON-LD, and contact handoff. |
 | `brand-strengths.md` | Supportable external strengths, recommended buyer-first navigation order, and explicit claim boundaries. |
+| `client/src/pages/Home.tsx` | Homepage copy with plain-language definitions for signals, operating system, AI answer/source review, shared knowledge, and governance-adjacent review routines. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
 | `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |

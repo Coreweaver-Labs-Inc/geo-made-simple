@@ -1,5 +1,6 @@
 /* Signal Ledger direction: editorial modernism, warm paper, deep ink, brass rules, and restrained signal teal. This page explains one idea per section and keeps the reading path obvious. */
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import React from "react";
 import { ContactForm } from "@/components/ContactForm";
 import { MarketingShell, SectionLabel } from "@/components/SiteChrome";
 import { SeoHead } from "@/components/SeoHead";
@@ -13,36 +14,36 @@ const sections = [
 const products = [
   {
     number: "01",
-    name: "GEO Signal Architecture",
-    body: "A practical system for making your brand's facts, expertise, and point of view easier for AI answer engines to find and use.",
+    name: "Clear brand information",
+    body: "The pages, facts, service descriptions, and expert perspective that help people, search engines, and AI answer systems understand what your company does. We call this GEO Signal Architecture.",
   },
   {
     number: "02",
-    name: "Citation Intelligence",
-    body: "A clearer view of where your company appears in AI answers, what sources shape those answers, and where the gaps are.",
+    name: "AI answer and source review",
+    body: "A practical review of where your company appears in AI answers, which sources influence those answers, and where the information is unclear. We call this Citation Intelligence.",
   },
   {
     number: "03",
-    name: "Knowledge Systems",
-    body: "The structured content, governance, and operating habits that keep your signal consistent as your business grows.",
+    name: "Shared knowledge and review routines",
+    body: "The current source material, ownership, and governance—the review rules and approval habits that keep public claims accurate as your company grows. We call this a Knowledge System.",
   },
 ];
 
 export default function Home() {
   return (
     <MarketingShell>
-      <SeoHead title="Coreweaver Labs — Make your brand easier for AI to understand." description="Coreweaver Labs builds GEO infrastructure that helps credible companies become clearer, more consistent, and more citable in AI search." path="/" />
+      <SeoHead title="Coreweaver Labs — Make your brand easier for AI to understand." description="Coreweaver Labs helps mid-market B2B teams make their expertise, services, and buyer language clearer through evidence-led SEO, Content Marketing, and Paid Ads." path="/" />
       <main id="top">
         <section className="hero section-pad" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <SectionLabel>GEO infrastructure for the intentional operator</SectionLabel>
+            <SectionLabel>Clear information for B2B teams</SectionLabel>
             <h1 id="hero-title">Make your brand easier for AI to understand.</h1>
-            <p className="hero-lede">Coreweaver Labs builds the frameworks that help credible companies become clearer, more consistent, and more citable in AI search.</p>
+            <p className="hero-lede">Coreweaver Labs helps mid-market B2B teams make their expertise, services, and buyer language clearer through evidence-led SEO, Content Marketing, and Paid Ads.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="/framework">See how it works <ArrowDownRight size={16} /></a>
-              <a className="text-link" href="/contact">Begin with a signal audit <ArrowUpRight size={16} /></a>
+              <a className="text-link" href="/contact">Begin with a clarity review <ArrowUpRight size={16} /></a>
             </div>
-            <div className="hero-note"><span className="note-line" /> No black-box promises. Just better signals.</div>
+            <div className="hero-note"><span className="note-line" /> No black-box promises. Clear information, reviewed sources, and practical next steps.</div>
           </div>
           <div className="hero-art" role="img" aria-label="Abstract woven lattice representing connected brand signals">
             <img src="/manus-storage/coreweaver-hero_eb9a774a.jpg" alt="Abstract woven lattice of connected brand signals" />
@@ -56,8 +57,8 @@ export default function Home() {
             <h2 id="why-title">AI answers are becoming part of your brand.</h2>
           </div>
           <div className="why-body">
-            <p className="large-copy">When people ask ChatGPT, Perplexity, or Google a question about your category, the answer is shaped by the signals those systems can understand.</p>
-            <p>That means your website is no longer the only place your reputation is built. The sources, language, structure, and evidence around your business all contribute to how you are represented.</p>
+            <p className="large-copy">When people ask ChatGPT, Perplexity, or Google a question about your category, the answer is shaped by the information those systems can find and interpret.</p>
+            <p>We use <strong>signal</strong> as shorthand for that information: the words, service pages, source material, links, and evidence around your business. Your website is no longer the only place your reputation is built.</p>
             <div className="pull-quote">The goal is not to game an answer engine. It is to give it a truer, clearer answer to work with.</div>
           </div>
         </section>
@@ -69,20 +70,20 @@ export default function Home() {
           </div>
           <div className="framework-copy">
             <SectionLabel>The ARM Framework</SectionLabel>
-            <h2 id="framework-title">A simple operating system for your brand's signal.</h2>
-            <p>ARM stands for <strong>Authority, Representation, and Measurement</strong>. Together, these three layers turn scattered content into a system that can be understood, maintained, and improved.</p>
+            <h2 id="framework-title">A simple way to keep your facts, message, and evidence aligned.</h2>
+            <p>ARM stands for <strong>Authority, Representation, and Measurement</strong>. Here, an <strong>operating system</strong> means the repeatable roles, source material, and review routines that keep public information useful—not software you have to buy.</p>
             <ol className="framework-list">
-              <li><span>01</span><div><strong>Authority</strong><p>Build the evidence that earns trust.</p></div></li>
-              <li><span>02</span><div><strong>Representation</strong><p>Make the right story structurally clear.</p></div></li>
-              <li><span>03</span><div><strong>Measurement</strong><p>See what AI systems actually return.</p></div></li>
+              <li><span>01</span><div><strong>Authority</strong><p>Keep the source material and evidence that support what you say.</p></div></li>
+              <li><span>02</span><div><strong>Representation</strong><p>Use the same clear description of your company across key buyer touchpoints.</p></div></li>
+              <li><span>03</span><div><strong>Measurement</strong><p>Review what search and AI systems return, then record what needs to improve.</p></div></li>
             </ol><a className="text-link" href="/framework">Explore the framework <ArrowUpRight size={16} /></a>
           </div>
         </section>
 
         <section id="products" className="products-section section-pad section-rule" aria-labelledby="products-title">
           <div className="section-intro split-intro">
-            <div><SectionLabel>What we build</SectionLabel><h2 id="products-title">The tools behind a more legible brand.</h2></div>
-            <p>Start with the problem in front of you. Build only what creates a clearer signal.</p>
+            <div><SectionLabel>What we build</SectionLabel><h2 id="products-title">Practical tools for a clearer brand.</h2></div>
+            <p>Start with the problem in front of you. Build only what makes your company easier to understand and maintain.</p>
           </div>
           <div className="products-layout">
             <div className="products-list">
@@ -103,8 +104,8 @@ export default function Home() {
           <div className="engagement-art"><img src="/manus-storage/coreweaver-engagement_712865bb.jpg" alt="Drafting table with a map, ruler, and connected signal thread" loading="lazy" /></div>
           <div className="engagement-copy">
             <SectionLabel>Work with us</SectionLabel>
-            <h2 id="engagement-title">Start with the signal you already have.</h2>
-            <p>Every engagement begins with a plain-language read of your current AI visibility. We find the gaps, name the opportunities, and recommend the smallest useful next step.</p>
+            <h2 id="engagement-title">Start with the information you already have.</h2>
+            <p>Every engagement begins with a plain-language review of how your company currently appears in search and AI answers. We identify unclear information, name the smallest useful next step, and record why it matters.</p>
             <ContactForm />
           </div>
         </section>
