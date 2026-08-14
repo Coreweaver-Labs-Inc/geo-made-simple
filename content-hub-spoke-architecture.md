@@ -74,6 +74,10 @@ The Topics hub and evergreen spokes may publish once their source links, service
 
 Track the structure before interpreting commercial outcomes: number of live cluster pages; percentage of Insights linked to a hub; number of spokes with at least two internal inbound links; source/review completion rate for research content; and buyer-question gaps surfaced through the FAQ or manually triaged requests. These are operating indicators, not ranking or revenue claims.
 
+## Expansion Map
+
+`expanded-hub-spoke-content-map.md` extends this initial five-pillar architecture with a priority order for child pages, publication lanes, individual article briefs, cross-cluster coordination, internal-link minimums, and a governed 90-day sequence. It is an editorial planning document only: no route in that map is treated as public until its source plan, claim ledger, author, reviewer, internal links, metadata, and topic-specific boundary have passed review.
+
 ## References
 
 [1] [Google Search Central: Link best practices for Google](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)  

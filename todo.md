@@ -151,3 +151,8 @@
 - [x] Validate the FAQ’s content safeguards, navigation order, responsive presentation, and server-rendered SEO output.
 - [x] Clarify specialized homepage vocabulary—frameworks, operating system, signals, citation intelligence, knowledge systems, and governance—in plain buyer language.
 - [x] Verify the revised homepage remains concise, readable, responsive, and server-rendered with intact SEO metadata.
+- [x] Audit the existing B2B Growth Topics hub, spoke inventory, research governance, and internal-link rules before expansion.
+- [x] Research source-safe mid-market B2B search-intent clusters adjacent to SEO, Content Marketing, Paid Ads, AI representation, and content governance.
+- [x] Create an expanded, prioritized hub-and-spoke map with article briefs, evidence requirements, internal links, and claim boundaries.
+- [x] Integrate the expanded content map and publication sequence into the project’s content-architecture documentation without publishing unsupported topic pages.
+- [x] Validate the expanded map against Coreweaver’s research governance, buyer journey, and no-fabrication boundaries.
