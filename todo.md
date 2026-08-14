@@ -107,17 +107,17 @@
 - [x] Document the safe Hostinger and Vapi dashboard configuration and test steps required after deployment.
 - [x] Verify the scope and safe server-side handling of the user-created MANUS_HOSTINGER credential without exposing its value.
 - [x] Record +1 (650) 484-0415 as the Vapi Operations entry point for ops@coreweaverlabs.com and constrain it to the approved Router → Ops/Dev/consent-based HR/human-escalation policy.
-- [ ] Verify active provider access and record the live configuration run without exposing provider credentials.
-- [ ] Create the Vapi Router and focused Ops, Dev, and People & Feedback assistants with the approved bounded handoff policy.
-- [ ] Assign +1 (650) 484-0415 to the Vapi Router/Squad and validate its authenticated end-of-call callback behavior.
-- [ ] Create the three Hostinger `message.received` webhooks with selected-mailbox scope and the exact approved gateway endpoints.
-- [ ] Run each provider’s controlled webhook test and verify only private, draft-only audit outcomes occur.
-- [ ] Make the deployed gateway hostname publicly reachable for provider webhook POSTs without interactive OAuth, then retest all three Hostinger webhooks and the Vapi end-of-call callback.
-- [ ] Select and document a temporary least-privilege public webhook edge that preserves the private project repository and authenticates every provider request before forwarding.
-- [ ] Deploy the temporary public webhook edge without granting it permission to create external actions or expose Manus, Hostinger, Vapi, or gateway credentials.
-- [ ] Retarget the three Hostinger webhooks and Vapi callback to the public edge, then run their controlled provider test deliveries.
-- [ ] Enable public access for the Manus deployment while retaining the private repository, then verify provider-facing webhook paths no longer redirect to OAuth.
-- [ ] Store the replacement Coreweaver Gateway — Production v2 bearer credential securely, bind all Vapi callback surfaces to it, and validate the public terminal callback.
+- [x] Verify active provider access and record the live configuration run without exposing provider credentials.
+- [x] Create the Vapi Router and focused Ops, Dev, and People & Feedback assistants with the approved bounded handoff policy.
+- [x] Assign +1 (650) 484-0415 to the Vapi Router/Squad and validate its authenticated end-of-call callback behavior.
+- [x] Retarget the three existing selected-mailbox Hostinger `message.received` webhooks to the exact approved gateway endpoints without rotating their bearer secrets.
+- [x] Run each provider’s controlled webhook test and verify only private, draft-only audit outcomes occur.
+- [x] Make the deployed gateway hostname publicly reachable for provider webhook POSTs without interactive OAuth, then retest all three Hostinger webhooks and the Vapi end-of-call callback.
+- [x] Select and document a temporary least-privilege public webhook edge that preserves the private project repository and authenticates every provider request before forwarding; superseded when the owner selected the public Manus deployment.
+- [x] Deploy the temporary public webhook edge without granting it permission to create external actions or expose Manus, Hostinger, Vapi, or gateway credentials; not pursued because the public Manus deployment is the selected, lower-complexity path.
+- [x] Retarget the three Hostinger webhooks and Vapi callback to the public edge, then run their controlled provider test deliveries; completed through the selected public Manus deployment rather than a separate edge.
+- [x] Enable public access for the Manus deployment while retaining the private repository, then verify provider-facing webhook paths no longer redirect to OAuth.
+- [x] Store the replacement callback bearer securely and bind all Vapi callback surfaces to the server-managed Coreweaver Gateway — Production v3 credential; validate the public terminal callback.
 - [x] Record ops@coreweaverlabs.com, dev@coreweaverlabs.com, and hr@coreweaverlabs.com as selected Hostinger mailboxes, with API-key authentication and draft-only safety defaults for unknown sender and destination controls.
 - [x] Verify Vapi’s webhook and squad-routing capabilities, then define a unified voice-and-mail intake path to the Ops, Dev, and HR workflows.
 - [x] Prepare the configuration sequence for a Vapi operator and Hostinger webhooks to call the Manus API through a validated gateway without exposing keys or enabling autonomous external actions.
