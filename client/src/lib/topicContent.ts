@@ -15,6 +15,32 @@ export type Topic = {
   relatedTopicSlugs: string[];
 };
 
+export type ChildTopic = {
+  parentSlug: string;
+  slug: string;
+  label: string;
+  title: string;
+  description: string;
+  kicker: string;
+  buyerProblem: string;
+  decision: string;
+  approach: string;
+  includes: string[];
+  boundary: string;
+  serviceLink: TopicLink;
+  relatedResources: TopicLink[];
+  searchTerms: string[];
+};
+
+export type TopicSearchResult = {
+  href: string;
+  label: string;
+  title: string;
+  description: string;
+  kind: "Hub" | "Topic" | "Guide";
+  score: number;
+};
+
 export const topics: Topic[] = [
   {
     slug: "b2b-seo",
@@ -88,6 +114,79 @@ export const topics: Topic[] = [
   },
 ];
 
+export const childTopics: ChildTopic[] = [
+  {
+    parentSlug: "b2b-seo",
+    slug: "website-information-architecture",
+    label: "B2B website information architecture",
+    title: "B2B website information architecture",
+    description: "A practical guide to organizing B2B service, method, evidence, and next-step information around the questions a buyer needs to answer.",
+    kicker: "Make commercial information easier to find",
+    buyerProblem: "A B2B website can have useful material and still make buyers work too hard to understand the offer, locate the right explanation, or connect a claim to its context. The friction is usually not a missing page alone. It is a weak relationship between buyer questions, page purpose, navigation, evidence, and the next useful action.",
+    decision: "Decide which buyer questions deserve a source-of-truth page, what each page must explain, and how those pages should connect without forcing a visitor to reconstruct the commercial story.",
+    approach: "Coreweaver Labs treats website information architecture as an editorial and operating choice. A useful structure gives each important page a plain-language purpose, a clear relationship to related information, a responsible owner, and a reason to be reviewed when the offer or evidence changes.",
+    includes: ["A buyer-question map for service, method, proof, and support information", "A page-purpose and navigation review that surfaces overlap, gaps, and handoff friction", "A source-of-truth and refresh pattern for information that must remain current"],
+    boundary: "Clearer website architecture can make information easier to inspect and navigate. It does not guarantee search rankings, traffic, leads, conversions, AI visibility, or revenue.",
+    serviceLink: { href: "/services", label: "Explore evidence-led B2B SEO services" },
+    relatedResources: [{ href: "/topics/b2b-seo", label: "Mid-market B2B SEO systems" }, { href: "/framework", label: "The ARM Framework" }, { href: "/insights/a-practical-signal-audit", label: "What a practical signal audit should reveal" }, { href: "/topics/b2b-content-marketing/buyer-enablement", label: "B2B buyer enablement content" }],
+    searchTerms: ["website information architecture", "site structure", "website navigation", "service pages", "buyers cannot find information", "find the right page", "content hierarchy", "b2b seo", "source of truth pages", "organize our website"],
+  },
+  {
+    parentSlug: "b2b-content-marketing",
+    slug: "buyer-enablement",
+    label: "B2B buyer enablement content",
+    title: "B2B buyer enablement content",
+    description: "A practical guide to creating B2B content that helps a buying group understand the problem, inspect the approach, and take a clearer next step.",
+    kicker: "Give buying groups useful decision context",
+    buyerProblem: "B2B buyers often encounter a category, a service page, a campaign, and a sales conversation as separate explanations. Even strong content can fail to help if it does not anticipate the questions different stakeholders need to resolve before they can move together.",
+    decision: "Decide which questions deserve public education, which evidence or limitations belong alongside the answer, and how a page should hand the reader to the next useful source rather than a generic call to action.",
+    approach: "Coreweaver Labs approaches buyer enablement as a connected editorial system. The work begins with the decision a reader is trying to make, then connects a plain-language explanation to current sources, a disclosed point of view, relevant adjacent resources, and a review routine.",
+    includes: ["A buying-group question map that distinguishes awareness, evaluation, and handoff needs", "Content briefs that define the reader decision, supporting source plan, and adjacent resource", "A refresh and claim-review pattern that keeps buyer education current and inspectable"],
+    boundary: "Useful buyer education does not guarantee demand, citations, lead volume, pipeline, revenue, or agreement from a buying group. It makes the information available for a clearer review.",
+    serviceLink: { href: "/services", label: "Explore evidence-led Content Marketing services" },
+    relatedResources: [{ href: "/topics/b2b-content-marketing", label: "B2B Content Marketing systems" }, { href: "/research", label: "Research methods and editorial standards" }, { href: "/faq#faq-evidence", label: "Research and evidence FAQ answers" }, { href: "/topics/b2b-seo/website-information-architecture", label: "B2B website information architecture" }],
+    searchTerms: ["buyer enablement", "buying group", "buying committee", "content helps buyers decide", "buyer education", "decision content", "content marketing", "thought leadership", "content strategy", "help buyers understand"],
+  },
+];
+
 export function getTopic(slug: string | undefined) {
   return topics.find((topic) => topic.slug === slug);
+}
+
+export function getChildTopic(parentSlug: string | undefined, slug: string | undefined) {
+  return childTopics.find((topic) => topic.parentSlug === parentSlug && topic.slug === slug);
+}
+
+export function getChildTopicsForParent(parentSlug: string | undefined) {
+  return childTopics.filter((topic) => topic.parentSlug === parentSlug);
+}
+
+const stopWords = new Set(["a", "an", "and", "are", "can", "for", "from", "help", "i", "in", "is", "it", "my", "need", "of", "our", "the", "to", "we", "with"]);
+
+function words(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(/\s+/).filter((word) => word.length > 1 && !stopWords.has(word));
+}
+
+function buildSearchEntries(): Array<Omit<TopicSearchResult, "score"> & { searchText: string; searchTerms: string[] }> {
+  const hub = [{ href: "/topics", label: "B2B Growth Topics", title: "B2B Growth Topics", description: "A connected learning path across SEO, content, paid media, AI representation, and content governance.", kind: "Hub" as const, searchTerms: ["b2b growth topics", "where should we start", "growth system", "commercial story", "find a topic"] }];
+  const pillars = topics.map((topic) => ({ href: `/topics/${topic.slug}`, label: topic.label, title: topic.title, description: topic.description, kind: "Topic" as const, searchTerms: [topic.label, topic.title, topic.buyerProblem, topic.approach] }));
+  const guides = childTopics.map((topic) => ({ href: `/topics/${topic.parentSlug}/${topic.slug}`, label: topic.label, title: topic.title, description: topic.description, kind: "Guide" as const, searchTerms: topic.searchTerms }));
+  return [...hub, ...pillars, ...guides].map((entry) => ({ ...entry, searchText: words([entry.label, entry.title, entry.description, ...entry.searchTerms].join(" ")).join(" ") }));
+}
+
+const searchEntries = buildSearchEntries();
+
+export function searchTopicLibrary(query: string, limit = 4): TopicSearchResult[] {
+  const normalizedQuery = query.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const queryWords = words(query);
+  if (!normalizedQuery || queryWords.length === 0) return [];
+
+  return searchEntries.map(({ searchText, searchTerms, ...entry }) => {
+    const phraseScore = searchTerms.reduce((score, term) => {
+      const normalizedTerm = term.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      return normalizedTerm.length > 2 && normalizedQuery.includes(normalizedTerm) ? score + Math.max(5, words(normalizedTerm).length * 4) : score;
+    }, 0);
+    const matchingWords = queryWords.filter((word) => searchText.includes(word)).length;
+    return { ...entry, score: phraseScore + matchingWords * 2 };
+  }).filter((entry) => entry.score > 0).sort((first, second) => second.score - first.score || first.title.localeCompare(second.title)).slice(0, limit);
 }

@@ -2,7 +2,7 @@ import { cleanup, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it } from "vitest";
 import Topics from "./Topics";
-import { getTopic, topics } from "@/lib/topicContent";
+import { childTopics, getTopic, topics } from "@/lib/topicContent";
 
 afterEach(cleanup);
 
@@ -23,5 +23,11 @@ describe("B2B Growth Topics", () => {
       expect(topic.relatedTopicSlugs.length).toBeGreaterThan(1);
       expect(topic.boundary.toLowerCase()).toMatch(/does not guarantee|does not promise/);
     }
+  });
+
+  it("makes the implemented child guides available to the deterministic topic finder", () => {
+    render(<Topics />);
+    expect(childTopics.map((topic) => `${topic.parentSlug}/${topic.slug}`)).toEqual(["b2b-seo/website-information-architecture", "b2b-content-marketing/buyer-enablement"]);
+    expect(screen.getByRole("searchbox", { name: /what are you trying to make clearer/i })).toBeTruthy();
   });
 });

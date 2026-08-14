@@ -6,6 +6,7 @@ import CaseStudies from "./pages/CaseStudies";
 import CaseStudyIntake from "./pages/CaseStudyIntake";
 import CaseStudyPreview from "./pages/CaseStudyPreview";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
+import ChildTopicDetail from "./pages/ChildTopicDetail";
 import AuthorProfile from "./pages/AuthorProfile";
 import AiDataPolicy from "./pages/AiDataPolicy";
 import Faq from "./pages/Faq";
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/ai-data-policy" component={AiDataPolicy} />
       <Route path="/faq" component={Faq} />
       <Route path="/topics" component={Topics} />
+      <Route path="/topics/:pillar/:child" component={ChildTopicDetail} />
       <Route path="/topics/:slug" component={TopicDetail} />
       <Route path="/insights/:slug" component={InsightDetail} />
       <Route path="/case-studies" component={CaseStudies} />

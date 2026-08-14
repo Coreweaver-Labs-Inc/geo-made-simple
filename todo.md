@@ -156,3 +156,7 @@
 - [x] Create an expanded, prioritized hub-and-spoke map with article briefs, evidence requirements, internal links, and claim boundaries.
 - [x] Integrate the expanded content map and publication sequence into the project’s content-architecture documentation without publishing unsupported topic pages.
 - [x] Validate the expanded map against Coreweaver’s research governance, buyer journey, and no-fabrication boundaries.
+- [x] Implement the first priority child route for B2B website information architecture with governed content, internal links, metadata, SSR, and sitemap coverage.
+- [x] Implement the second priority child route for B2B buyer enablement content with governed content, internal links, metadata, SSR, and sitemap coverage.
+- [x] Add an accessible deterministic natural-language topic search widget that routes readers to the best matching hub, pillar, or implemented child page without using external AI or storing search input.
+- [x] Add focused automated coverage and validate responsive, server-rendered, metadata, sitemap, and search-widget behavior for the topic expansion.

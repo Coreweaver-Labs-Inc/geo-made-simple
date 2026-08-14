@@ -5,7 +5,7 @@ import type { AppRouter } from "../../../server/routers";
 import { trpc } from "@/lib/trpc";
 import { fallbackInsights } from "@/lib/insightContent";
 import { getAuthorBySlug } from "@/lib/authors";
-import { getTopic } from "@/lib/topicContent";
+import { getChildTopic, getTopic } from "@/lib/topicContent";
 
 export type HeadMeta = { title: string; description: string; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
 type RouterOutput = inferRouterOutputs<AppRouter>;
@@ -45,6 +45,12 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
       if (error instanceof TRPCError && error.code === "NOT_FOUND") return { title: SITE, description: DESCRIPTION, notFound: true };
       return { title: `Case Study | ${SITE}`, description: DESCRIPTION, canonicalPath: clean, noindex: true };
     }
+  }
+  const childTopicMatch = clean.match(/^\/topics\/([^/]+)\/([^/]+)$/);
+  if (childTopicMatch) {
+    const topic = getChildTopic(childTopicMatch[1], childTopicMatch[2]);
+    if (!topic) return { title: SITE, description: DESCRIPTION, notFound: true };
+    return { title: `${topic.title} | Coreweaver Labs`, description: topic.description, canonicalPath: clean };
   }
   const topicMatch = clean.match(/^\/topics\/([^/]+)$/);
   if (topicMatch) {
