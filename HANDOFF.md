@@ -54,6 +54,9 @@ The most recent Drizzle parity check reported **no pending schema changes**.
 | `client/src/pages/Research.tsx` | Public research-methods and source-standard page. |
 | `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
 | `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
+| `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |
+| `proof-and-review-program.md` | Authorized evidence pipeline and ethical, neutral client-review program. |
+| `authority-scorecard.md` | Manual quarterly authority and Clutch-readiness scorecard; no unapproved external collection or fabricated baseline data. |
 | `gtm-foundation.md` | Operating model, default segments, lifecycle, metrics, and non-automatic boundaries. |
 | `client/src/pages/GtmHub.tsx` | Public services hub and request form. |
 | `client/src/pages/GtmWorkspace.tsx` | Private GTM workspace creation and lifecycle views. |

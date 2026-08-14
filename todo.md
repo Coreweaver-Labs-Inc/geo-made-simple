@@ -87,11 +87,12 @@
 - [x] Constrain AI support responses to deterministic approved routing copy so the chatbot cannot invent internal process or policy details.
 - [x] Label the current SEO, Content Marketing, and Paid Ads amounts as research-based starting estimates pending owner approval.
 - [ ] Confirm final commercial pricing and the long-term leading indicators for premium mid-market B2B growth.
-- [ ] Create a verified proof and portfolio-readiness pipeline for authorized completed client work.
-- [ ] Establish an ethical customer-review program and new Clutch profile foundation without fabricated or incentivized feedback.
-- [ ] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
+- [x] Create a verified proof and portfolio-readiness pipeline for authorized completed client work.
+- [x] Establish an ethical customer-review program and new Clutch profile foundation without fabricated or incentivized feedback.
+- [x] Define delivery playbooks, ownership, quality gates, and reporting for SEO, Content Marketing, and Paid Ads.
 - [x] Publish an original-research cadence and authorized thought-leadership plan to strengthen independent market presence.
 - [ ] Track controllable Clutch-readiness leading indicators and review the long-term growth roadmap quarterly.
+- [x] Create a manual authority and Clutch-readiness scorecard with definitions, source rules, limitations, owners, and a quarterly review sequence.
 - [x] Define a presence-first research thesis, source hierarchy, claim-review standard, and publication cadence.
 - [x] Create the first three sourceable research briefs for mid-market B2B SEO, Content Marketing, and Paid Ads.
 - [x] Define authority leading indicators that distinguish owned publishing activity from independent market recognition.
