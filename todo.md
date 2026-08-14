@@ -65,3 +65,4 @@
 - [x] Re-run final GTM validation after the workspace keyboard accessibility check.
 - [x] Extend protected-workspace keyboard-focus coverage to contact and request-triage controls.
 - [x] Re-run and record the full GTM validation suite after expanding workspace keyboard coverage.
+- [x] Prepare next-session handoff notes for the integrated GTM foundation.
