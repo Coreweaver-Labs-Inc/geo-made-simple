@@ -147,6 +147,22 @@ export const childTopics: ChildTopic[] = [
     relatedResources: [{ href: "/topics/b2b-content-marketing", label: "B2B Content Marketing systems" }, { href: "/research", label: "Research methods and editorial standards" }, { href: "/faq#faq-evidence", label: "Research and evidence FAQ answers" }, { href: "/topics/b2b-seo/website-information-architecture", label: "B2B website information architecture" }],
     searchTerms: ["buyer enablement", "buying group", "buying committee", "content helps buyers decide", "buyer education", "decision content", "content marketing", "thought leadership", "content strategy", "help buyers understand"],
   },
+  {
+    parentSlug: "b2b-paid-ads",
+    slug: "message-landing-page-alignment",
+    label: "B2B paid-message and landing-page alignment",
+    title: "B2B paid ads and landing-page alignment",
+    description: "A practical guide to reviewing whether a B2B paid message, landing-page explanation, and follow-up context ask a buyer to understand the same thing.",
+    kicker: "Test one coherent commercial explanation",
+    buyerProblem: "A paid message can be concise while its destination is detailed, generic, or aimed at a different question. That disconnect makes it harder for a buyer to understand what the offer is for, what they should inspect next, or whether the promised context continues after the click.",
+    decision: "Decide which buyer question the message is introducing, what the destination must explain before requesting action, and what shared terms need to stay stable across the ad, page, and follow-up context.",
+    approach: "Coreweaver Labs treats paid-message alignment as a reviewable continuity system. The work connects the audience assumption, message, landing-page purpose, evidence boundary, next step, and a record of what a test can and cannot teach.",
+    includes: ["A message-to-destination review that checks whether the same buyer question carries through the path", "A landing-page purpose and evidence-boundary check before activity is expanded", "A learning record that distinguishes delivery observations from commercial claims"],
+    boundary: "Message and landing-page alignment can make a test easier to inspect and improve. It does not guarantee clicks, cost efficiency, leads, pipeline, revenue, return on ad spend, or buyer agreement.",
+    serviceLink: { href: "/services", label: "Explore evidence-led B2B Paid Ads services" },
+    relatedResources: [{ href: "/topics/b2b-paid-ads", label: "B2B Paid Ads and message systems" }, { href: "/topics/b2b-content-marketing/buyer-enablement", label: "B2B buyer enablement content" }, { href: "/framework", label: "The ARM Framework" }, { href: "/services", label: "Service scope and private next steps" }],
+    searchTerms: ["paid ads landing page alignment", "paid message alignment", "ad message does not match landing page", "b2b paid media", "landing page clarity", "campaign message continuity", "paid media testing", "message to destination", "paid ads", "b2b offer clarity"],
+  },
 ];
 
 export function getTopic(slug: string | undefined) {

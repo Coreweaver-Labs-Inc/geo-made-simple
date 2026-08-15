@@ -172,3 +172,9 @@
 - [x] Define a review-gated content-silo operating model that converts approved trend, parameter, tag, and visitor-intent signals into private briefs and drafts rather than autonomous publication.
 - [x] Compare at least two viable automation approaches for the continuous content workflow before any schedule, external API, or autonomous-drafting configuration is enabled.
 - [x] Add focused automated coverage and validate structured data, metadata, resource linking, sharing URLs, responsive presentation, and public SSR output.
+- [x] Audit the current Studio, schema, private publishing workflow, scheduler constraints, and topic architecture before adding a trend-driven draft queue.
+- [x] Define a private, idempotent content-brief queue that accepts approved trend signals, creates only reviewable drafts, records source contracts, and never publishes automatically.
+- [x] Add a protected review surface for queued briefs and draft content, retaining existing named-reviewer and claim-review publication controls.
+- [x] Implement an idempotent scheduled queue handler that uses approved trend signals to create private editorial drafts without collecting raw visitor data or performing external actions.
+- [x] Publish the paid-message and landing-page alignment guide with source-safe content, SSR metadata, schema, sitemap coverage, and Resources/topic internal links.
+- [x] Add focused tests and validate queue authorization, deduplication, draft-only behavior, scheduled-handler safeguards, public guide discovery, and responsive presentation.

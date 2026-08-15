@@ -61,6 +61,23 @@ export const insightSlugSchema = z.object({
   slug: z.string().trim().min(3).max(180),
 });
 
+export const contentTrendSignalSchema = z.object({
+  sourceType: z.enum(["manual_trend_snapshot", "search_console", "analytics", "research"]),
+  sourceReference: z.string().trim().min(6, "Identify the approved source or report.").max(320),
+  silo: z.enum(["website_clarity", "buyer_enablement", "paid_message_learning", "ai_representation", "content_governance"]),
+  buyerQuestion: z.string().trim().min(12, "Name the buyer question this signal may help investigate.").max(500),
+  summary: z.string().trim().min(30, "Summarize the aggregate signal without personal data.").max(5000),
+  sourceWindow: z.string().trim().min(3, "Record the source window or observation period.").max(120),
+});
+
+export const contentTrendSignalApprovalSchema = z.object({
+  id: z.number().int().positive(),
+});
+
+export const contentBriefQueueScheduleSchema = z.object({
+  cron: z.string().trim().regex(/^(\S+\s+){5}\S+$/, "Use six cron fields: sec min hour day month weekday.").max(64),
+});
+
 export const caseStudySlugSchema = z.object({ slug: z.string().trim().min(3).max(180) });
 
 const requiredDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date in YYYY-MM-DD format.");

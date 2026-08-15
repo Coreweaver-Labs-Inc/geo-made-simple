@@ -32,7 +32,7 @@ const products = [
 const resourceClusters = [
   { label: "Website clarity", title: "B2B website information architecture", body: "Organize service, method, evidence, and next-step information around the questions a buyer needs to answer.", href: "/topics/b2b-seo/website-information-architecture" },
   { label: "Buyer education", title: "B2B buyer enablement content", body: "Help a buying group understand the problem, inspect the approach, and take a clearer next step.", href: "/topics/b2b-content-marketing/buyer-enablement" },
-  { label: "Paid-message learning", title: "B2B Paid Ads and message systems", body: "Connect audience, offer, landing-page continuity, and documented campaign learning.", href: "/topics/b2b-paid-ads" },
+  { label: "Paid-message learning", title: "B2B paid ads and landing-page alignment", body: "Review whether the paid message, destination, and next-step context ask a buyer to understand the same thing.", href: "/topics/b2b-paid-ads/message-landing-page-alignment" },
   { label: "AI representation", title: "AI representation for B2B brands", body: "Review how public sources and buyer language shape answer contexts without promising citation or visibility.", href: "/topics/ai-representation" },
   { label: "Governance", title: "Content governance for B2B growth teams", body: "Keep important public claims, source ownership, and review routines visible as content grows.", href: "/topics/content-governance" },
   { label: "Research standards", title: "Research methods and editorial standards", body: "See how source references, methods, authorship, and claim review guide public research work.", href: "/research" },

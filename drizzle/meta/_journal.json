@@ -85,6 +85,20 @@
       "when": 1786683624091,
       "tag": "0011_ancient_sentinel",
       "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1786780621995,
+      "tag": "0012_majestic_stick",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1786780710351,
+      "tag": "0013_equal_northstar",
+      "breakpoints": true
     }
   ]
 }

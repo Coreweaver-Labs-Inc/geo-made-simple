@@ -1,7 +1,20 @@
 import { describe, expect, it } from "vitest";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, gtmOpportunitySchema, gtmRequestSchema, gtmWorkItemSchema, insightDraftSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, contentTrendSignalSchema, gtmOpportunitySchema, gtmRequestSchema, gtmWorkItemSchema, insightDraftSchema } from "./contentSchemas";
 
 describe("public content validation", () => {
+  it("accepts only a minimized, source-named aggregate signal for private queue review", () => {
+    const result = contentTrendSignalSchema.safeParse({
+      sourceType: "analytics",
+      sourceReference: "Aggregate resource-card event summary",
+      silo: "paid_message_learning",
+      buyerQuestion: "Where does a buyer lose the message context after an ad click?",
+      summary: "Aggregate navigation patterns suggest reviewing whether the paid-message resource and destination use connected terminology.",
+      sourceWindow: "2026-08-01 to 2026-08-14",
+    });
+
+    expect(result.success).toBe(true);
+  });
+
   it("accepts a complete contact submission and normalizes optional blanks", () => {
     const result = contactSubmissionSchema.safeParse({
       fullName: "Jordan Lee",

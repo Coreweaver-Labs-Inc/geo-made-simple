@@ -63,6 +63,81 @@ export const insights = mysqlTable("insights", {
 export type Insight = typeof insights.$inferSelect;
 export type InsertInsight = typeof insights.$inferInsert;
 
+/**
+ * One private content-operations configuration record. A queue may create
+ * draft-only field briefs from approved signals, but can never publish them.
+ */
+export const contentBriefQueues = mysqlTable(
+  "content_brief_queues",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    name: varchar("name", { length: 120 }).notNull(),
+    isEnabled: boolean("isEnabled").default(false).notNull(),
+    cronExpression: varchar("cronExpression", { length: 64 }).notNull(),
+    scheduleCronTaskUid: varchar("scheduleCronTaskUid", { length: 65 }),
+    model: varchar("model", { length: 80 }).default("gpt-5-mini").notNull(),
+    lastRunAt: timestamp("lastRunAt"),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("content_brief_queues_name_unique").on(table.name)]
+);
+
+export type ContentBriefQueue = typeof contentBriefQueues.$inferSelect;
+export type InsertContentBriefQueue = typeof contentBriefQueues.$inferInsert;
+
+/**
+ * Private, human-approved trend or aggregate-intent evidence. This table
+ * intentionally excludes raw visitor queries, identifiers, transcripts, and
+ * session data; only a minimized editorial signal may enter the queue.
+ */
+export const contentTrendSignals = mysqlTable(
+  "content_trend_signals",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    fingerprint: varchar("fingerprint", { length: 128 }).notNull(),
+    sourceType: mysqlEnum("sourceType", ["manual_trend_snapshot", "search_console", "analytics", "research"]).notNull(),
+    sourceReference: varchar("sourceReference", { length: 320 }).notNull(),
+    silo: mysqlEnum("silo", ["website_clarity", "buyer_enablement", "paid_message_learning", "ai_representation", "content_governance"]).notNull(),
+    buyerQuestion: varchar("buyerQuestion", { length: 500 }).notNull(),
+    summary: text("summary").notNull(),
+    sourceWindow: varchar("sourceWindow", { length: 120 }).notNull(),
+    status: mysqlEnum("status", ["pending", "approved", "queued", "rejected"]).default("pending").notNull(),
+    approvedBy: varchar("approvedBy", { length: 220 }),
+    approvedAt: timestamp("approvedAt"),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("content_trend_signals_fingerprint_unique").on(table.fingerprint)]
+);
+
+export type ContentTrendSignal = typeof contentTrendSignals.$inferSelect;
+export type InsertContentTrendSignal = typeof contentTrendSignals.$inferInsert;
+
+/**
+ * Private audit trail that binds one approved signal to at most one generated
+ * draft. A generated record references a draft Insight; no public URL or
+ * automatic publication state exists in this table.
+ */
+export const contentBriefRecords = mysqlTable(
+  "content_brief_records",
+  {
+    id: int("id").autoincrement().primaryKey(),
+    queueId: int("queueId").notNull(),
+    signalId: int("signalId").notNull(),
+    draftInsightId: int("draftInsightId"),
+    model: varchar("model", { length: 80 }).notNull(),
+    status: mysqlEnum("status", ["processing", "draft_created", "reviewed", "rejected", "failed"]).notNull(),
+    errorCode: varchar("errorCode", { length: 180 }),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+  },
+  table => [uniqueIndex("content_brief_records_signal_id_unique").on(table.signalId)]
+);
+
+export type ContentBriefRecord = typeof contentBriefRecords.$inferSelect;
+export type InsertContentBriefRecord = typeof contentBriefRecords.$inferInsert;
+
 /** Private client-provided evidence records. These records are never public by default. */
 export const caseStudyIntakes = mysqlTable("case_study_intakes", {
   id: int("id").autoincrement().primaryKey(),

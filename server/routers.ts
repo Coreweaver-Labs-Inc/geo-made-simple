@@ -1,12 +1,14 @@
 import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
-import { createCaseStudyIntake, createContactSubmission, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
+import { approveContentTrendSignal, createCaseStudyIntake, createContactSubmission, createContentTrendSignal, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, ensureContentBriefQueue, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listContentBriefRecords, listContentTrendSignals, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff, updateContentBriefQueue, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
+import { createHeartbeatJob, updateHeartbeatJob } from "./_core/heartbeat";
 import { notifyOwner } from "./_core/notification";
+import { fingerprintContentSignal } from "./contentQueue";
 import { guideSupportInquiry } from "./supportAssistant";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema, supportAssistantSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, contentBriefQueueScheduleSchema, contentTrendSignalApprovalSchema, contentTrendSignalSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema, supportAssistantSchema } from "./contentSchemas";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -141,6 +143,42 @@ export const appRouter = router({
         console.error("[Insights] Failed to create article", error);
         throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "We could not save this article." });
       }
+    }),
+  }),
+  contentQueue: router({
+    status: adminProcedure.query(() => ensureContentBriefQueue()),
+    listSignals: adminProcedure.query(() => listContentTrendSignals()),
+    listBriefs: adminProcedure.query(() => listContentBriefRecords()),
+    createSignal: adminProcedure.input(contentTrendSignalSchema).mutation(async ({ input }) => {
+      await createContentTrendSignal({
+        ...input,
+        fingerprint: fingerprintContentSignal(input),
+        status: "pending",
+        approvedBy: null,
+        approvedAt: null,
+      });
+      return { success: true } as const;
+    }),
+    approveSignal: adminProcedure.input(contentTrendSignalApprovalSchema).mutation(async ({ input, ctx }) => {
+      await approveContentTrendSignal(input.id, ctx.user.name || "Named admin reviewer");
+      return { success: true } as const;
+    }),
+    enableSchedule: adminProcedure.input(contentBriefQueueScheduleSchema).mutation(async ({ input }) => {
+      const queue = await ensureContentBriefQueue();
+      if (queue.scheduleCronTaskUid) {
+        await updateHeartbeatJob(queue.scheduleCronTaskUid, { cron: input.cron, enable: true }, "");
+        await updateContentBriefQueue(queue.id, { isEnabled: true, cronExpression: input.cron, scheduleCronTaskUid: queue.scheduleCronTaskUid, model: queue.model, lastRunAt: queue.lastRunAt });
+        return { success: true, taskUid: queue.scheduleCronTaskUid } as const;
+      }
+
+      const job = await createHeartbeatJob({
+        name: "coreweaver-approved-trend-brief-queue",
+        cron: input.cron,
+        path: "/api/scheduled/content-brief-queue",
+        description: "Creates at most one private Coreweaver field-brief draft from an approved aggregate trend signal.",
+      }, "");
+      await updateContentBriefQueue(queue.id, { isEnabled: true, cronExpression: input.cron, scheduleCronTaskUid: job.taskUid, model: queue.model, lastRunAt: queue.lastRunAt });
+      return { success: true, taskUid: job.taskUid } as const;
     }),
   }),
   caseStudies: router({

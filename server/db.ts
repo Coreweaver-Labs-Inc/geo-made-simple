@@ -4,6 +4,13 @@ import {
   contactSubmissions,
   caseStudyIntakes,
   caseStudies,
+  contentBriefQueues,
+  contentBriefRecords,
+  contentTrendSignals,
+  ContentBriefQueue,
+  InsertContentBriefQueue,
+  InsertContentBriefRecord,
+  InsertContentTrendSignal,
   InsertCaseStudyIntake,
   InsertContactSubmission,
   InsertGtmAccount,
@@ -171,6 +178,103 @@ export async function createInsight(input: Pick<InsertInsight, "title" | "slug" 
   };
   const result = await db.insert(insights).values(values);
   return result[0];
+}
+
+export async function createGeneratedFieldBrief(input: Pick<InsertInsight, "title" | "slug" | "excerpt" | "content" | "category" | "sourceReferences" | "methodNote">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+
+  const result = await db.insert(insights).values({
+    ...input,
+    author: "Mason Nguyen",
+    contentType: "field_brief",
+    claimReviewer: null,
+    claimReviewConfirmed: false,
+    status: "draft",
+    publishedAt: null,
+  });
+  return Number(result[0].insertId);
+}
+
+const CONTENT_BRIEF_QUEUE_NAME = "approved-trend-brief-queue";
+const DEFAULT_CONTENT_QUEUE_CRON = "0 0 9 * * 1";
+
+export async function ensureContentBriefQueue(): Promise<ContentBriefQueue> {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+
+  const existing = await db.select().from(contentBriefQueues).where(eq(contentBriefQueues.name, CONTENT_BRIEF_QUEUE_NAME)).limit(1);
+  if (existing[0]) return existing[0];
+
+  await db.insert(contentBriefQueues).values({
+    name: CONTENT_BRIEF_QUEUE_NAME,
+    cronExpression: DEFAULT_CONTENT_QUEUE_CRON,
+    isEnabled: false,
+    model: "gpt-5-mini",
+  });
+  const created = await db.select().from(contentBriefQueues).where(eq(contentBriefQueues.name, CONTENT_BRIEF_QUEUE_NAME)).limit(1);
+  if (!created[0]) throw new Error("Content brief queue was not created");
+  return created[0];
+}
+
+export async function getContentBriefQueueByTaskUid(taskUid: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const records = await db.select().from(contentBriefQueues).where(eq(contentBriefQueues.scheduleCronTaskUid, taskUid)).limit(1);
+  return records[0];
+}
+
+export async function updateContentBriefQueue(id: number, input: Pick<InsertContentBriefQueue, "isEnabled" | "cronExpression" | "scheduleCronTaskUid" | "model" | "lastRunAt">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(contentBriefQueues).set(input).where(eq(contentBriefQueues.id, id));
+}
+
+export async function listContentTrendSignals() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(contentTrendSignals).orderBy(desc(contentTrendSignals.updatedAt));
+}
+
+export async function createContentTrendSignal(input: InsertContentTrendSignal) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(contentTrendSignals).values(input);
+}
+
+export async function approveContentTrendSignal(id: number, approvedBy: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(contentTrendSignals).set({ status: "approved", approvedBy, approvedAt: new Date() }).where(and(eq(contentTrendSignals.id, id), eq(contentTrendSignals.status, "pending")));
+}
+
+export async function listContentBriefRecords() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(contentBriefRecords).orderBy(desc(contentBriefRecords.updatedAt));
+}
+
+export async function reserveNextApprovedContentSignal(queueId: number, model: string) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  const signals = await db.select().from(contentTrendSignals).where(eq(contentTrendSignals.status, "approved")).orderBy(contentTrendSignals.createdAt).limit(1);
+  const signal = signals[0];
+  if (!signal) return undefined;
+
+  try {
+    const result = await db.insert(contentBriefRecords).values({ queueId, signalId: signal.id, model, status: "processing" });
+    await db.update(contentTrendSignals).set({ status: "queued" }).where(and(eq(contentTrendSignals.id, signal.id), eq(contentTrendSignals.status, "approved")));
+    return { signal, recordId: Number(result[0].insertId) };
+  } catch (error) {
+    if (String(error).toLowerCase().includes("duplicate")) return undefined;
+    throw error;
+  }
+}
+
+export async function completeContentBriefRecord(id: number, input: Pick<InsertContentBriefRecord, "status" | "draftInsightId" | "errorCode">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(contentBriefRecords).set(input).where(eq(contentBriefRecords.id, id));
 }
 
 export async function createCaseStudyIntake(input: InsertCaseStudyIntake) {

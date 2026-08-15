@@ -1,0 +1,1 @@
+ALTER TABLE `content_brief_records` MODIFY COLUMN `status` enum('processing','draft_created','reviewed','rejected','failed') NOT NULL;

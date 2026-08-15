@@ -21,11 +21,25 @@ type ArticleValues = {
   status: "draft" | "published";
 };
 
+type SignalValues = {
+  sourceType: "manual_trend_snapshot" | "search_console" | "analytics" | "research";
+  sourceReference: string;
+  silo: "website_clarity" | "buyer_enablement" | "paid_message_learning" | "ai_representation" | "content_governance";
+  buyerQuestion: string;
+  summary: string;
+  sourceWindow: string;
+};
+
+type QueueScheduleValues = { cron: string };
+
 function StudioContent() {
   const { user, loading } = useAuth();
   const articles = trpc.insights.listStudio.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const inquiries = trpc.contact.listStudio.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const caseStudyIntakes = trpc.caseStudies.listStudio.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
+  const queue = trpc.contentQueue.status.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
+  const signals = trpc.contentQueue.listSignals.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
+  const briefRecords = trpc.contentQueue.listBriefs.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const utils = trpc.useUtils();
   const form = useForm<ArticleValues>({
     defaultValues: {
@@ -42,6 +56,10 @@ function StudioContent() {
       status: "draft",
     },
   });
+  const signalForm = useForm<SignalValues>({
+    defaultValues: { sourceType: "manual_trend_snapshot", sourceReference: "", silo: "paid_message_learning", buyerQuestion: "", summary: "", sourceWindow: "" },
+  });
+  const scheduleForm = useForm<QueueScheduleValues>({ defaultValues: { cron: "0 0 9 * * 1" } });
   const contentType = form.watch("contentType");
   const status = form.watch("status");
   const isResearch = contentType !== "article";
@@ -52,6 +70,9 @@ function StudioContent() {
       utils.insights.listStudio.invalidate();
     },
   });
+  const createSignal = trpc.contentQueue.createSignal.useMutation({ onSuccess: () => { signalForm.reset(); signals.refetch(); } });
+  const approveSignal = trpc.contentQueue.approveSignal.useMutation({ onSuccess: () => signals.refetch() });
+  const enableSchedule = trpc.contentQueue.enableSchedule.useMutation({ onSuccess: () => queue.refetch() });
 
   if (loading) return <div className="studio-state"><LoaderCircle className="spin" /> Loading your studio…</div>;
   if (!user) return <div className="studio-state"><h1>Sign in to manage Insights.</h1><button className="button button-primary" onClick={() => startLogin()}>Sign in</button></div>;
@@ -102,6 +123,30 @@ function StudioContent() {
           <div className="studio-list">{articles.data?.length ? articles.data.map(article => <div key={article.id}><strong>{article.title}</strong><span>{article.contentType.replace("_", " ")} · {article.status} · /insights/{article.slug}</span>{article.contentType !== "article" && <p><b>Research review:</b> {article.claimReviewConfirmed ? `confirmed by ${article.claimReviewer || "named reviewer"}` : "draft or incomplete"}</p>}</div>) : <p>No database articles yet. Publish your first note here.</p>}</div>
         </section>
       </div>
+      <section className="studio-card inquiries-card">
+        <h2>Trend-to-draft queue</h2>
+        <p className="studio-queue-note">Add only minimized, aggregate signals with a named source contract. An approved signal may create one private field-brief draft. It cannot publish, post externally, retain raw visitor input, or substitute for source and claim review.</p>
+        <div className="studio-queue-status"><p><b>Queue:</b> {queue.data?.isEnabled ? "enabled" : "disabled"} · {queue.data?.cronExpression || "weekly schedule not configured"} · model {queue.data?.model || "gpt-5-mini"}</p><p>{queue.data?.lastRunAt ? `Last run: ${queue.data.lastRunAt.toLocaleString()}` : "No scheduled run has completed."}</p></div>
+        <form className="studio-form studio-compact-form" onSubmit={scheduleForm.handleSubmit(values => enableSchedule.mutate(values))}>
+          <label>Background schedule, UTC<input aria-label="Background schedule, UTC" {...scheduleForm.register("cron", { required: true })} /></label>
+          <button className="button button-primary" disabled={enableSchedule.isPending}>{enableSchedule.isPending ? "Enabling…" : queue.data?.isEnabled ? "Update schedule" : "Enable weekly draft queue"}</button>
+        </form>
+        {enableSchedule.error && <p className="studio-error">{enableSchedule.error.message}</p>}
+        <form className="studio-form studio-signal-form" onSubmit={signalForm.handleSubmit(values => createSignal.mutate(values))}>
+          <h3>Add a private editorial signal</h3>
+          <label>Signal source<select {...signalForm.register("sourceType")}><option value="manual_trend_snapshot">Approved trend snapshot</option><option value="search_console">Search performance summary</option><option value="analytics">Aggregate analytics summary</option><option value="research">Named research source</option></select></label>
+          <label>Source or report reference<input {...signalForm.register("sourceReference", { required: true, minLength: 6 })} /></label>
+          <label>Content silo<select {...signalForm.register("silo")}><option value="website_clarity">Website clarity and B2B SEO</option><option value="buyer_enablement">Buyer enablement and content marketing</option><option value="paid_message_learning">Paid-message learning</option><option value="ai_representation">AI representation</option><option value="content_governance">Content governance</option></select></label>
+          <label>Buyer question<input {...signalForm.register("buyerQuestion", { required: true, minLength: 12 })} /></label>
+          <label>Aggregate signal summary<textarea rows={3} placeholder="Describe a trend or pattern without raw queries, visitor identifiers, or private client data." {...signalForm.register("summary", { required: true, minLength: 30 })} /></label>
+          <label>Observation window<input placeholder="e.g., 2026-08-01 to 2026-08-14" {...signalForm.register("sourceWindow", { required: true })} /></label>
+          {createSignal.error && <p className="studio-error">{createSignal.error.message}</p>}
+          <button className="button button-primary" disabled={createSignal.isPending}>{createSignal.isPending ? "Saving…" : "Save private signal"}</button>
+        </form>
+        <div className="studio-list">{signals.data?.length ? signals.data.map(signal => <div key={signal.id}><strong>{signal.buyerQuestion}</strong><span>{signal.silo.replaceAll("_", " ")} · {signal.sourceType.replaceAll("_", " ")} · {signal.status}</span><p>{signal.summary}</p><p><b>Source contract:</b> {signal.sourceReference} · {signal.sourceWindow}</p>{signal.status === "pending" && <button className="text-link" type="button" onClick={() => approveSignal.mutate({ id: signal.id })} disabled={approveSignal.isPending}>Approve for draft generation</button>}</div>) : <p>No private signals yet. Add a minimized, source-named signal for review.</p>}</div>
+        <h3>Generated draft audit</h3>
+        <div className="studio-list">{briefRecords.data?.length ? briefRecords.data.map(record => <div key={record.id}><strong>Signal #{record.signalId} · {record.status.replaceAll("_", " ")}</strong><span>{record.model} · draft insight {record.draftInsightId || "not created"}</span>{record.errorCode && <p><b>Run note:</b> {record.errorCode}</p>}</div>) : <p>No queue records yet. Approved signals remain private until a scheduled run claims them.</p>}</div>
+      </section>
       <section className="studio-card inquiries-card">
         <h2>Case-study evidence queue</h2>
         <p className="studio-queue-note">Intake records are private and cannot publish automatically. Review the source-owner record, privacy and claim-safety checks, then complete the reviewer handoff before manually creating a separate approved public record.</p>
