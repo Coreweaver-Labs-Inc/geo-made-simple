@@ -7,7 +7,7 @@ import { fallbackInsights } from "@/lib/insightContent";
 import { getAuthorBySlug } from "@/lib/authors";
 import { getChildTopic, getTopic } from "@/lib/topicContent";
 
-export type HeadMeta = { title: string; description: string; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
+export type HeadMeta = { title: string; description: string; keywords?: string[]; ogType?: "website" | "article"; ogImage?: string; ogImageAlt?: string; canonicalPath?: string; publishedTime?: string; noindex?: boolean; notFound?: boolean };
 type RouterOutput = inferRouterOutputs<AppRouter>;
 export type SsrPrefetch = { insightBySlug: (slug: string) => Promise<RouterOutput["insights"]["bySlug"]>; insightsListPublic: () => Promise<RouterOutput["insights"]["listPublic"]>; caseStudyBySlug: (slug: string) => Promise<RouterOutput["caseStudies"]["bySlug"]> };
 
@@ -21,7 +21,7 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   let path = url.split("?")[0];
   try { path = decodeURI(path); } catch { /* retain raw path */ }
   const clean = path.replace(/\/+$/, "") || "/";
-  if (clean === "/") return { title: "Coreweaver Labs — Make your brand easier for AI to understand.", description: DESCRIPTION, ogImage: image, ogImageAlt: imageAlt, canonicalPath: "/" };
+  if (clean === "/") return { title: "Coreweaver Labs — Make your brand easier for AI to understand.", description: DESCRIPTION, keywords: ["mid-market B2B growth", "B2B SEO", "B2B Content Marketing", "B2B Paid Ads", "AI representation", "content governance"], ogImage: image, ogImageAlt: imageAlt, canonicalPath: "/" };
   if (clean === "/framework") return { title: "The ARM Framework | Coreweaver Labs", description: "Learn how the ARM Framework connects authority, representation, and measurement to create a clearer brand signal for AI search.", ogImage: "/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg", ogImageAlt: "A measured evidence plane representing the Authority, Representation, and Measurement framework.", canonicalPath: clean };
   if (clean === "/services") return { title: "SEO, Content Marketing & Paid Ads for Mid-Market B2B | Coreweaver Labs", description: "Evidence-led SEO, Content Marketing, and Paid Ads services for mid-market B2B teams, with transparent starting prices and a private support path.", canonicalPath: clean };
   if (clean === "/products") return { title: "GEO Signal Products | Coreweaver Labs", description: "Explore Coreweaver Labs' practical GEO signal architecture, citation intelligence, and knowledge systems services.", ogImage: "/manus-storage/coreweaver-products-clarity-v2_36185701.jpg", ogImageAlt: "Three precision tools representing connected SEO, content, and paid media systems.", canonicalPath: clean };
@@ -50,7 +50,7 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   if (childTopicMatch) {
     const topic = getChildTopic(childTopicMatch[1], childTopicMatch[2]);
     if (!topic) return { title: SITE, description: DESCRIPTION, notFound: true };
-    return { title: `${topic.title} | Coreweaver Labs`, description: topic.description, canonicalPath: clean };
+    return { title: `${topic.title} | Coreweaver Labs`, description: topic.description, keywords: topic.searchTerms, canonicalPath: clean };
   }
   const topicMatch = clean.match(/^\/topics\/([^/]+)$/);
   if (topicMatch) {

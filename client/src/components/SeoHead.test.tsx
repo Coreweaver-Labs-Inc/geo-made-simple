@@ -6,6 +6,7 @@ import { SeoHead } from "./SeoHead";
 beforeEach(() => {
   document.head.innerHTML = `
     <meta name="description" content="" />
+    <meta name="keywords" content="" />
     <meta property="og:title" content="" />
     <meta property="og:description" content="" />
     <meta property="og:site_name" content="" />
@@ -26,12 +27,13 @@ afterEach(cleanup);
 
 describe("SeoHead", () => {
   it("keeps regenerated social images and their alternatives in sync for client-side navigation", () => {
-    render(<SeoHead title="Framework" description="A method" path="/framework" ogImage="/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg" ogImageAlt="A measured evidence plane representing the Authority, Representation, and Measurement framework." />);
+    render(<SeoHead title="Framework" description="A method" path="/framework" keywords={["B2B framework", "evidence systems"]} ogImage="/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg" ogImageAlt="A measured evidence plane representing the Authority, Representation, and Measurement framework." />);
 
     expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe("https://coreweaverlabs.com/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg");
     expect(document.querySelector('meta[property="og:image:alt"]')?.getAttribute("content")).toBe("A measured evidence plane representing the Authority, Representation, and Measurement framework.");
     expect(document.querySelector('meta[name="twitter:image"]')?.getAttribute("content")).toBe("https://coreweaverlabs.com/manus-storage/coreweaver-framework-method-v2_88c0f3a5.jpg");
     expect(document.querySelector('meta[name="twitter:image:alt"]')?.getAttribute("content")).toBe("A measured evidence plane representing the Authority, Representation, and Measurement framework.");
     expect(document.querySelector('meta[property="og:site_name"]')?.getAttribute("content")).toBe("Coreweaver Labs");
+    expect(document.querySelector('meta[name="keywords"]')?.getAttribute("content")).toBe("B2B framework, evidence systems");
   });
 });

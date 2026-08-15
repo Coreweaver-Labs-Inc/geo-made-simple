@@ -29,11 +29,34 @@ const products = [
   },
 ];
 
+const resourceClusters = [
+  { label: "Website clarity", title: "B2B website information architecture", body: "Organize service, method, evidence, and next-step information around the questions a buyer needs to answer.", href: "/topics/b2b-seo/website-information-architecture" },
+  { label: "Buyer education", title: "B2B buyer enablement content", body: "Help a buying group understand the problem, inspect the approach, and take a clearer next step.", href: "/topics/b2b-content-marketing/buyer-enablement" },
+  { label: "Paid-message learning", title: "B2B Paid Ads and message systems", body: "Connect audience, offer, landing-page continuity, and documented campaign learning.", href: "/topics/b2b-paid-ads" },
+  { label: "AI representation", title: "AI representation for B2B brands", body: "Review how public sources and buyer language shape answer contexts without promising citation or visibility.", href: "/topics/ai-representation" },
+  { label: "Governance", title: "Content governance for B2B growth teams", body: "Keep important public claims, source ownership, and review routines visible as content grows.", href: "/topics/content-governance" },
+  { label: "Research standards", title: "Research methods and editorial standards", body: "See how source references, methods, authorship, and claim review guide public research work.", href: "/research" },
+];
+
 export default function Home() {
+  const homeSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "WebPage",
+      "@id": "https://coreweaverlabs.com/#webpage",
+      url: "https://coreweaverlabs.com/",
+      name: "Coreweaver Labs — Make your brand easier for AI to understand.",
+      description: "Coreweaver Labs helps mid-market B2B teams make their expertise, services, and buyer language clearer through evidence-led SEO, Content Marketing, and Paid Ads.",
+      isPartOf: { "@id": "https://coreweaverlabs.com/#website" },
+      about: [{ "@type": "Thing", name: "Mid-market B2B growth" }, { "@type": "Thing", name: "B2B SEO" }, { "@type": "Thing", name: "B2B Content Marketing" }, { "@type": "Thing", name: "B2B Paid Ads" }, { "@type": "Thing", name: "AI representation" }, { "@type": "Thing", name: "Content governance" }],
+      mainEntity: { "@type": "ItemList", name: "Coreweaver Labs resource clusters", itemListElement: resourceClusters.map((resource, index) => ({ "@type": "ListItem", position: index + 1, name: resource.title, url: `https://coreweaverlabs.com${resource.href}` })) },
+      inLanguage: "en-US",
+    }],
+  }).replace(/</g, "\\u003c");
   return (
     <MarketingShell>
-      <SeoHead title="Coreweaver Labs — Make your brand easier for AI to understand." description="Coreweaver Labs helps mid-market B2B teams make their expertise, services, and buyer language clearer through evidence-led SEO, Content Marketing, and Paid Ads." path="/" />
-      <main id="top">
+      <SeoHead title="Coreweaver Labs — Make your brand easier for AI to understand." description="Coreweaver Labs helps mid-market B2B teams make their expertise, services, and buyer language clearer through evidence-led SEO, Content Marketing, and Paid Ads." keywords={["mid-market B2B growth", "B2B SEO", "B2B Content Marketing", "B2B Paid Ads", "AI representation", "content governance"]} path="/" />
+      <main id="top"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: homeSchema }} />
         <section className="hero section-pad" aria-labelledby="hero-title">
           <div className="hero-copy">
             <SectionLabel>Clear information for B2B teams</SectionLabel>
@@ -98,6 +121,11 @@ export default function Home() {
             <div className="products-art"><img src="/manus-storage/coreweaver-products-clarity-v2_36185701.jpg" alt="A graphite lens, folded teal plane, and brass calibration ring arranged as three connected precision tools on a pale work surface." title="Three tools for brand clarity" loading="lazy" /></div>
           </div>
           <a className="text-link" href="/products">Explore the products <ArrowUpRight size={16} /></a>
+        </section>
+
+        <section id="resources" className="resources-section section-pad section-rule" aria-labelledby="resources-title">
+          <div className="resources-intro"><SectionLabel>Resources</SectionLabel><h2 id="resources-title">A connected resource library for working decisions.</h2><p>Start with the buyer question in front of you, then follow a clear path into the relevant guide, research standard, or source-of-truth topic. These links are designed to help a reader continue their investigation—not to promise an outcome.</p><a className="text-link" href="/topics">Browse all B2B Growth Topics <ArrowUpRight size={16} /></a></div>
+          <div className="resource-cluster-grid">{resourceClusters.map((resource, index) => <article className="resource-cluster-card" key={resource.href}><span>{String(index + 1).padStart(2, "0")} · {resource.label}</span><h3><a href={resource.href}>{resource.title}</a></h3><p>{resource.body}</p><a className="text-link" href={resource.href}>Open resource <ArrowUpRight size={14} aria-hidden="true" /></a></article>)}</div>
         </section>
 
         <section id="engagement" className="engagement-section section-pad section-rule" aria-labelledby="engagement-title">

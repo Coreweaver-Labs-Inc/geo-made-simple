@@ -165,3 +165,10 @@
 - [x] Create a prioritized brand-discovery roadmap that separates owned technical improvements from external-profile and community work requiring human participation.
 - [x] Implement approved low-risk, claim-safe favicon and technical entity/AI-discovery improvements without fabricating social activity or external recognition.
 - [x] Validate brand asset rendering, structured data, crawler-visible output, and the resulting discovery roadmap.
+- [x] Audit the homepage and implemented child guides for AI-visible metadata, schema, keyword-cluster discovery links, sharing controls, and content-governance constraints.
+- [x] Add accurate homepage and child-guide structured data plus explicit social metadata that reflects visible, supportable content only.
+- [x] Create a dedicated public Resources section that naturally connects the approved keyword clusters, topic hub, child guides, research, FAQ, and services through descriptive internal links.
+- [x] Add accessible LinkedIn, X, and Reddit sharing controls to the implemented child guides with canonical public URLs and no implied endorsement.
+- [x] Define a review-gated content-silo operating model that converts approved trend, parameter, tag, and visitor-intent signals into private briefs and drafts rather than autonomous publication.
+- [x] Compare at least two viable automation approaches for the continuous content workflow before any schedule, external API, or autonomous-drafting configuration is enabled.
+- [x] Add focused automated coverage and validate structured data, metadata, resource linking, sharing URLs, responsive presentation, and public SSR output.

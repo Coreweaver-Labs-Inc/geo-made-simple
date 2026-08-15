@@ -25,4 +25,12 @@ describe("Home", () => {
     expect(screen.getByAltText("A graphite ruler and open paper route with a single teal thread leading toward a softly lit edge of a drafting surface.").getAttribute("src")).toContain("coreweaver-engagement-desire-v2_3ad920b9.jpg");
     expect(container.querySelectorAll("img[title]")).toHaveLength(4);
   });
+
+  it("connects the approved buyer-language clusters through a visible Resources section", () => {
+    render(<Home />);
+    expect(screen.getByRole("heading", { name: "A connected resource library for working decisions." })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /B2B website information architecture/i }).getAttribute("href")).toBe("/topics/b2b-seo/website-information-architecture");
+    expect(screen.getByRole("link", { name: /B2B buyer enablement content/i }).getAttribute("href")).toBe("/topics/b2b-content-marketing/buyer-enablement");
+    expect(screen.getByRole("link", { name: /AI representation for B2B brands/i }).getAttribute("href")).toBe("/topics/ai-representation");
+  });
 });

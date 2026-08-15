@@ -552,6 +552,19 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .topic-decision { max-width: 70rem; padding-left: 12%; border-left: 3px solid var(--brass); }
 .topic-decision h2 { max-width: 20ch; margin-bottom: .75rem; }
 .topic-decision p { max-width: 50rem; margin-bottom: 0; font-size: 1.08rem; }
+.resources-section { display: grid; grid-template-columns: minmax(15rem, .85fr) minmax(0, 1.45fr); gap: 4rem; align-items: start; }
+.resources-intro { position: sticky; top: 7rem; }
+.resources-intro h2 { max-width: 12ch; }
+.resources-intro > p { max-width: 32rem; }
+.resource-cluster-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.resource-cluster-card { display: grid; align-content: start; gap: .8rem; min-height: 18rem; padding: 1.35rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--paper); transition: background 180ms var(--ease-out), transform 180ms var(--ease-out); }
+.resource-cluster-card:hover { background: var(--white); transform: translateY(-2px); }
+.resource-cluster-card > span { color: var(--brass); font: .61rem var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.resource-cluster-card h3 { margin: .5rem 0 0; font-size: clamp(1.3rem, 2.1vw, 1.9rem); line-height: 1.05; }
+.resource-cluster-card h3 a:hover { color: var(--teal); }
+.resource-cluster-card p { margin: 0; font-size: .9rem; line-height: 1.55; }
+.resource-cluster-card .text-link { margin-top: auto; }
+.child-topic-share { margin-top: 1.4rem; }
 
 @media (max-width: 800px) {
   .site-header { width: min(100% - 2rem, 1440px); }
@@ -561,7 +574,7 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .site-nav a { padding: .85rem .7rem; }
   .site-nav .nav-cta { justify-content: space-between; border-top: 1px solid var(--rule); border-bottom: 0; }
   .section-pad { width: min(100% - 2rem, 1440px); padding-top: 5rem; padding-bottom: 5rem; }
-  .hero, .why-section, .framework-section, .products-layout, .engagement-section, .principles-section, .editorial-split, .offerings-section, .contact-page, .studio-grid, .topics-grid, .topic-search, .topic-problem, .topic-method, .topic-resources, .topic-related, .topic-child-pages { grid-template-columns: 1fr; gap: 3rem; }
+  .hero, .why-section, .framework-section, .products-layout, .engagement-section, .principles-section, .editorial-split, .offerings-section, .contact-page, .studio-grid, .topics-grid, .topic-search, .topic-problem, .topic-method, .topic-resources, .topic-related, .topic-child-pages, .resources-section { grid-template-columns: 1fr; gap: 3rem; }
   .hero { min-height: auto; padding-top: 3rem; }
   .hero-art { min-height: 24rem; }
   .framework-art, .engagement-art, .products-art { min-height: 20rem; }
@@ -611,6 +624,8 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .studio-wrap { padding: 1rem; }
   .topics-grid-intro { position: static; }
   .topic-card-grid { grid-template-columns: 1fr; }
+  .resource-cluster-grid { grid-template-columns: 1fr; }
+  .resources-intro { position: static; }
   .topics-bridge, .topic-cta { align-items: flex-start; flex-direction: column; }
   .topic-boundary { padding-left: 1.2rem; }
   .topic-decision { padding-left: 1.2rem; }
