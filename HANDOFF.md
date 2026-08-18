@@ -2,112 +2,82 @@
 
 **Project:** `coreweaver-labs-simple`  
 **Path:** `/home/ubuntu/coreweaver-labs-simple`  
-**Latest live checkpoint:** `4bf05b95` (the approved pricing and scorecard posture are live; the completed emotion-led visual refresh is awaiting its next checkpoint)  
+**Latest live checkpoint:** `22c034fa`  
 **Published preview domain:** `https://coregeo-aqp8tam3.manus.space`  
-**Canonical production domain in metadata:** `https://coreweaverlabs.com`
+**Canonical production target:** `https://coreweaverlabs.com`
 
-## Current Product State
+## Current Operating Direction
 
-The site now includes an **integrated GTM foundation** selected by the user as option C: a public service hub backed by a protected internal operating workspace. The system deliberately uses manual, reviewable handoffs. It does not fabricate customer data, seed claims, create public records from inquiries, or promote private records automatically.
+Coreweaver Labs is an evidence-led, Google-indexable B2B growth resource and GTM platform for mid-market teams. The public site connects SEO, Content Marketing, Paid Ads, AI representation, and content governance through useful reader decisions—not content volume, fabricated proof, outcome promises, or autonomous publication.
 
-| Area | Implemented state |
+The active authority strategy is now the **Evidence Ledger sprint**: publish only source-reviewed, named-author work that makes a buyer decision, the evidence boundary, and the next relevant public resource easy to inspect. The private queue remains draft-only and review-gated. No automation may publish, post, send externally, or turn a signal into a public claim without explicit human review.
+
+| Area | Current state |
 |---|---|
-| Public GTM hub | `/services` presents Signal Intelligence Audit, GTM Enablement Sprint, and Representation Operations; it accepts private service inquiries and support requests. |
-| Internal workspace | `/workspace` is private and noindexed. Admin users can create and manage private accounts, contacts, opportunities, support cases, cross-functional work, and incoming-request triage. |
-| Manual handoffs | A request can be assigned an owner and moved through `new`, `triaged`, or `closed`. Operators must separately create accounts, opportunities, or support cases after review. |
-| Functions covered | Sales, customer support, operations, marketing, research, and design have explicit work-item ownership and lifecycle fields. |
-| Reporting | The foundation defines baseline-first launch metrics in `gtm-foundation.md`; it intentionally does not claim results or set fabricated performance targets. |
-| Research credibility | `/research` explains sources, authorship, claim review, correction, and client-evidence safeguards without presenting agenda topics as completed findings. |
-| Governed publishing | The private Studio supports articles, research briefs, and field briefs. Research records may stay drafts; publishing requires source references, a method note, a named reviewer, and explicit claim-review confirmation. |
-| Public transparency | Published research records display their method, reviewer confirmation, and plain-text source references in the public Insight detail page. |
-| Existing governance | Case-study intake, reviewer handoff, author pages, SSR, SEO, and owner notification workflows remain in place. |
+| Public authority system | `/topics`, `/research`, `/method`, `/faq`, `/case-studies`, and `/insights` form a connected evidence-led reader path. |
+| Implemented child guides | Website information architecture, buyer enablement, paid-message alignment, and the new B2B claim ledger are public child routes beneath their parent topic pillars. |
+| Claim-ledger guide | `/topics/content-governance/claim-ledger` provides a six-field blank worksheet for statement, source, scope/limitation, owner, review trigger, and action. It remains browser-local, accepts no submission, and instructs readers not to enter private or customer-specific material. |
+| Signal Notes | Two reviewed field briefs are published with named author, reviewer, primary-source references, explicit method notes, limitations, and contextual public links. |
+| Reader guidance | Homepage Resources and the `/topics` cards use the shared resource-purpose vocabulary: **Start here**, **Decision guide**, **Working method**, and **Research standard**. |
+| FAQ | `/faq` retains accessible search, category filters, accordions, and FAQPage JSON-LD, now fully aligned with the warm paper/ink/brass/teal Signal Ledger system. |
+| Method page | `/method` includes sticky navigation, decision gates, a source-safe “Method at work” example, and the exploratory-only Earthward Foundry pathway. |
+| Publishing governance | Private Studio research and field briefs need sources, method, named reviewer, and confirmed claim review before publication. Intake/case-study material remains private until separately authorized. |
+| Communications infrastructure | Hostinger Mail and Vapi callbacks remain authenticated, minimized, private, and draft-only; no autonomous external actions are enabled. |
 
-## Key Routes
+## Recently Published Public Work
 
-| Route | Purpose | Indexing |
+| Route | Publication record | Boundary |
 |---|---|---|
-| `/services` | Public GTM services and private request intake | Public, canonical, sitemap-listed |
-| `/research` | Public research methods, source standards, and agenda | Public, canonical, sitemap-listed |
-| `/ai-data-policy` | Public AI crawler permissions, restrictions, attribution expectations, and contact path | Public, canonical, sitemap-listed |
-| `/faq` | Public buyer FAQ covering company fit, services, AI, evidence, and operations | Public, canonical, sitemap-listed; FAQPage JSON-LD |
-| `/workspace` | Protected GTM control workspace | `noindex`, sitemap-excluded |
-| `/studio` | Existing protected publishing and governance studio | `noindex` |
-| `/case-study-intake` | Private compliant evidence intake | `noindex` |
-| `/case-studies` | Approved-record-only public case-study index | Public |
+| `/topics/content-governance/claim-ledger` | **A B2B claim ledger: connecting public statements to current support.** Includes a blank, non-client-specific worksheet and links to Content Governance, Research, Case Studies, FAQ evidence answers, and Method. | It does not turn an unsupported assertion into evidence, replace legal/compliance review, authorize private material, or promise commercial outcomes. |
+| `/insights/useful-resource-route-not-page-pile` | **Signal Note 001 — “A useful resource is a route, not a pile of pages.”** Author: Mason Nguyen. Reviewer: Coreweaver research editor. | It is an operating interpretation of current Google guidance, not a performance study or visibility promise. |
+| `/insights/claim-boundary-before-distribution` | **Signal Note 002 — “A B2B claim needs a boundary before it needs distribution.”** Author: Mason Nguyen. Reviewer: Coreweaver research editor. Database record ID: `30001`. | It is an editorial operating interpretation about source, scope, limitation, ownership, and review; it is not a compliance standard, trust claim, or commercial-result promise. |
 
-## Data Model and Migrations
+## Review Records and Primary Sources
 
-The GTM foundation adds six private/controlled tables: `gtm_requests`, `gtm_accounts`, `gtm_contacts`, `gtm_opportunities`, `gtm_support_cases`, and `gtm_work_items`.
-
-| Migration | Purpose |
+| File | Purpose |
 |---|---|
-| `drizzle/0006_smiling_orphan.sql` | Creates the GTM foundation tables without inserting customer or performance data. |
-| `drizzle/0007_wide_molten_man.sql` | Adds the nullable private `ownerName` field to `gtm_requests` for manual triage. |
-| `drizzle/0008_adorable_kate_bishop.sql` | Extends the private GTM opportunity service-line enum for the three launch services. |
-| `drizzle/0009_flashy_sir_ram.sql` | Adds governed research publication type, source-reference, method, reviewer, and claim-review fields to `insights`. |
-
-The most recent Drizzle parity check reported **no pending schema changes**.
+| `signal-note-001-brief.md` | Review record for the first Signal Note, including two current Google sources, contribution, limitation, links, and method note. |
+| `signal-note-002-brief.md` | Review record for the second Signal Note, including [Google’s helpful-content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) and [Google’s transparency guidance for news sources](https://developers.google.com/search/blog/2021/06/google-news-sources). |
+| `best-in-class-authority-roadmap.md` | Source-grounded roadmap for durable authority through useful original judgment, visible method, evidence records, and careful distribution. |
+| `expanded-hub-spoke-content-map.md` | Child-guide briefs, source boundaries, link architecture, and governed sequence. The claim-ledger route was priority 4; the next candidate is AI answer review only after a distinct source plan and review brief exist. |
+| `editorial-review-2026-08.md` | Editor-in-chief review used to guide the Start Here paths, first-engagement record, FAQ normalization, resource labels, and Method-at-work example. |
 
 ## Key Implementation Files
 
 | File | Responsibility |
 |---|---|
-| `presence-first-strategy.md` | Evidence-led research thesis, source hierarchy, claim ledger, agenda, and authority indicators. |
-| `client/src/pages/Research.tsx` | Public research-methods and source-standard page. |
-| `client/src/pages/AiDataPolicy.tsx` | Public AI Data Policy with permitted retrieval use, prohibited training/bulk reuse, provider documentation, and contact path. |
-| `client/public/robots.txt` | General search permission plus named crawler directives that distinguish known retrieval agents from named training/model-development agents. |
-| `client/src/pages/Faq.tsx` | Searchable, category-led public FAQ with accessible accordions, claim-safe answers, FAQPage JSON-LD, and contact handoff. |
-| `brand-strengths.md` | Supportable external strengths, recommended buyer-first navigation order, and explicit claim boundaries. |
-| `client/src/pages/Home.tsx` | Homepage copy with plain-language definitions for signals, operating system, AI answer/source review, shared knowledge, and governance-adjacent review routines. |
-| `owner-decisions.md` | Active owner decision: approved commercial starting prices are public, manual workflows remain active, and any future integration requires an approved data flow. |
-| `authority-scorecard.md` | Manual leading-indicator scorecard: first formal review January 1, 2027; then April 1, July 1, and October 1. |
-| `quarterly-review-2027-q1-template.md` | Unpopulated Q4 2026 evidence-capture and decision template for the first formal January 1, 2027 scorecard review. |
-| Scorecard role assignment | ops@coreweaverlabs.com is review chair, decision recorder, and evidence-archive administrator; dev@coreweaverlabs.com is technical measurement and systems owner. |
-| HR scorecard boundary | hr@coreweaverlabs.com provides research-quality-feedback and ethical-review-program input only; no evidence-archive administration or confidential-record access by default. |
-| `coreweaver-visual-system.md` | Image-by-image emotional visual system, asset direction, alternative text, social metadata, delivery map, and acceptance rules. |
-| `client/src/components/SeoHead.tsx` | Browser-side metadata updater with Open Graph and Twitter image URL and alternative-text support. |
-| `content-hub-spoke-architecture.md` | Evidence-led hub-and-spoke architecture, first cluster map, link standards, metadata rules, publication gates, and authoritative references. |
-| `client/src/pages/Topics.tsx` | Public B2B Growth Topics hub for the five current clusters. |
-| `client/src/pages/TopicDetail.tsx` | Reusable source-safe topic-spoke template with buyer problem, approach, boundaries, real resources, related topics, and private CTA. |
-| `client/src/lib/topicContent.ts` | Five initial niche topic records: B2B SEO, Content Marketing, Paid Ads, AI representation, and content governance. |
-| `client/src/pages/Studio.tsx` | Private insight, research brief, and field brief authoring with publication review gates. |
-| `client/src/pages/InsightDetail.tsx` | Public insight rendering, author disclosure, social sharing, and research-record transparency. |
-| `delivery-playbooks.md` | Reviewable operating playbooks for launch SEO, Content Marketing, and Paid Ads delivery. |
-| `proof-and-review-program.md` | Authorized evidence pipeline and ethical, neutral client-review program. |
-| `authority-scorecard.md` | Manual quarterly authority and Clutch-readiness scorecard; no unapproved external collection or fabricated baseline data. |
-| `gtm-foundation.md` | Operating model, default segments, lifecycle, metrics, and non-automatic boundaries. |
-| `client/src/pages/GtmHub.tsx` | Public services hub and request form. |
-| `client/src/pages/GtmWorkspace.tsx` | Private GTM workspace creation and lifecycle views. |
-| `client/src/components/GtmPrivateRegistries.tsx` | Private account/contact registries and request-triage controls. |
-| `client/src/pages/GtmHub.test.tsx` | Public intake success-boundary and keyboard-label coverage. |
-| `client/src/components/GtmPrivateRegistries.test.tsx` | Keyboard focus order through account, contact, and triage controls. |
-| `drizzle/schema.ts` | GTM tables and all existing site data models. |
-| `server/contentSchemas.ts` | Zod contracts for public request intake and protected record transitions. |
-| `server/db.ts` | GTM persistence helpers. |
-| `server/routers.ts` | Public request procedure and admin-protected GTM procedures. |
-| `validation.md` | Detailed validation log. |
-| `todo.md` | Working checklist and historical implementation record. |
+| `client/src/lib/topicContent.ts` | Five topic pillars, four implemented child guides, deterministic search terms, reader-purpose labels, and optional worksheet structure. |
+| `client/src/pages/ChildTopicDetail.tsx` | Reusable child-guide rendering, structured data, sharing, related links, and optional browser-local worksheet. |
+| `client/src/pages/InsightDetail.tsx` | Public field-brief rendering, author disclosure, social sharing, reviewed source records, and slug-scoped related-resource paths. |
+| `client/src/pages/Topics.tsx` | Public B2B Growth Topics hub with resource-purpose labels and deterministic topic search. |
+| `client/src/pages/Faq.tsx` | Searchable and accessible FAQ with source-safe answers and FAQPage schema. |
+| `client/src/pages/Methodology.tsx` | Public methodology narrative, sticky table of contents, decision gates, Method-at-work example, and Earthward Foundry boundary. |
+| `client/src/ssr/prefetch.ts` | SSR title, canonical-path, keyword, and route prefetch handling for public routes. |
+| `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and the claim-ledger guide. |
+| `server/_core/index.ts` | Dynamic sitemap route; includes the claim-ledger guide in the public fixed-path list. |
+| `AGENTS.md` and `agent-training-playbook.md` | Cross-agent operating rules, evidence requirements, publication gates, and handoff protocol. |
+| `todo.md` | Append-only project checklist. All items through the current Evidence Ledger sprint are complete. |
 
-## Validation Completed
+## Validation Record
 
-The current build passed `pnpm run check`, the full Vitest suite (**29 tests**), and `pnpm run build` for both client and SSR output. `/research` was verified server-rendered with canonical metadata and sitemap inclusion, and was reviewed at desktop plus 390px mobile widths. The reviewed additive migration `0009_flashy_sir_ram.sql` was applied. `/services` was verified server-rendered with canonical metadata and sitemap inclusion. `/workspace` was verified `noindex` and absent from the sitemap. A request to `gtm.listRequests` without an authenticated admin session returned **HTTP 403**. Accessibility coverage verifies labelled controls and the keyboard focus path across account, contact, and request-triage controls.
+The current sequence has passed focused component tests, TypeScript checks, and production client plus SSR builds after each discrete checkpoint. The claim-ledger guide passed six focused tests, raw SSR title/canonical/worksheet/link checks, static sitemap verification, and desktop review. The reader-guidance and FAQ/Method refinements passed nine focused tests, TypeScript, production build, desktop/mobile visual review, and raw SSR checks. The second Signal Note passed focused Insight-detail tests, database verification, TypeScript, production build, raw SSR checks for its reviewed field record, two primary source URLs, five contextual links, sitemap inclusion, and desktop review.
 
-> The build reports a non-blocking client bundle-size warning above 500 kB. No active TypeScript errors remain. Historical browser-console output may show a stale pre-fix missing-export message; final type checks and production builds are clean.
+> **Known environment behavior:** `CANONICAL_ORIGIN` is not set in local development, so the dynamic local `/sitemap.xml` intentionally returns a 404. The static fallback sitemap is updated. Confirm that `CANONICAL_ORIGIN=https://coreweaverlabs.com` is configured before relying on the dynamic sitemap in production.
 
-## Remaining Product Decisions
+> **Non-blocking build note:** the client bundle still emits the existing chunk-size warning above 500 kB. Do not present this as a production failure; consider code-splitting only as a separately scoped performance task.
 
-The launch segment and three launch services are now defined. The remaining user decisions are:
+## Next Recommended Session
 
-1. Approve the research-based starting estimates for SEO ($6,500/month), Content Marketing ($7,500/month), and Paid Ads ($7,500/month), or provide revised commercial prices.
-2. Confirm the first authorized evidence/proof pipeline and the ethical customer-review program timing.
-3. Confirm which external launch systems—if any—are required before they are configured.
+1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work.
+2. Prepare an **AI answer review** child-guide brief only after selecting current primary sources, defining one buyer question, documenting a limitation, and identifying at least two contextual inbound links. Do not promise AI appearance, retrieval, citation, or description.
+3. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
+4. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
+5. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.
 
-Until then, preserve the current native database workflow and manual handoffs. Do not enable, simulate, or configure external connectors prematurely.
+## Non-Negotiable Guardrails
 
-## Recommended Next Session
-
-1. Read `HANDOFF.md`, `todo.md`, `presence-first-strategy.md`, and `validation.md`.
-2. Obtain the remaining commercial, proof-pipeline, review-program, and external-system decisions if the user is ready to make them.
-3. Keep research records in draft until their sources, method, reviewer, and claim-review confirmation are complete; never insert fabricated findings, client proof, or testimonials.
-4. For any integration or scheduled workflow, read the relevant integration and automation guidance before changing schema or code.
-5. Run `pnpm run check`, `pnpm test`, `pnpm run build`, review `todo.md`, and create a checkpoint after the next discrete feature set.
+- Never fabricate reviews, testimonials, case studies, client names, outcomes, performance claims, rankings, citations, or social proof.
+- Keep visitor, customer, support, case-study, and unpublished-research data private. Do not paste private material into public worksheets.
+- Do not represent a source-supported principle as a claim that a page, link, ledger, source, author byline, or automation will produce a result.
+- Do not enable autonomous public publishing, email sending, posting, purchasing, account creation, or external action. Human review remains mandatory.
+- Preserve the draft-only boundaries for content queues and communications workflows.

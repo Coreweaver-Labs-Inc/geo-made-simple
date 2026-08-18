@@ -212,3 +212,4 @@
 - [x] Select and document current primary sources, a distinct contribution, and a clear limitation for the second reviewed Signal Note.
 - [x] Publish the second reviewed Signal Note with named authorship, named reviewer, source-linked method record, and contextual public links.
 - [x] Validate the second Signal Note’s database record, SSR discovery, sitemap coverage, source boundaries, focused tests, and responsive presentation.
+- [x] Update HANDOFF.md and AGENT_LOG.md to record the Evidence Ledger sprint, reviewed Signal Notes, validations, current constraints, and next-session guidance.
