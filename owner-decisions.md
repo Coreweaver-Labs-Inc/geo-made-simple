@@ -47,3 +47,6 @@ The following items remain intentionally open:
 
 1. Complete the first quarterly Clutch-readiness and authority-scorecard review with real operating data on January 1, 2027.
 2. Configure the approved Hostinger and Vapi provider settings only after the gateway is deployed, its webhook credentials are stored as secrets, and draft-only test deliveries have passed.
+## August 18, 2026 — GEO Made Simple domain posture
+
+The Manus deployment is an incubating preview, not the permanent canonical site. Until a production domain is assigned, public responses remain `noindex`, no canonical link is emitted, the crawler policy disallows crawling, and the sitemap endpoint remains unavailable. Production launch requires explicit `CANONICAL_ORIGIN` and `VITE_CANONICAL_ORIGIN` values plus a reviewed crawler policy and sitemap.

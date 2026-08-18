@@ -9,7 +9,8 @@ import superjson from "superjson";
 import { buildSsrPrefetch } from "./ssrCaller";
 import type { HeadMeta } from "../../client/src/ssr/prefetch";
 
-const CANONICAL_ORIGIN = process.env.CANONICAL_ORIGIN || "https://coreweaverlabs.com";
+const CANONICAL_ORIGIN = process.env.CANONICAL_ORIGIN?.replace(/\/$/, "") || "";
+const IS_DOMAIN_PREVIEW = !CANONICAL_ORIGIN;
 const SITE_NAME = process.env.SITE_NAME || "Coreweaver Labs";
 const DEFAULT_SOCIAL_IMAGE = "/manus-storage/coreweaver-hero-identity_7f2f7654.jpg";
 const DEFAULT_SOCIAL_IMAGE_ALT = "Abstract architectural weave representing a brand becoming clearer to search and AI systems.";
@@ -22,13 +23,13 @@ const compact = (value: string, max: number) => {
 function headTags(head: HeadMeta) {
   const title = escapeHtml(compact(head.title, 70));
   const description = escapeHtml(compact(head.description, 200));
-  const canonical = head.canonicalPath ? `${CANONICAL_ORIGIN}${head.canonicalPath}` : "";
+  const canonical = CANONICAL_ORIGIN && head.canonicalPath ? `${CANONICAL_ORIGIN}${head.canonicalPath}` : "";
   const imagePath = head.ogImage || DEFAULT_SOCIAL_IMAGE;
-  const ogImage = imagePath.startsWith("/") ? `${CANONICAL_ORIGIN}${imagePath}` : imagePath;
+  const ogImage = imagePath.startsWith("/") && CANONICAL_ORIGIN ? `${CANONICAL_ORIGIN}${imagePath}` : imagePath;
   const ogImageAlt = head.ogImageAlt || DEFAULT_SOCIAL_IMAGE_ALT;
   const keywords = head.keywords?.map(keyword => compact(keyword, 80)).filter(Boolean).join(", ") || "";
   return [
-    `<title>${title}</title>`, `<meta name="description" content="${description}" />`, keywords ? `<meta name="keywords" content="${escapeHtml(keywords)}" />` : "", `<meta name="robots" content="${head.notFound || head.noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}" />`, `<meta property="og:type" content="${head.ogType || "website"}" />`, `<meta property="og:site_name" content="${SITE_NAME}" />`, `<meta property="og:locale" content="en_US" />`, `<meta property="og:title" content="${title}" />`, `<meta property="og:description" content="${description}" />`, `<meta name="twitter:card" content="summary_large_image" />`, `<meta name="twitter:site" content="@coreweaverlabs" />`, `<meta name="twitter:title" content="${title}" />`, `<meta name="twitter:description" content="${description}" />`,
+    `<title>${title}</title>`, `<meta name="description" content="${description}" />`, keywords ? `<meta name="keywords" content="${escapeHtml(keywords)}" />` : "", `<meta name="robots" content="${head.notFound || head.noindex || IS_DOMAIN_PREVIEW ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}" />`, `<meta property="og:type" content="${head.ogType || "website"}" />`, `<meta property="og:site_name" content="${SITE_NAME}" />`, `<meta property="og:locale" content="en_US" />`, `<meta property="og:title" content="${title}" />`, `<meta property="og:description" content="${description}" />`, `<meta name="twitter:card" content="summary_large_image" />`, `<meta name="twitter:site" content="@coreweaverlabs" />`, `<meta name="twitter:title" content="${title}" />`, `<meta name="twitter:description" content="${description}" />`,
     canonical ? `<link rel="canonical" href="${canonical}" /><meta property="og:url" content="${canonical}" />` : "",
     `<meta property="og:image" content="${escapeHtml(ogImage)}" /><meta property="og:image:alt" content="${escapeHtml(ogImageAlt)}" /><meta name="twitter:image" content="${escapeHtml(ogImage)}" /><meta name="twitter:image:alt" content="${escapeHtml(ogImageAlt)}" />`,
     head.ogType === "article" && head.publishedTime ? `<meta property="article:published_time" content="${escapeHtml(head.publishedTime)}" />` : "",

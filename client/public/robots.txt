@@ -1,32 +1,4 @@
-# Coreweaver Labs crawler policy: https://coreweaverlabs.com/ai-data-policy
-# Public search and answer retrieval are allowed. Model-training access is disallowed
-# where a provider exposes a distinct, standards-respecting user-agent control.
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: Claude-SearchBot
-Allow: /
-
-User-agent: Claude-User
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
+# Preview deployment only. Replace this policy and publish a sitemap when the
+# permanent canonical domain is assigned and production indexing is approved.
 User-agent: *
-Allow: /
-
-Sitemap: https://coreweaverlabs.com/sitemap.xml
+Disallow: /

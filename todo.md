@@ -1,5 +1,7 @@
 # Expansion checklist
 
+- [x] Treat the Manus deployment as a non-indexable preview until a permanent canonical domain is assigned; remove the conflicting Coreweaver Labs canonical and sitemap signals.
+
 - [x] Review the existing static project and decide whether a backend upgrade is needed for contact submissions.
 - [x] Define the Insights content model and publishing approach: database-backed public articles and contact submissions.
 - [x] Add and validate the contact form fields and states.
