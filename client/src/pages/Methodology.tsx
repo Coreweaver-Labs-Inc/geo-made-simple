@@ -31,6 +31,7 @@ const tableOfContents = [
   { href: "#method-story", label: "The premise" },
   { href: "#operating-practices", label: "Four practices" },
   { href: "#decision-path", label: "Decision gates" },
+  { href: "#method-at-work", label: "Method at work" },
   { href: "#entity-architecture", label: "Entity architecture" },
   { href: "#content-silos", label: "Content silos" },
   { href: "#earthward-foundry", label: "Earthward Foundry" },
@@ -102,6 +103,12 @@ export default function Methodology() {
             <SectionLabel>The decision path</SectionLabel>
             <div className="method-decision-intro"><h2>A page, a topic, a technique, or a new market idea must pass the same test.</h2><p>Blue-ocean exploration is welcome here only as a disciplined hypothesis: an unserved decision, a sourceable problem, and a proposed path to learn. It is not a permission slip to claim a category, a result, or a future offering before the record exists.</p></div>
             <ol className="decision-path">{decisions.map((step, index) => <li key={step.label}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{step.label}</h3><p>{step.question}</p><strong>{step.outcome}</strong></div></li>)}</ol>
+          </section>
+
+          <section className="method-at-work section-pad" id="method-at-work">
+            <SectionLabel>Method at work</SectionLabel>
+            <div className="method-at-work-grid"><div><h2>One buyer question, traced to a usable public guide.</h2><p>This is an in-flow illustration of the decision gates, not a client example or a claimed outcome. It shows how one broad question is bounded before it becomes a public resource.</p></div><dl className="method-at-work-record"><div><dt>Buyer question</dt><dd>Which public statements need a named source, scope, owner, and review date?</dd></div><div><dt>Parent silo</dt><dd>Content governance for B2B growth teams.</dd></div><div><dt>Source boundary</dt><dd>This example introduces no company finding, performance result, or client record. It teaches a review method and leaves unverified assertions unverified.</dd></div><div><dt>Live public guide</dt><dd><a href="/topics/content-governance/claim-ledger">A B2B claim ledger: connecting public statements to current support <ArrowUpRight size={14} aria-hidden="true" /></a></dd></div></dl></div>
+            <p className="method-at-work-boundary">The linked guide is a blank, non-client-specific worksheet. It does not collect visitor input, publish a claim, or imply that a ledger creates evidence.</p>
           </section>
 
           <section className="method-entity section-pad" id="entity-architecture">

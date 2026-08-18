@@ -15,6 +15,7 @@ export type Topic = {
   slug: string;
   label: string;
   title: string;
+  resourceType: "Start here" | "Decision guide" | "Working method" | "Research standard";
   description: string;
   kicker: string;
   buyerProblem: string;
@@ -59,6 +60,7 @@ export const topics: Topic[] = [
     slug: "b2b-seo",
     label: "Mid-market B2B SEO",
     title: "Mid-market B2B SEO systems",
+    resourceType: "Start here",
     description: "A practical guide to making mid-market B2B expertise, services, and buyer language easier to find and understand in search.",
     kicker: "Search clarity for B2B teams",
     buyerProblem: "B2B SEO becomes difficult when the pages, evidence, and buyer language around a company tell disconnected stories. Useful search work starts by making the commercial information people need easier to locate, interpret, and maintain.",
@@ -73,6 +75,7 @@ export const topics: Topic[] = [
     slug: "b2b-content-marketing",
     label: "B2B Content Marketing",
     title: "B2B Content Marketing systems",
+    resourceType: "Decision guide",
     description: "A practical guide to buyer education, category perspective, and governed content operations for mid-market B2B teams.",
     kicker: "Content that teaches a buyer something useful",
     buyerProblem: "A busy B2B team can publish frequently and still leave its buyers unclear about the category, the company’s point of view, or the next decision. The issue is often not volume; it is whether the content works together as useful buyer education.",
@@ -87,6 +90,7 @@ export const topics: Topic[] = [
     slug: "b2b-paid-ads",
     label: "B2B Paid Ads",
     title: "B2B Paid Ads and message systems",
+    resourceType: "Decision guide",
     description: "A practical guide to coordinating B2B paid media, landing-page clarity, message testing, and reviewable reporting.",
     kicker: "Paid media that tests a clear commercial story",
     buyerProblem: "Paid media can create more activity without creating more learning when the audience, offer, landing page, and sales story are disconnected. A useful paid-media system needs a clear proposition and a way to review what each test actually teaches.",
@@ -101,6 +105,7 @@ export const topics: Topic[] = [
     slug: "ai-representation",
     label: "AI Representation",
     title: "AI representation for B2B brands",
+    resourceType: "Working method",
     description: "A practical guide to reviewing how public information shapes AI answers about a mid-market B2B company without promising visibility or citation.",
     kicker: "Make public information easier to interpret",
     buyerProblem: "When buyers ask an AI system about a category, a company, or a founder, the answer may rely on incomplete or inconsistent public information. The practical question is whether the facts, sources, and buyer language available to those systems accurately reflect the business.",
@@ -115,6 +120,7 @@ export const topics: Topic[] = [
     slug: "content-governance",
     label: "Content Governance",
     title: "Content governance for B2B growth teams",
+    resourceType: "Research standard",
     description: "A practical guide to keeping B2B public claims, sources, ownership, and review routines accurate as content and campaigns grow.",
     kicker: "Keep the facts, sources, and approvals visible",
     buyerProblem: "As a B2B company publishes more pages, campaigns, research, and sales material, important facts can become disconnected from their sources and owners. That increases the chance of unclear or outdated public claims.",

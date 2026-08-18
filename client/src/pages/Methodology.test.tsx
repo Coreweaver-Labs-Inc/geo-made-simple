@@ -14,8 +14,11 @@ describe("The Coreweaver Method", () => {
     expect(onPageNav).toBeTruthy();
     expect(screen.getByRole("link", { name: /decision gates/i }).getAttribute("href")).toBe("#decision-path");
     expect(screen.getByRole("link", { name: /earthward foundry/i }).getAttribute("href")).toBe("#earthward-foundry");
+    expect(screen.getByRole("link", { name: /method at work/i }).getAttribute("href")).toBe("#method-at-work");
     expect(screen.getByText(/not presented here as a launched product/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: /website clarity and b2b seo/i }).getAttribute("href")).toBe("/topics/b2b-seo");
+    expect(screen.getByRole("link", { name: /a b2b claim ledger/i }).getAttribute("href")).toBe("/topics/content-governance/claim-ledger");
+    expect(screen.getByText(/does not collect visitor input, publish a claim, or imply that a ledger creates evidence/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: /read google’s link guidance/i }).getAttribute("href")).toContain("developers.google.com");
   });
 });

@@ -205,3 +205,7 @@
 - [x] Add the content-governance claim-ledger child guide with a source-safe B2B decision framework and required contextual links.
 - [x] Provide an accessible blank, non-client-specific claim-ledger worksheet with no client data collection or unsupported proof.
 - [x] Validate the new guide’s topic discovery, SSR metadata, schema, sitemap coverage, automated tests, and responsive presentation.
+- [x] Add clear resource-type labels to Topics hub cards using the established reader-purpose vocabulary.
+- [x] Normalize the FAQ visual system to the warm paper, ink, brass, and teal Signal Ledger language.
+- [x] Add a source-safe “Method at work” example to the public Method page using an implemented guide and no performance implication.
+- [x] Add focused tests and validate the editorial improvements across responsive presentation and public SSR output.

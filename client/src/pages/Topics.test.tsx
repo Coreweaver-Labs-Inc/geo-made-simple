@@ -30,4 +30,12 @@ describe("B2B Growth Topics", () => {
     expect(childTopics.map((topic) => `${topic.parentSlug}/${topic.slug}`)).toEqual(["b2b-seo/website-information-architecture", "b2b-content-marketing/buyer-enablement", "b2b-paid-ads/message-landing-page-alignment", "content-governance/claim-ledger"]);
     expect(screen.getByRole("searchbox", { name: /what are you trying to make clearer/i })).toBeTruthy();
   });
+
+  it("labels each topic card by the reader-purpose resource type", () => {
+    render(<Topics />);
+    expect(screen.getAllByText("Start here")).toHaveLength(1);
+    expect(screen.getAllByText("Decision guide")).toHaveLength(2);
+    expect(screen.getAllByText("Working method")).toHaveLength(1);
+    expect(screen.getAllByText("Research standard")).toHaveLength(1);
+  });
 });
