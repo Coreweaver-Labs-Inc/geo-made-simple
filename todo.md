@@ -202,3 +202,6 @@
 - [x] Select and verify an approved primary source for the first Signal Note, then document its source scope, contribution, limitation, author, and reviewer.
 - [x] Publish the first reviewed Signal Note with source-linked content, claim-safe wording, named authorship, internal topic/resource links, structured metadata, SSR, and sitemap discovery.
 - [x] Add focused tests and validate Resources purpose-label guidance, Signal Note citations and boundaries, responsive presentation, and public discovery output.
+- [x] Add the content-governance claim-ledger child guide with a source-safe B2B decision framework and required contextual links.
+- [x] Provide an accessible blank, non-client-specific claim-ledger worksheet with no client data collection or unsupported proof.
+- [x] Validate the new guide’s topic discovery, SSR metadata, schema, sitemap coverage, automated tests, and responsive presentation.

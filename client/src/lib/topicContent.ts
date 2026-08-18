@@ -1,5 +1,16 @@
 export type TopicLink = { href: string; label: string };
 
+export type TopicWorksheetField = {
+  label: string;
+  hint: string;
+};
+
+export type TopicWorksheet = {
+  title: string;
+  description: string;
+  fields: TopicWorksheetField[];
+};
+
 export type Topic = {
   slug: string;
   label: string;
@@ -20,6 +31,7 @@ export type ChildTopic = {
   slug: string;
   label: string;
   title: string;
+  seoTitle?: string;
   description: string;
   kicker: string;
   buyerProblem: string;
@@ -30,6 +42,7 @@ export type ChildTopic = {
   serviceLink: TopicLink;
   relatedResources: TopicLink[];
   searchTerms: string[];
+  worksheet?: TopicWorksheet;
 };
 
 export type TopicSearchResult = {
@@ -162,6 +175,35 @@ export const childTopics: ChildTopic[] = [
     serviceLink: { href: "/services", label: "Explore evidence-led B2B Paid Ads services" },
     relatedResources: [{ href: "/topics/b2b-paid-ads", label: "B2B Paid Ads and message systems" }, { href: "/topics/b2b-content-marketing/buyer-enablement", label: "B2B buyer enablement content" }, { href: "/framework", label: "The ARM Framework" }, { href: "/services", label: "Service scope and private next steps" }],
     searchTerms: ["paid ads landing page alignment", "paid message alignment", "ad message does not match landing page", "b2b paid media", "landing page clarity", "campaign message continuity", "paid media testing", "message to destination", "paid ads", "b2b offer clarity"],
+  },
+  {
+    parentSlug: "content-governance",
+    slug: "claim-ledger",
+    label: "B2B claim ledger",
+    title: "A B2B claim ledger: connecting public statements to current support",
+    seoTitle: "B2B claim ledger: public statements and support",
+    description: "A practical B2B worksheet for connecting public claims to a current source, clear scope, named owner, limitation, and review date before the claim travels further.",
+    kicker: "Make support, scope, and ownership visible",
+    buyerProblem: "Public information rarely changes in one place. A service page, sales deck, campaign, case-study request, and founder post can repeat the same statement with different context. When nobody can point to the current support, scope, owner, or next review, a familiar sentence can begin to look more certain than the record behind it.",
+    decision: "Decide which public statements matter enough to track, what currently supports each statement, where its limits belong, who is responsible for its accuracy, and whether the right next action is to qualify, revise, remove, or hold the claim.",
+    approach: "Coreweaver Labs treats a claim ledger as a working record rather than a badge of certainty. The ledger connects the exact public wording to support that can be inspected, defines the scope in which the wording remains fair, names an accountable owner, and sets a review point before the statement is reused. A missing source is a reason to investigate or revise—not evidence by itself.",
+    includes: ["A visible record of the exact public statement, not a generalized interpretation", "A source, scope, limitation, and named owner that make the statement reviewable", "A plain next-action field for qualifying, revising, removing, or holding a statement until support is available"],
+    boundary: "A claim ledger does not make an unsupported statement true, replace legal or compliance review, authorize private material for publication, or guarantee credibility, rankings, citations, pipeline, or revenue.",
+    serviceLink: { href: "/services", label: "Discuss governed SEO, content, and paid-media operations" },
+    relatedResources: [{ href: "/topics/content-governance", label: "Content governance for B2B growth teams" }, { href: "/research", label: "Research methods and editorial standards" }, { href: "/case-studies", label: "Authorized case-study evidence standards" }, { href: "/faq#faq-evidence", label: "Research and evidence FAQ answers" }, { href: "/method", label: "The Coreweaver Method" }],
+    searchTerms: ["claim ledger", "claim ownership", "public claims need support", "evidence for marketing claims", "claim source and review date", "supportable public statements", "content governance", "claim review", "outdated website claims", "track public statements"],
+    worksheet: {
+      title: "A blank claim-ledger worksheet",
+      description: "Use one record for one public statement. The fields below are deliberately blank and stay only in this browser; they are not submitted, stored, or treated as verified evidence.",
+      fields: [
+        { label: "Exact public statement", hint: "Copy the sentence as a buyer can encounter it, including any qualifier or number." },
+        { label: "Current supporting source", hint: "Name the accessible source, record, or evidence location that a reviewer can inspect." },
+        { label: "Scope and limitation", hint: "State the audience, period, condition, or uncertainty that keeps the statement fair." },
+        { label: "Named claim owner", hint: "Identify the person or role responsible for keeping this record current." },
+        { label: "Review date and trigger", hint: "Set the next review date and name the change that would require an earlier check." },
+        { label: "Decision and next action", hint: "Choose a practical next step: qualify, revise, remove, or hold until current support is available." },
+      ],
+    },
   },
 ];
 

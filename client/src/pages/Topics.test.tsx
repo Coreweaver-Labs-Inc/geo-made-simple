@@ -27,7 +27,7 @@ describe("B2B Growth Topics", () => {
 
   it("makes the implemented child guides available to the deterministic topic finder", () => {
     render(<Topics />);
-    expect(childTopics.map((topic) => `${topic.parentSlug}/${topic.slug}`)).toEqual(["b2b-seo/website-information-architecture", "b2b-content-marketing/buyer-enablement", "b2b-paid-ads/message-landing-page-alignment"]);
+    expect(childTopics.map((topic) => `${topic.parentSlug}/${topic.slug}`)).toEqual(["b2b-seo/website-information-architecture", "b2b-content-marketing/buyer-enablement", "b2b-paid-ads/message-landing-page-alignment", "content-governance/claim-ledger"]);
     expect(screen.getByRole("searchbox", { name: /what are you trying to make clearer/i })).toBeTruthy();
   });
 });

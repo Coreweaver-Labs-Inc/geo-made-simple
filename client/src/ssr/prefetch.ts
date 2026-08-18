@@ -51,7 +51,7 @@ export async function prefetchForPath(url: string, queryClient: QueryClient, pre
   if (childTopicMatch) {
     const topic = getChildTopic(childTopicMatch[1], childTopicMatch[2]);
     if (!topic) return { title: SITE, description: DESCRIPTION, notFound: true };
-    return { title: `${topic.title} | Coreweaver Labs`, description: topic.description, keywords: topic.searchTerms, canonicalPath: clean };
+    return { title: `${topic.seoTitle || topic.title} | Coreweaver Labs`, description: topic.description, keywords: topic.searchTerms, canonicalPath: clean };
   }
   const topicMatch = clean.match(/^\/topics\/([^/]+)$/);
   if (topicMatch) {

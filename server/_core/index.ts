@@ -56,7 +56,7 @@ async function startServer() {
       res.status(404).type("text/plain").send("Sitemap unavailable until a canonical production domain is assigned.\n");
       return;
     }
-    const fixedPaths = ["/", "/framework", "/products", "/services", "/topics", "/topics/b2b-seo", "/topics/b2b-seo/website-information-architecture", "/topics/b2b-content-marketing", "/topics/b2b-content-marketing/buyer-enablement", "/topics/b2b-paid-ads", "/topics/b2b-paid-ads/message-landing-page-alignment", "/topics/ai-representation", "/topics/content-governance", "/insights", "/research", "/method", "/faq", "/ai-data-policy", "/case-studies", "/contact", "/authors/mason-nguyen"];
+    const fixedPaths = ["/", "/framework", "/products", "/services", "/topics", "/topics/b2b-seo", "/topics/b2b-seo/website-information-architecture", "/topics/b2b-content-marketing", "/topics/b2b-content-marketing/buyer-enablement", "/topics/b2b-paid-ads", "/topics/b2b-paid-ads/message-landing-page-alignment", "/topics/ai-representation", "/topics/content-governance", "/topics/content-governance/claim-ledger", "/insights", "/research", "/method", "/faq", "/ai-data-policy", "/case-studies", "/contact", "/authors/mason-nguyen"];
     const fallbackSlugs = ["a-practical-signal-audit", "representation-is-an-operating-concern", "measurement-without-vanity-metrics"];
 
     try {
