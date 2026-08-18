@@ -194,3 +194,7 @@
 - [x] Add a concise homepage Start Here module with three descriptive reader paths to existing website-clarity, content-system, and paid-message decision guides.
 - [x] Add a non-promissory Services-page first-engagement record that explains orientation, evidence inventory, decision mapping, and a reviewed working plan without timing or performance guarantees.
 - [x] Add focused tests and validate reader-path links, responsive presentation, server-rendered content, and evidence-boundary copy for the guided journey improvements.
+- [x] Benchmark Coreweaver’s current public authority foundation, content coverage, evidence standards, reader guidance, and distribution posture against best-in-class resource expectations.
+- [x] Research and prioritize evidence-safe opportunities to deepen original insight, research rigor, content-silo coverage, recurring editorial cadence, and earned authority.
+- [x] Produce a sequenced best-in-class authority roadmap with accountable operating rhythms, publication gates, and leading indicators.
+- [x] Recommend the first implementation sprint that best increases durable reader value, machine-readable clarity, and earned trust without unsupported claims.
