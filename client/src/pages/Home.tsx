@@ -39,6 +39,12 @@ const resourceClusters = [
   { label: "Research standards", title: "Research methods and editorial standards", body: "See how source references, methods, authorship, and claim review guide public research work.", href: "/research" },
 ];
 
+const startHerePaths = [
+  { number: "01", title: "Make our website easier to understand", body: "Start with the pages, buyer questions, evidence, and next steps that make your commercial story easier to inspect.", href: "/topics/b2b-seo/website-information-architecture", link: "Explore website clarity" },
+  { number: "02", title: "Build a connected content system", body: "Start with the buyer education, source standards, ownership, and review routines that help useful content compound.", href: "/topics/b2b-content-marketing/buyer-enablement", link: "Explore buyer enablement" },
+  { number: "03", title: "Make paid messages and landing pages agree", body: "Start with the relationship between the promise in paid media, the destination page, and the decision a buyer is being asked to make.", href: "/topics/b2b-paid-ads/message-landing-page-alignment", link: "Explore paid-message alignment" },
+];
+
 export default function Home() {
   const homeSchema = JSON.stringify({
     "@context": "https://schema.org",
@@ -85,6 +91,11 @@ export default function Home() {
             <p>We use <strong>signal</strong> as shorthand for that information: the words, service pages, source material, links, and evidence around your business. Your website is no longer the only place your reputation is built.</p>
             <div className="pull-quote">The goal is not to game an answer engine. It is to give it a truer, clearer answer to work with.</div>
           </div>
+        </section>
+
+        <section className="start-here-section section-pad section-rule" aria-labelledby="start-here-title">
+          <div className="start-here-intro"><SectionLabel>Start here</SectionLabel><h2 id="start-here-title">Choose the decision that needs to become clearer.</h2><p>You do not need to pick a service before you understand the problem. Start with the part of your commercial story that feels least connected, then move into the guide built for that decision.</p></div>
+          <div className="start-here-paths">{startHerePaths.map(path => <article key={path.href}><span>{path.number}</span><h3>{path.title}</h3><p>{path.body}</p><a className="text-link" href={path.href}>{path.link} <ArrowUpRight size={15} aria-hidden="true" /></a></article>)}</div>
         </section>
 
         <section id="framework" className="framework-section section-pad section-rule" aria-labelledby="framework-title">

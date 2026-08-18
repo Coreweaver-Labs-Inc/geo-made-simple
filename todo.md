@@ -189,3 +189,6 @@
 - [x] Audit the live public reader journey, navigation, page hierarchy, and cross-page guidance from an editor-in-chief perspective.
 - [x] Evaluate public-page clarity, cohesion, trust signals, authority, evidence boundaries, insight depth, and conversion guidance.
 - [x] Produce a prioritized page-level editorial revision brief that distinguishes immediate copy fixes, structural improvements, and longer-term authority work.
+- [x] Add a concise homepage Start Here module with three descriptive reader paths to existing website-clarity, content-system, and paid-message decision guides.
+- [x] Add a non-promissory Services-page first-engagement record that explains orientation, evidence inventory, decision mapping, and a reviewed working plan without timing or performance guarantees.
+- [x] Add focused tests and validate reader-path links, responsive presentation, server-rendered content, and evidence-boundary copy for the guided journey improvements.

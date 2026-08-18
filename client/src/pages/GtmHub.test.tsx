@@ -56,6 +56,16 @@ describe("GtmHub", () => {
     expect(screen.getAllByText("From $7,500/month")).toHaveLength(2);
   });
 
+  it("explains the first engagement as an inspectable orientation rather than a guaranteed delivery outcome", () => {
+    render(<GtmHub />);
+    expect(screen.getByRole("heading", { name: /begin with a shared record, not a vague scope/i })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Orientation" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Evidence inventory" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Decision map" })).toBeTruthy();
+    expect(screen.getByRole("heading", { name: "Reviewed working plan" })).toBeTruthy();
+    expect(screen.getByText(/not a delivery timeline, statement of work, or promise/i)).toBeTruthy();
+  });
+
   it("submits a private service inquiry without turning it into a public engagement", async () => {
     const user = userEvent.setup();
     render(<GtmHub />);

@@ -33,4 +33,12 @@ describe("Home", () => {
     expect(screen.getByRole("link", { name: /B2B buyer enablement content/i }).getAttribute("href")).toBe("/topics/b2b-content-marketing/buyer-enablement");
     expect(screen.getByRole("link", { name: /AI representation for B2B brands/i }).getAttribute("href")).toBe("/topics/ai-representation");
   });
+
+  it("offers three Start Here paths that route readers to the existing decision guides", () => {
+    render(<Home />);
+    expect(screen.getByRole("heading", { name: /choose the decision that needs to become clearer/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /explore website clarity/i }).getAttribute("href")).toBe("/topics/b2b-seo/website-information-architecture");
+    expect(screen.getByRole("link", { name: /explore buyer enablement/i }).getAttribute("href")).toBe("/topics/b2b-content-marketing/buyer-enablement");
+    expect(screen.getByRole("link", { name: /explore paid-message alignment/i }).getAttribute("href")).toBe("/topics/b2b-paid-ads/message-landing-page-alignment");
+  });
 });

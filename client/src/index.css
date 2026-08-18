@@ -303,6 +303,28 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .inquiries-card { margin-top: 1.5rem; }
 .studio-error { color: #9e3c30; font-size: .82rem; }
 
+.start-here-section { background: #e8f3ed; }
+.start-here-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(18rem, .7fr); gap: clamp(2rem, 7vw, 9rem); align-items: end; margin-bottom: 2.5rem; }
+.start-here-intro h2 { max-width: 11ch; margin: .7rem 0 0; font-size: clamp(2.4rem, 4.8vw, 5.3rem); line-height: .94; letter-spacing: -.06em; }
+.start-here-intro p { max-width: 35rem; margin: 0; color: var(--ink-soft); line-height: 1.6; }
+.start-here-paths { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); }
+.start-here-paths article { display: flex; min-height: 20rem; flex-direction: column; padding: 1.55rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.start-here-paths article:first-child { border-left: 1px solid var(--rule); }
+.start-here-paths article > span { color: var(--teal); font: .62rem var(--mono); letter-spacing: .1em; }
+.start-here-paths h3 { max-width: 12ch; margin: 3.1rem 0 .8rem; font-size: clamp(1.55rem, 2.4vw, 2.35rem); line-height: 1; letter-spacing: -.05em; }
+.start-here-paths p { margin: 0; color: var(--ink-soft); line-height: 1.55; }
+.start-here-paths .text-link { margin-top: auto; align-self: start; padding-top: 1.7rem; }
+
+.gtm-first-engagement { display: grid; grid-template-columns: minmax(0, .85fr) minmax(20rem, 1.15fr); gap: clamp(3rem, 8vw, 10rem); background: #f2ebdf; }
+.gtm-first-engagement-intro h2 { max-width: 10ch; margin: .7rem 0 1.1rem; font-size: clamp(2.3rem, 4.2vw, 4.8rem); line-height: .94; letter-spacing: -.06em; }
+.gtm-first-engagement-intro p { max-width: 34rem; margin: 0; color: var(--ink-soft); line-height: 1.6; }
+.gtm-first-engagement-steps { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.gtm-first-engagement-steps li { display: grid; grid-template-columns: 3.4rem 1fr; gap: .9rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); }
+.gtm-first-engagement-steps li > span { color: var(--teal); font: .62rem var(--mono); letter-spacing: .1em; padding-top: .32rem; }
+.gtm-first-engagement-steps h3 { margin: 0 0 .35rem; font-size: 1.12rem; }
+.gtm-first-engagement-steps p { margin: 0; color: var(--ink-soft); line-height: 1.5; }
+.gtm-first-engagement-boundary { grid-column: 1 / -1; max-width: 60rem; margin: 0; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--ink-soft); font: .66rem/1.55 var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+
 /* The Method uses the supplied architectural evidence images as a dark, documentary counterpoint to the warm Signal Ledger canvas. */
 .method-page { overflow: hidden; }
 .method-hero { display: grid; grid-template-columns: minmax(0, .94fr) minmax(24rem, 1.06fr); gap: clamp(2rem, 5vw, 6rem); align-items: center; padding-top: clamp(3.5rem, 8vw, 8rem); padding-bottom: clamp(4rem, 10vw, 9rem); }
@@ -700,6 +722,11 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .studio-wrap { padding: 1rem; }
   .studio-compact-form { grid-template-columns: 1fr; }
   .method-hero, .method-thesis-grid, .method-decision-intro, .method-entity, .method-silos-grid, .method-foundry { grid-template-columns: 1fr; }
+  .start-here-intro, .gtm-first-engagement { grid-template-columns: 1fr; }
+  .start-here-paths { grid-template-columns: 1fr; }
+  .start-here-paths article, .start-here-paths article:first-child { min-height: 0; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+  .start-here-paths h3 { margin-top: 1.6rem; }
+  .gtm-first-engagement { gap: 2.25rem; }
   .method-body-layout { display: block; }
   .method-toc-wrap { position: sticky; top: 0; max-height: none; padding: .6rem 1rem; background: rgba(244, 241, 232, .96); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); backdrop-filter: blur(10px); }
   .method-toc { border-left: 0; padding-left: 0; display: flex; align-items: center; gap: .7rem; overflow-x: auto; scrollbar-width: thin; }
