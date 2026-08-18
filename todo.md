@@ -178,3 +178,9 @@
 - [x] Implement an idempotent scheduled queue handler that uses approved trend signals to create private editorial drafts without collecting raw visitor data or performing external actions.
 - [x] Publish the paid-message and landing-page alignment guide with source-safe content, SSR metadata, schema, sitemap coverage, and Resources/topic internal links.
 - [x] Add focused tests and validate queue authorization, deduplication, draft-only behavior, scheduled-handler safeguards, public guide discovery, and responsive presentation.
+- [x] Inspect the supplied agent-framework materials, visual references, and current Coreweaver content architecture before introducing a public methodology page or training assets.
+- [x] Distill the completed project workflow into a reusable new-agent training playbook, decision tree, handoff protocol, and non-negotiable evidence/publishing guardrails.
+- [x] Define the public methodology narrative for new pages, topics, techniques, and content silos, including descriptive internal links, authoritative external citations, and an Earthward Foundry pathway without unsupported positioning claims.
+- [x] Build a public methodology page with accessible visual narrative, structured metadata, source standards, decision-gate explanations, Resources/topic links, and sitemap discovery.
+- [x] Add private reusable agent-training artifacts that guide research, drafting, source review, internal linking, publication review, and continuous-signal triage without autonomous public publication.
+- [x] Validate visual rendering, responsive behavior, structured data, SSR output, internal links, training-document accuracy, and claim-safety boundaries.

@@ -30,6 +30,7 @@ const products = [
 ];
 
 const resourceClusters = [
+  { label: "Operating method", title: "The Coreweaver Method", body: "See how a B2B question becomes a reviewed decision, source-aware explanation, and connected public path.", href: "/method" },
   { label: "Website clarity", title: "B2B website information architecture", body: "Organize service, method, evidence, and next-step information around the questions a buyer needs to answer.", href: "/topics/b2b-seo/website-information-architecture" },
   { label: "Buyer education", title: "B2B buyer enablement content", body: "Help a buying group understand the problem, inspect the approach, and take a clearer next step.", href: "/topics/b2b-content-marketing/buyer-enablement" },
   { label: "Paid-message learning", title: "B2B paid ads and landing-page alignment", body: "Review whether the paid message, destination, and next-step context ask a buyer to understand the same thing.", href: "/topics/b2b-paid-ads/message-landing-page-alignment" },

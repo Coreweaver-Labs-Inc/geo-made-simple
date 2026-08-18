@@ -16,6 +16,7 @@ import GtmWorkspace from "./pages/GtmWorkspace";
 import Home from "./pages/Home";
 import InsightDetail from "./pages/InsightDetail";
 import Insights from "./pages/Insights";
+import Methodology from "./pages/Methodology";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
 import Research from "./pages/Research";
@@ -33,6 +34,7 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/insights" component={Insights} />
       <Route path="/research" component={Research} />
+      <Route path="/method" component={Methodology} />
       <Route path="/ai-data-policy" component={AiDataPolicy} />
       <Route path="/faq" component={Faq} />
       <Route path="/topics" component={Topics} />
