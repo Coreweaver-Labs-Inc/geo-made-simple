@@ -186,3 +186,6 @@
 - [x] Validate visual rendering, responsive behavior, structured data, SSR output, internal links, training-document accuracy, and claim-safety boundaries.
 - [x] Add an accessible sticky table of contents to the Coreweaver Method page with clear anchors for the method story, decision path, entity architecture, content silos, and Earthward Foundry pathway.
 - [x] Validate keyboard navigation, responsive sticky/mobile behavior, visible focus states, and rendered Method-page links after adding the table of contents.
+- [x] Audit the live public reader journey, navigation, page hierarchy, and cross-page guidance from an editor-in-chief perspective.
+- [x] Evaluate public-page clarity, cohesion, trust signals, authority, evidence boundaries, insight depth, and conversion guidance.
+- [x] Produce a prioritized page-level editorial revision brief that distinguishes immediate copy fixes, structural improvements, and longer-term authority work.
