@@ -21,25 +21,43 @@ function asExternalUrl(reference: string) {
   }
 }
 
-const relatedInsightResources: Record<string, Array<{ title: string; href: string; description: string }>> = {
-  "useful-resource-route-not-page-pile": [
-    { title: "B2B Growth Topics", href: "/topics", description: "Choose the commercial question that needs a clearer route." },
-    { title: "B2B website information architecture", href: "/topics/b2b-seo/website-information-architecture", description: "Apply the route principle to service, evidence, and next-step information." },
-    { title: "The Coreweaver Method", href: "/method", description: "Inspect the decision gates, source checks, and review routines behind the note." },
-    { title: "Research methods and editorial standards", href: "/research", description: "See the source, authorship, claim-review, and correction standard." },
-    { title: "SEO, Content Marketing, and Paid Ads services", href: "/services", description: "Understand where clearer public information can connect to a private service conversation." },
-  ],
+type RelatedInsightResource = { title: string; href: string; description: string };
+type RelatedInsightResourceSet = { heading: string; description: string; resources: RelatedInsightResource[] };
+
+const relatedInsightResources: Record<string, RelatedInsightResourceSet> = {
+  "useful-resource-route-not-page-pile": {
+    heading: "Keep the route connected.",
+    description: "This Signal Note is one operating perspective. Use these pages to inspect the decision, method, sources, and relevant service context in more detail.",
+    resources: [
+      { title: "B2B Growth Topics", href: "/topics", description: "Choose the commercial question that needs a clearer route." },
+      { title: "B2B website information architecture", href: "/topics/b2b-seo/website-information-architecture", description: "Apply the route principle to service, evidence, and next-step information." },
+      { title: "The Coreweaver Method", href: "/method", description: "Inspect the decision gates, source checks, and review routines behind the note." },
+      { title: "Research methods and editorial standards", href: "/research", description: "See the source, authorship, claim-review, and correction standard." },
+      { title: "SEO, Content Marketing, and Paid Ads services", href: "/services", description: "Understand where clearer public information can connect to a private service conversation." },
+    ],
+  },
+  "claim-boundary-before-distribution": {
+    heading: "Keep the evidence boundary visible.",
+    description: "This Signal Note is an editorial operating perspective. Use these pages to inspect claim support, research standards, public proof, and the decision gates behind a responsible next step.",
+    resources: [
+      { title: "Content governance for B2B growth teams", href: "/topics/content-governance", description: "Inspect the parent system for public claims, sources, ownership, and review routines." },
+      { title: "A B2B claim ledger", href: "/topics/content-governance/claim-ledger", description: "Use the blank worksheet to connect a public statement to its current support and limitation." },
+      { title: "Research methods and editorial standards", href: "/research", description: "See the source, authorship, claim-review, and correction standard." },
+      { title: "Authorized case-study evidence standards", href: "/case-studies", description: "Understand what must be verified before client work can become public proof." },
+      { title: "The Coreweaver Method", href: "/method", description: "Inspect the decision gates that shape a public guide before it is released." },
+    ],
+  },
 };
 
 function RelatedInsightResources({ slug }: { slug: string }) {
-  const resources = relatedInsightResources[slug] || [];
-  if (resources.length === 0) return null;
+  const set = relatedInsightResources[slug];
+  if (!set) return null;
 
   return <section className="article-related-resources" aria-labelledby="related-resources-title">
     <SectionLabel>Continue the investigation</SectionLabel>
-    <h2 id="related-resources-title">Keep the route connected.</h2>
-    <p>This Signal Note is one operating perspective. Use these pages to inspect the decision, method, sources, and relevant service context in more detail.</p>
-    <ul>{resources.map(resource => <li key={resource.href}>
+    <h2 id="related-resources-title">{set.heading}</h2>
+    <p>{set.description}</p>
+    <ul>{set.resources.map(resource => <li key={resource.href}>
       <a href={resource.href}>{resource.title} <ArrowUpRight size={14} aria-hidden="true" /></a>
       <span>{resource.description}</span>
     </li>)}</ul>

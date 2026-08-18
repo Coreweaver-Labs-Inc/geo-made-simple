@@ -209,3 +209,6 @@
 - [x] Normalize the FAQ visual system to the warm paper, ink, brass, and teal Signal Ledger language.
 - [x] Add a source-safe “Method at work” example to the public Method page using an implemented guide and no performance implication.
 - [x] Add focused tests and validate the editorial improvements across responsive presentation and public SSR output.
+- [x] Select and document current primary sources, a distinct contribution, and a clear limitation for the second reviewed Signal Note.
+- [x] Publish the second reviewed Signal Note with named authorship, named reviewer, source-linked method record, and contextual public links.
+- [x] Validate the second Signal Note’s database record, SSR discovery, sitemap coverage, source boundaries, focused tests, and responsive presentation.
