@@ -198,3 +198,7 @@
 - [x] Research and prioritize evidence-safe opportunities to deepen original insight, research rigor, content-silo coverage, recurring editorial cadence, and earned authority.
 - [x] Produce a sequenced best-in-class authority roadmap with accountable operating rhythms, publication gates, and leading indicators.
 - [x] Recommend the first implementation sprint that best increases durable reader value, machine-readable clarity, and earned trust without unsupported claims.
+- [x] Add clear purpose labels to the Resources library so readers can distinguish Start here, Decision guide, Working method, and Research standard content.
+- [x] Select and verify an approved primary source for the first Signal Note, then document its source scope, contribution, limitation, author, and reviewer.
+- [x] Publish the first reviewed Signal Note with source-linked content, claim-safe wording, named authorship, internal topic/resource links, structured metadata, SSR, and sitemap discovery.
+- [x] Add focused tests and validate Resources purpose-label guidance, Signal Note citations and boundaries, responsive presentation, and public discovery output.

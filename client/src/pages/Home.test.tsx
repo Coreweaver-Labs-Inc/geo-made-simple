@@ -34,6 +34,16 @@ describe("Home", () => {
     expect(screen.getByRole("link", { name: /AI representation for B2B brands/i }).getAttribute("href")).toBe("/topics/ai-representation");
   });
 
+  it("labels resource cards by purpose so readers can distinguish orientation, guides, method, and standards", () => {
+    render(<Home />);
+    expect(screen.getByText(/01 · start here/i)).toBeTruthy();
+    expect(screen.getByText(/02 · working method/i)).toBeTruthy();
+    expect(screen.getAllByText(/decision guide/i)).toHaveLength(5);
+    expect(screen.getByText(/^08 · research standard$/i)).toBeTruthy();
+    expect(screen.getByText("Topic orientation")).toBeTruthy();
+    expect(screen.getByText("Research methods")).toBeTruthy();
+  });
+
   it("offers three Start Here paths that route readers to the existing decision guides", () => {
     render(<Home />);
     expect(screen.getByRole("heading", { name: /choose the decision that needs to become clearer/i })).toBeTruthy();

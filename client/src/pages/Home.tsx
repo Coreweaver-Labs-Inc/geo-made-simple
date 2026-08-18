@@ -30,13 +30,14 @@ const products = [
 ];
 
 const resourceClusters = [
-  { label: "Operating method", title: "The Coreweaver Method", body: "See how a B2B question becomes a reviewed decision, source-aware explanation, and connected public path.", href: "/method" },
-  { label: "Website clarity", title: "B2B website information architecture", body: "Organize service, method, evidence, and next-step information around the questions a buyer needs to answer.", href: "/topics/b2b-seo/website-information-architecture" },
-  { label: "Buyer education", title: "B2B buyer enablement content", body: "Help a buying group understand the problem, inspect the approach, and take a clearer next step.", href: "/topics/b2b-content-marketing/buyer-enablement" },
-  { label: "Paid-message learning", title: "B2B paid ads and landing-page alignment", body: "Review whether the paid message, destination, and next-step context ask a buyer to understand the same thing.", href: "/topics/b2b-paid-ads/message-landing-page-alignment" },
-  { label: "AI representation", title: "AI representation for B2B brands", body: "Review how public sources and buyer language shape answer contexts without promising citation or visibility.", href: "/topics/ai-representation" },
-  { label: "Governance", title: "Content governance for B2B growth teams", body: "Keep important public claims, source ownership, and review routines visible as content grows.", href: "/topics/content-governance" },
-  { label: "Research standards", title: "Research methods and editorial standards", body: "See how source references, methods, authorship, and claim review guide public research work.", href: "/research" },
+  { purpose: "Start here", label: "Topic orientation", title: "B2B Growth Topics", body: "Start with the commercial question in front of you, then choose the connected topic system that helps you inspect it.", href: "/topics" },
+  { purpose: "Working method", label: "Operating method", title: "The Coreweaver Method", body: "See how a B2B question becomes a reviewed decision, source-aware explanation, and connected public path.", href: "/method" },
+  { purpose: "Decision guide", label: "Website clarity", title: "B2B website information architecture", body: "Organize service, method, evidence, and next-step information around the questions a buyer needs to answer.", href: "/topics/b2b-seo/website-information-architecture" },
+  { purpose: "Decision guide", label: "Buyer education", title: "B2B buyer enablement content", body: "Help a buying group understand the problem, inspect the approach, and take a clearer next step.", href: "/topics/b2b-content-marketing/buyer-enablement" },
+  { purpose: "Decision guide", label: "Paid-message learning", title: "B2B paid ads and landing-page alignment", body: "Review whether the paid message, destination, and next-step context ask a buyer to understand the same thing.", href: "/topics/b2b-paid-ads/message-landing-page-alignment" },
+  { purpose: "Decision guide", label: "AI representation", title: "AI representation for B2B brands", body: "Review how public sources and buyer language shape answer contexts without promising citation or visibility.", href: "/topics/ai-representation" },
+  { purpose: "Decision guide", label: "Governance", title: "Content governance for B2B growth teams", body: "Keep important public claims, source ownership, and review routines visible as content grows.", href: "/topics/content-governance" },
+  { purpose: "Research standard", label: "Research methods", title: "Research methods and editorial standards", body: "See how source references, methods, authorship, and claim review guide public research work.", href: "/research" },
 ];
 
 const startHerePaths = [
@@ -137,7 +138,7 @@ export default function Home() {
 
         <section id="resources" className="resources-section section-pad section-rule" aria-labelledby="resources-title">
           <div className="resources-intro"><SectionLabel>Resources</SectionLabel><h2 id="resources-title">A connected resource library for working decisions.</h2><p>Start with the buyer question in front of you, then follow a clear path into the relevant guide, research standard, or source-of-truth topic. These links are designed to help a reader continue their investigation—not to promise an outcome.</p><a className="text-link" href="/topics">Browse all B2B Growth Topics <ArrowUpRight size={16} /></a></div>
-          <div className="resource-cluster-grid">{resourceClusters.map((resource, index) => <article className="resource-cluster-card" key={resource.href}><span>{String(index + 1).padStart(2, "0")} · {resource.label}</span><h3><a href={resource.href}>{resource.title}</a></h3><p>{resource.body}</p><a className="text-link" href={resource.href}>Open resource <ArrowUpRight size={14} aria-hidden="true" /></a></article>)}</div>
+          <div className="resource-cluster-grid">{resourceClusters.map((resource, index) => <article className="resource-cluster-card" key={resource.href}><span>{String(index + 1).padStart(2, "0")} · {resource.purpose}</span><p className="resource-cluster-type">{resource.label}</p><h3><a href={resource.href}>{resource.title}</a></h3><p>{resource.body}</p><a className="text-link" href={resource.href}>Open resource <ArrowUpRight size={14} aria-hidden="true" /></a></article>)}</div>
         </section>
 
         <section id="engagement" className="engagement-section section-pad section-rule" aria-labelledby="engagement-title">
