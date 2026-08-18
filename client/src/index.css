@@ -312,6 +312,17 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .method-hero-image { margin: 0; background: #0a0c0c; border: 1px solid rgba(20, 34, 30, .15); }
 .method-hero-image img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
 .method-hero-image figcaption { padding: .9rem 1rem; color: #d7d4cb; font: 500 .65rem/1.4 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+.method-body-layout { display: grid; grid-template-columns: minmax(12.75rem, .18fr) minmax(0, 1fr); align-items: start; background: #f4f1e8; }
+.method-toc-wrap { position: sticky; top: 1rem; align-self: start; max-height: calc(100vh - 2rem); padding: 1.25rem 1rem 1.25rem max(1rem, calc((100vw - var(--site-max)) / 2)); z-index: 2; }
+.method-toc { border-left: 1px solid var(--rule); padding-left: .8rem; }
+.method-toc > span { display: block; margin-bottom: .7rem; color: var(--ink-soft); font: 500 .62rem var(--font-mono); letter-spacing: .12em; text-transform: uppercase; }
+.method-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .12rem; }
+.method-toc a { display: flex; align-items: baseline; gap: .55rem; padding: .46rem .25rem; color: var(--ink-soft); font-size: .78rem; line-height: 1.24; text-decoration: none; transition: color 160ms var(--ease-out), transform 160ms var(--ease-out); }
+.method-toc a b { color: var(--signal); font: 500 .58rem var(--font-mono); letter-spacing: .08em; }
+.method-toc a:hover, .method-toc a:focus-visible { color: var(--ink); transform: translateX(2px); }
+.method-toc a:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.method-body-content { min-width: 0; }
+.method-body-content > section { scroll-margin-top: 1rem; }
 .method-thesis { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: #e7e3d9; }
 .method-thesis-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(19rem, .9fr); gap: clamp(2rem, 8vw, 11rem); align-items: start; }
 .method-thesis h2 { font-size: clamp(2.4rem, 4.4vw, 5.2rem); }
@@ -689,6 +700,12 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .studio-wrap { padding: 1rem; }
   .studio-compact-form { grid-template-columns: 1fr; }
   .method-hero, .method-thesis-grid, .method-decision-intro, .method-entity, .method-silos-grid, .method-foundry { grid-template-columns: 1fr; }
+  .method-body-layout { display: block; }
+  .method-toc-wrap { position: sticky; top: 0; max-height: none; padding: .6rem 1rem; background: rgba(244, 241, 232, .96); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); backdrop-filter: blur(10px); }
+  .method-toc { border-left: 0; padding-left: 0; display: flex; align-items: center; gap: .7rem; overflow-x: auto; scrollbar-width: thin; }
+  .method-toc > span { flex: 0 0 auto; margin: 0; font-size: .56rem; }
+  .method-toc ol { display: flex; flex: 0 0 auto; gap: .2rem; }
+  .method-toc a { white-space: nowrap; padding: .42rem .28rem; font-size: .72rem; }
   .method-hero { padding-top: 3.5rem; }
   .method-hero-copy h1, .method-thesis h2, .method-decision h2, .method-entity h2, .method-silos h2, .method-foundry h2, .method-close h2 { max-width: 11ch; }
   .method-chapter, .method-chapter.is-reversed { grid-template-columns: 1fr; min-height: 0; }

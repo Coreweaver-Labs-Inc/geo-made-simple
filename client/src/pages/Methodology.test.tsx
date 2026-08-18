@@ -10,6 +10,10 @@ describe("The Coreweaver Method", () => {
     render(<Methodology />);
     expect(screen.getByRole("heading", { name: /make the next answer more accountable/i })).toBeTruthy();
     expect(screen.getByRole("heading", { name: /a page, a topic, a technique/i })).toBeTruthy();
+    const onPageNav = screen.getByRole("navigation", { name: /on this page/i });
+    expect(onPageNav).toBeTruthy();
+    expect(screen.getByRole("link", { name: /decision gates/i }).getAttribute("href")).toBe("#decision-path");
+    expect(screen.getByRole("link", { name: /earthward foundry/i }).getAttribute("href")).toBe("#earthward-foundry");
     expect(screen.getByText(/not presented here as a launched product/i)).toBeTruthy();
     expect(screen.getByRole("link", { name: /website clarity and b2b seo/i }).getAttribute("href")).toBe("/topics/b2b-seo");
     expect(screen.getByRole("link", { name: /read google’s link guidance/i }).getAttribute("href")).toContain("developers.google.com");

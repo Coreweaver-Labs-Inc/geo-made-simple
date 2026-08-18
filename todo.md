@@ -184,3 +184,5 @@
 - [x] Build a public methodology page with accessible visual narrative, structured metadata, source standards, decision-gate explanations, Resources/topic links, and sitemap discovery.
 - [x] Add private reusable agent-training artifacts that guide research, drafting, source review, internal linking, publication review, and continuous-signal triage without autonomous public publication.
 - [x] Validate visual rendering, responsive behavior, structured data, SSR output, internal links, training-document accuracy, and claim-safety boundaries.
+- [x] Add an accessible sticky table of contents to the Coreweaver Method page with clear anchors for the method story, decision path, entity architecture, content silos, and Earthward Foundry pathway.
+- [x] Validate keyboard navigation, responsive sticky/mobile behavior, visible focus states, and rendered Method-page links after adding the table of contents.
