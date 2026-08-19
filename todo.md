@@ -213,3 +213,6 @@
 - [x] Publish the second reviewed Signal Note with named authorship, named reviewer, source-linked method record, and contextual public links.
 - [x] Validate the second Signal Note’s database record, SSR discovery, sitemap coverage, source boundaries, focused tests, and responsive presentation.
 - [x] Update HANDOFF.md and AGENT_LOG.md to record the Evidence Ledger sprint, reviewed Signal Notes, validations, current constraints, and next-session guidance.
+- [x] Define the reusable GEO Made Simple skill scope, trigger language, workflow, evidence guardrails, and expected outputs for future agents.
+- [x] Create a GEO Made Simple skill package with concise operational instructions and reference templates for public-resource work.
+- [x] Validate the GEO Made Simple skill package and update the project handoff with its intended use.

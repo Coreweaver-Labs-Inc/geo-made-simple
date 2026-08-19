@@ -56,11 +56,15 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and the claim-ledger guide. |
 | `server/_core/index.ts` | Dynamic sitemap route; includes the claim-ledger guide in the public fixed-path list. |
 | `AGENTS.md` and `agent-training-playbook.md` | Cross-agent operating rules, evidence requirements, publication gates, and handoff protocol. |
+| `/home/ubuntu/skills/geo-made-simple/SKILL.md` | Reusable future-agent skill for evidence-led GEO, crawlable B2B resource systems, entity clarity, source-aware publishing, claim-ledger governance, Signal Notes, and validation. |
+| `/home/ubuntu/skills/geo-made-simple/references/geo-made-simple-templates.md` | Reusable templates for resource briefs, claim-ledger records, Signal Note review records, discovery validation, governed automation contracts, and handoffs. |
 | `todo.md` | Append-only project checklist. All items through the current Evidence Ledger sprint are complete. |
 
 ## Validation Record
 
 The current sequence has passed focused component tests, TypeScript checks, and production client plus SSR builds after each discrete checkpoint. The claim-ledger guide passed six focused tests, raw SSR title/canonical/worksheet/link checks, static sitemap verification, and desktop review. The reader-guidance and FAQ/Method refinements passed nine focused tests, TypeScript, production build, desktop/mobile visual review, and raw SSR checks. The second Signal Note passed focused Insight-detail tests, database verification, TypeScript, production build, raw SSR checks for its reviewed field record, two primary source URLs, five contextual links, sitemap inclusion, and desktop review.
+
+The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/skill-creator/scripts/quick_validate.py`. It contains no runtime integrations, scripts, credentials, or autonomous publishing capability.
 
 > **Known environment behavior:** `CANONICAL_ORIGIN` is not set in local development, so the dynamic local `/sitemap.xml` intentionally returns a 404. The static fallback sitemap is updated. Confirm that `CANONICAL_ORIGIN=https://coreweaverlabs.com` is configured before relying on the dynamic sitemap in production.
 
@@ -68,7 +72,7 @@ The current sequence has passed focused component tests, TypeScript checks, and 
 
 ## Next Recommended Session
 
-1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work.
+1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work. Load the `geo-made-simple` skill for GEO, discovery, resource-system, Signal Note, claim-ledger, or evidence-led publishing work.
 2. Prepare an **AI answer review** child-guide brief only after selecting current primary sources, defining one buyer question, documenting a limitation, and identifying at least two contextual inbound links. Do not promise AI appearance, retrieval, citation, or description.
 3. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
 4. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
