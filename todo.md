@@ -216,3 +216,7 @@
 - [x] Define the reusable GEO Made Simple skill scope, trigger language, workflow, evidence guardrails, and expected outputs for future agents.
 - [x] Create a GEO Made Simple skill package with concise operational instructions and reference templates for public-resource work.
 - [x] Validate the GEO Made Simple skill package and update the project handoff with its intended use.
+- [x] Audit the current keyword cloud, topic coverage, reader intent, and internal-link gaps across the active Coreweaver content silos.
+- [x] Research source-safe B2B intent clusters and define a prioritized next-wave keyword-cloud and content-silo expansion plan.
+- [x] Implement the next source-safe child guide with contextual internal links, SSR metadata, structured data, sitemap discovery, and review boundaries.
+- [x] Validate the expanded keyword-cloud system, record the evidence and handoff, and preserve draft-only publishing safeguards.

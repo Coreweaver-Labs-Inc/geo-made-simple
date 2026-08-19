@@ -211,6 +211,35 @@ export const childTopics: ChildTopic[] = [
       ],
     },
   },
+  {
+    parentSlug: "ai-representation",
+    slug: "ai-answer-review",
+    label: "AI answer review for B2B",
+    title: "AI answer review for B2B brands",
+    seoTitle: "AI answer review for B2B brands",
+    description: "A practical guide to reviewing an important B2B buyer question against the current public information that supports it—without promising AI visibility, citation, or correction.",
+    kicker: "Inspect the public information behind an answer context",
+    buyerProblem: "A buyer can encounter an AI-mediated description of a company, category, service, or founder before they reach the company’s own explanation. The issue is not whether a team can control a third-party response. It is whether the public facts, source-of-truth pages, limitations, and owners behind an important buyer question are clear enough to inspect and maintain.",
+    decision: "Decide which buyer question merits a review, which current public page should carry the source-of-truth explanation, what ambiguity needs a named owner, and whether the next action is to clarify, qualify, investigate, or hold the record privately.",
+    approach: "Coreweaver Labs treats AI answer review as a source and representation practice. The work begins with one buyer question and the specific public context that raised it, then compares that context with the current source-of-truth page, its support, limitation, owner, and review trigger. A review record makes the next decision visible without treating an observed answer as a promise that a platform will change.",
+    includes: ["A buyer-question review that distinguishes a useful public fact from a broad visibility request", "A source-of-truth check that connects a public explanation to its current support and limitation", "A named owner and next-action record for clarifying, qualifying, investigating, or holding an ambiguity privately"],
+    boundary: "An AI answer review does not control whether an AI system surfaces, describes, retrieves, or cites a company. It does not verify a platform answer, guarantee a correction, or promise visibility, traffic, trust, leads, pipeline, or revenue.",
+    serviceLink: { href: "/services", label: "Discuss an AI representation and growth-system review" },
+    relatedResources: [{ href: "/topics/ai-representation", label: "AI representation for B2B brands" }, { href: "/ai-data-policy", label: "Coreweaver Labs AI Data Policy" }, { href: "/topics/content-governance/claim-ledger", label: "A B2B claim ledger" }, { href: "/research", label: "Research methods and editorial standards" }, { href: "/method", label: "The Coreweaver Method" }, { href: "/topics/b2b-seo/website-information-architecture", label: "B2B website information architecture" }],
+    searchTerms: ["ai answer review", "ai answers about our company", "inaccurate ai description", "what does ai say about us", "review public information for ai", "source of truth for ai answer", "ai representation", "inspect an ai answer", "public facts behind ai answer", "ai answer ambiguity"],
+    worksheet: {
+      title: "A blank AI-answer-review worksheet",
+      description: "Use one record for one important buyer question. The fields below are deliberately blank and stay only in this browser; they are not submitted, stored, or treated as a verified assessment of any AI system.",
+      fields: [
+        { label: "Buyer question and answer context", hint: "State the question a buyer is trying to resolve and describe the public context that made a review useful. Do not paste private transcripts or customer material." },
+        { label: "Current public source-of-truth page", hint: "Link or name the public page that should explain the relevant service, method, fact, or limitation in current language." },
+        { label: "Observable ambiguity", hint: "Describe the gap, missing qualifier, conflicting term, or unclear handoff without asserting that a third-party answer is universally wrong." },
+        { label: "Current support and limitation", hint: "Name the source that supports the public explanation and the scope, date, exception, or uncertainty a reader should retain." },
+        { label: "Named owner and review trigger", hint: "Identify the accountable role and the source, service, or public-information change that requires another review." },
+        { label: "Decision and next action", hint: "Choose a bounded next step: clarify a source-of-truth page, qualify a claim, investigate privately, or hold the record pending current support." },
+      ],
+    },
+  },
 ];
 
 export function getTopic(slug: string | undefined) {
