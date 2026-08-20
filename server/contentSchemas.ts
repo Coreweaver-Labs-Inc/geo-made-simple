@@ -78,6 +78,30 @@ export const contentBriefQueueScheduleSchema = z.object({
   cron: z.string().trim().regex(/^(\S+\s+){5}\S+$/, "Use six cron fields: sec min hour day month weekday.").max(64),
 });
 
+export const marketResearchRecordSchema = z.object({
+  title: z.string().trim().min(12, "Use a descriptive market observation title.").max(180),
+  lane: z.enum(["market_conditions", "buyer_and_category", "channel_and_platform", "competitive_context", "authority_and_content"]),
+  sourceReference: z.string().trim().url("Enter the public source URL, including https://.").max(500),
+  sourceScope: z.string().trim().min(20, "Record the source type, date, scope, and methodology or reporting context.").max(5000),
+  observation: z.string().trim().min(30, "State only what the source directly supports.").max(5000),
+  limitation: z.string().trim().min(20, "State a source, sample, time-period, or applicability limitation.").max(5000),
+  interpretation: z.string().trim().min(30, "Label the Coreweaver working interpretation separately from the source fact.").max(5000),
+  decision: z.enum(["hold", "investigate", "content_brief", "improve_public_explanation", "defer"]),
+  ownerName: z.string().trim().min(2, "Name the accountable owner or role.").max(160),
+  reviewTrigger: z.string().trim().min(10, "Name the date, source, policy, or service change that reopens this record.").max(320),
+});
+
+export const marketResearchReviewSchema = z.object({
+  id: z.number().int().positive(),
+  status: z.enum(["draft", "reviewed", "archived"]),
+  reviewerName: optionalText(220),
+  reviewConfirmed: z.boolean().default(false),
+}).superRefine((data, ctx) => {
+  if (data.status !== "reviewed") return;
+  if (!data.reviewerName) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["reviewerName"], message: "Name the reviewer before marking this market record reviewed." });
+  if (!data.reviewConfirmed) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["reviewConfirmed"], message: "Confirm the source, limitation, and decision review before marking this record reviewed." });
+});
+
 export const caseStudySlugSchema = z.object({ slug: z.string().trim().min(3).max(180) });
 
 const requiredDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use a date in YYYY-MM-DD format.");

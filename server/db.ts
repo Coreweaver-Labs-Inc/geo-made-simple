@@ -22,6 +22,7 @@ import {
   InsertGatewayAuditRecord,
   InsertGatewayRoleProject,
   InsertInsight,
+  InsertMarketResearchRecord,
   InsertUser,
   gtmAccounts,
   gtmContacts,
@@ -32,6 +33,7 @@ import {
   gatewayAuditRecords,
   gatewayRoleProjects,
   insights,
+  marketResearchRecords,
   users,
 } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -275,6 +277,24 @@ export async function completeContentBriefRecord(id: number, input: Pick<InsertC
   const db = await getDb();
   if (!db) throw new Error("Database is unavailable");
   return db.update(contentBriefRecords).set(input).where(eq(contentBriefRecords.id, id));
+}
+
+export async function listMarketResearchRecords() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(marketResearchRecords).orderBy(desc(marketResearchRecords.updatedAt));
+}
+
+export async function createMarketResearchRecord(input: InsertMarketResearchRecord) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.insert(marketResearchRecords).values(input);
+}
+
+export async function reviewMarketResearchRecord(id: number, input: Pick<InsertMarketResearchRecord, "status" | "reviewerName" | "reviewConfirmed">) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is unavailable");
+  return db.update(marketResearchRecords).set(input).where(eq(marketResearchRecords.id, id));
 }
 
 export async function createCaseStudyIntake(input: InsertCaseStudyIntake) {

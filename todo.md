@@ -224,3 +224,12 @@
 - [x] Add a privacy-safe browser-local export action to the AI answer-review worksheet without storing, submitting, or transmitting worksheet contents.
 - [x] Build the B2B content-refresh decision guide with source-safe content, a browser-local worksheet, internal links, SSR metadata, structured data, and sitemap discovery.
 - [x] Validate the buyer-language audit, local export behavior, content-refresh route, responsive experience, public crawler output, tests, and production build; then update the handoff.
+- [ ] Confirm the first Coreweaver video’s purpose, audience, length, aspect ratio, visual direction, narration, music, and distribution requirements.
+- [ ] Research and document a source-safe high-value B2B video-content framework for Coreweaver’s audience and evidence boundaries.
+- [ ] Build an integrated site chat path that answers video-content questions from approved local guidance and links to relevant public resources without hallucinating outcomes or policies.
+- [ ] Draft the approved first-video script and production blueprint, then validate the site integration, content safeguards, and future-agent handoff.
+- [x] Define the Coreweaver market-research task force, research lanes, evidence standard, review gate, and decision rights.
+- [x] Research current B2B market conditions and trends, then produce a source-cited Coreweaver SWOT with explicit limitations.
+- [x] Build a private, review-gated task-force workspace for market observations, SWOT items, and accountable next decisions without automatic public claims or external actions.
+- [x] Define a practical monitoring cadence with at least two user-facing operating options before enabling any recurring work.
+- [x] Validate the research-task-force controls, private access, documented sources, responsiveness, tests, and handoff before publication.

@@ -138,6 +138,34 @@ export const contentBriefRecords = mysqlTable(
 export type ContentBriefRecord = typeof contentBriefRecords.$inferSelect;
 export type InsertContentBriefRecord = typeof contentBriefRecords.$inferInsert;
 
+/**
+ * Private market-research observations for the Coreweaver task force. These
+ * records are internal decision inputs, never public market claims or automatic
+ * publication candidates. They intentionally contain no visitor, customer, or
+ * account-level data.
+ */
+export const marketResearchRecords = mysqlTable("market_research_records", {
+  id: int("id").autoincrement().primaryKey(),
+  title: varchar("title", { length: 180 }).notNull(),
+  lane: mysqlEnum("lane", ["market_conditions", "buyer_and_category", "channel_and_platform", "competitive_context", "authority_and_content"]).notNull(),
+  sourceReference: varchar("sourceReference", { length: 500 }).notNull(),
+  sourceScope: text("sourceScope").notNull(),
+  observation: text("observation").notNull(),
+  limitation: text("limitation").notNull(),
+  interpretation: text("interpretation").notNull(),
+  decision: mysqlEnum("decision", ["hold", "investigate", "content_brief", "improve_public_explanation", "defer"]).default("hold").notNull(),
+  ownerName: varchar("ownerName", { length: 160 }).notNull(),
+  reviewTrigger: varchar("reviewTrigger", { length: 320 }).notNull(),
+  status: mysqlEnum("status", ["draft", "reviewed", "archived"]).default("draft").notNull(),
+  reviewerName: varchar("reviewerName", { length: 220 }),
+  reviewConfirmed: boolean("reviewConfirmed").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type MarketResearchRecord = typeof marketResearchRecords.$inferSelect;
+export type InsertMarketResearchRecord = typeof marketResearchRecords.$inferInsert;
+
 /** Private client-provided evidence records. These records are never public by default. */
 export const caseStudyIntakes = mysqlTable("case_study_intakes", {
   id: int("id").autoincrement().primaryKey(),

@@ -1,0 +1,21 @@
+# Coreweaver Labs — Market-Research Source Notes
+
+**Purpose:** This working record preserves the source facts and limitations used in the first task-force SWOT. It is not a forecast, market-size model, competitive ranking, client outcome, or investment recommendation.
+
+| Source | Verified observation | Safe strategic use | Limitation |
+|---|---|---|---|
+| [IAB/PwC Internet Advertising Revenue Report: Full Year 2025](https://www.iab.com/insights/internet-advertising-revenue-report-full-year-2025/) | IAB reports U.S. digital advertising revenue of nearly $300 billion in 2025, up 13.9% year over year. The report spans digital formats such as video, social, search, commerce media, and the creator economy. | Treat paid-media operations and buyer-message continuity as a durable commercial category worth monitoring. | This is U.S. industry revenue, not B2B-only spend, client demand, paid-media effectiveness, or a prediction for Coreweaver. The detailed report is account-gated. |
+| [6sense: 2025 Marketing Spend Report](https://6sense.com/science-of-b2b/the-science-of-b2b-2025-marketing-spend-report-neither-boom-nor-gloom/) | In a late-2024 survey of 392 B2B marketers, 52.3% reported increasing 2025 marketing budgets, while 39.2% reported no change and 8.4% cuts. The report also found demand generation and digital marketing more likely to gain budget, and noted widespread project delays or cancellations. | Monitor tension between selective digital/demand investment and cautious project approval; keep Coreweaver’s first-engagement record, scope clarity, and reviewable evidence central. | Vendor-sponsored survey; respondents, revenue growth, and budget changes are self-reported. The source itself warns that the magnitude of reported changes may be inflated and some sector differences are not statistically reliable. |
+| [Content Marketing Institute: 2026 B2B Content and Marketing Trends](https://contentmarketinginstitute.com/b2b-research/b2b-content-marketing-trends-research) | CMI reports a 2025 survey of 1,015 B2B marketers. Reported persistent challenges include creating content that prompts action, resource constraints, and measuring content effectiveness. Its interpretation emphasizes strategy refinement and people capability alongside technology adoption. | Prioritize distinctive decision support, source review, measurement definitions, and reusable operating practices over automated volume. | Industry survey and editorial interpretation; reported effectiveness and AI impacts are self-reported, not a causal study or direct evidence for Coreweaver. |
+| [6sense: 2025 Buyer Experience Report](https://6sense.com/science-of-b2b/buyer-experience-report-2025/) | The report describes two surveys totaling more than 4,000 responses and argues that buyers complete much of their research before seller contact. It also emphasizes buyer due diligence around AI features, implementation, pricing, timelines, and data security. | Strengthen public explanations, boundaries, and source-of-truth routes so a buyer can inspect an offer before initiating a private conversation. | Vendor research; buyer-journey framing should guide questions, not be presented as universal behavior or used to promise conversion outcomes. |
+
+## Initial Condition Reading
+
+The current evidence supports a cautious but active B2B environment: digital advertising remains a large, growing U.S. category, while B2B marketers report selective spending, persistent measurement and resource constraints, and intense attention to AI-enabled work. The practical implication is not “spend more” or “publish more.” It is to make each decision, source, message, public explanation, and measurement boundary easier to inspect.
+
+## Prohibited Inferences
+
+- Do not infer Coreweaver market share, demand, revenue, pipeline, or client outcomes from any source above.
+- Do not call vendor-survey figures an industry census or reproduce them without their sample and self-report limitations.
+- Do not treat AI adoption, content production, or digital advertising growth as proof that automation, a trend, or a channel will work for a particular buyer.
+- Do not use this record to justify autonomous publishing, external outreach, budget decisions, investment decisions, or third-party actions.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, contentTrendSignalSchema, gtmOpportunitySchema, gtmRequestSchema, gtmWorkItemSchema, insightDraftSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, contactSubmissionSchema, contentTrendSignalSchema, gtmOpportunitySchema, gtmRequestSchema, gtmWorkItemSchema, insightDraftSchema, marketResearchRecordSchema, marketResearchReviewSchema } from "./contentSchemas";
 
 describe("public content validation", () => {
   it("accepts only a minimized, source-named aggregate signal for private queue review", () => {
@@ -13,6 +13,27 @@ describe("public content validation", () => {
     });
 
     expect(result.success).toBe(true);
+  });
+
+  it("requires a source, limitation, owner, and review trigger for a private market-research record", () => {
+    const result = marketResearchRecordSchema.safeParse({
+      title: "Reported B2B marketing conditions should be reviewed with source limitations",
+      lane: "market_conditions",
+      sourceReference: "https://example.com/report",
+      sourceScope: "Vendor survey of B2B marketers published in 2026; record the sample, geography, and self-report limitations before reuse.",
+      observation: "The report describes survey respondents as increasing investment in selected digital and content functions while project approvals remain uneven.",
+      limitation: "The source is vendor-sponsored and self-reported, so it cannot establish demand, performance, or conditions for a particular Coreweaver prospect.",
+      interpretation: "Coreweaver should preserve small, reviewable first engagements and test public-information gaps before expanding the scope of a content or paid-media recommendation.",
+      decision: "investigate",
+      ownerName: "Market conditions researcher",
+      reviewTrigger: "Review when a newer primary source, policy change, or source-method update is available.",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("requires named review confirmation before a market record can be marked reviewed", () => {
+    expect(marketResearchReviewSchema.safeParse({ id: 1, status: "reviewed", reviewerName: "Research editor", reviewConfirmed: true }).success).toBe(true);
+    expect(marketResearchReviewSchema.safeParse({ id: 1, status: "reviewed", reviewerName: "", reviewConfirmed: false }).success).toBe(false);
   });
 
   it("accepts a complete contact submission and normalizes optional blanks", () => {

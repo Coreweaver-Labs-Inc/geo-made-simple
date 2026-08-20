@@ -22,6 +22,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | FAQ | `/faq` retains accessible search, category filters, accordions, and FAQPage JSON-LD, now fully aligned with the warm paper/ink/brass/teal Signal Ledger system. |
 | Method page | `/method` includes sticky navigation, decision gates, a source-safe “Method at work” example, and the exploratory-only Earthward Foundry pathway. |
 | Publishing governance | Private Studio research and field briefs need sources, method, named reviewer, and confirmed claim review before publication. Intake/case-study material remains private until separately authorized. |
+| Market-research task force | Private Studio workspace supports source-bounded market observations, limitations, interpretations, owners, review triggers, and explicit next decisions. It has no public route, automated publication, external delivery, budget authority, or polling loop. |
 | Communications infrastructure | Hostinger Mail and Vapi callbacks remain authenticated, minimized, private, and draft-only; no autonomous external actions are enabled. |
 
 ## Recently Published Public Work
@@ -46,6 +47,10 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `ai-answer-review-guide-brief.md` | Approved source contract, claim ledger, internal-link plan, boundary, worksheet design, and publication gate for the implemented AI answer review guide. |
 | `buyer-language-audit-2026-08.md` | Cross-route terminology standard and implementation record for SEO, Content Marketing, and Paid Ads, preserving their distinct reader decisions and no-guarantee boundaries. |
 | `content-refresh-guide-brief.md` | Source contract, claim ledger, internal-link plan, boundary, worksheet design, and publication gate for the implemented B2B content-refresh guide. |
+| `market-research-task-force-charter.md` | Private task-force scope, research lanes, evidence standard, decision routes, roles, monitoring options, and hard safety boundaries. |
+| `market-research-source-notes-2026-08.md` | Verified public source notes for the first market-condition review, including source-specific applicability limits. |
+| `market-conditions-swot-2026-08.md` | Source-cited internal SWOT and near-term decision agenda; it is not a forecast, market ranking, or outcome claim. |
+| `market-research-decision-register-template.md` | Reusable monthly private-review record and no-automation cadence decision. |
 | `editorial-review-2026-08.md` | Editor-in-chief review used to guide the Start Here paths, first-engagement record, FAQ normalization, resource labels, and Method-at-work example. |
 
 ## Key Implementation Files
@@ -61,6 +66,8 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `client/src/ssr/prefetch.ts` | SSR title, canonical-path, keyword, and route prefetch handling for public routes. |
 | `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and all implemented child guides through content refresh. |
 | `server/_core/index.ts` | Dynamic sitemap route; includes all implemented child guides through content refresh in the public fixed-path list. |
+| `client/src/pages/Studio.tsx` and `client/src/components/MarketResearchReview.tsx` | Protected market-research task-force workspace and named-review gate. |
+| `drizzle/schema.ts`, `drizzle/0014_long_whirlwind.sql` | Additive private `market_research_records` schema with source, limitation, interpretation, decision, owner, and review fields. |
 | `AGENTS.md` and `agent-training-playbook.md` | Cross-agent operating rules, evidence requirements, publication gates, and handoff protocol. |
 | `/home/ubuntu/skills/geo-made-simple/SKILL.md` | Reusable future-agent skill for evidence-led GEO, crawlable B2B resource systems, entity clarity, source-aware publishing, claim-ledger governance, Signal Notes, and validation. |
 | `/home/ubuntu/skills/geo-made-simple/references/geo-made-simple-templates.md` | Reusable templates for resource briefs, claim-ledger records, Signal Note review records, discovery validation, governed automation contracts, and handoffs. |
@@ -72,6 +79,8 @@ The current sequence has passed focused component tests, TypeScript checks, and 
 
 The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/skill-creator/scripts/quick_validate.py`. It contains no runtime integrations, scripts, credentials, or autonomous publishing capability.
 
+The market-research task-force foundation passed database migration review and application; private table-field verification; source-record and SWOT documentation; protected Studio visual review; focused schema tests; TypeScript; production client/SSR build; and the full non-external regression suite with **73 tests in 28 files**. The existing live Hostinger credential integration check remains separately documented as non-OK and was not changed.
+
 > **Known environment behavior:** `CANONICAL_ORIGIN` is not set in local development, so the dynamic local `/sitemap.xml` intentionally returns a 404. The static fallback sitemap is updated. Confirm that `CANONICAL_ORIGIN=https://coreweaverlabs.com` is configured before relying on the dynamic sitemap in production.
 
 > **Non-blocking build note:** the client bundle still emits the existing chunk-size warning above 500 kB. Do not present this as a production failure; consider code-splitting only as a separately scoped performance task.
@@ -79,10 +88,11 @@ The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/ski
 ## Next Recommended Session
 
 1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work. Load the `geo-made-simple` skill for GEO, discovery, resource-system, Signal Note, claim-ledger, or evidence-led publishing work.
-2. Prepare the **B2B buyer-language audit** child-guide brief only after selecting current primary sources, defining one distinct cross-route decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that terminology alignment changes conversion, platform behavior, or commercial outcomes.
-3. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
-4. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
-5. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.
+2. Hold the first **monthly private market-source review** using `market-research-decision-register-template.md`. Keep sources, limits, interpretations, and next decisions separate; do not enable a weekly digest until an owner approves a permitted source registry and private report destination.
+3. Prepare the **B2B buyer-language audit** child-guide brief only after selecting current primary sources, defining one distinct cross-route decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that terminology alignment changes conversion, platform behavior, or commercial outcomes.
+4. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
+5. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
+6. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.
 
 ## Non-Negotiable Guardrails
 

@@ -1,6 +1,7 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import DashboardLayout from "@/components/DashboardLayout";
 import { CaseStudyHandoff } from "@/components/CaseStudyHandoff";
+import { MarketResearchReview } from "@/components/MarketResearchReview";
 import { SeoHead } from "@/components/SeoHead";
 import { startLogin } from "@/const";
 import { trpc } from "@/lib/trpc";
@@ -32,6 +33,19 @@ type SignalValues = {
 
 type QueueScheduleValues = { cron: string };
 
+type MarketResearchValues = {
+  title: string;
+  lane: "market_conditions" | "buyer_and_category" | "channel_and_platform" | "competitive_context" | "authority_and_content";
+  sourceReference: string;
+  sourceScope: string;
+  observation: string;
+  limitation: string;
+  interpretation: string;
+  decision: "hold" | "investigate" | "content_brief" | "improve_public_explanation" | "defer";
+  ownerName: string;
+  reviewTrigger: string;
+};
+
 function StudioContent() {
   const { user, loading } = useAuth();
   const articles = trpc.insights.listStudio.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
@@ -40,6 +54,7 @@ function StudioContent() {
   const queue = trpc.contentQueue.status.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const signals = trpc.contentQueue.listSignals.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const briefRecords = trpc.contentQueue.listBriefs.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
+  const marketResearch = trpc.marketResearch.list.useQuery(undefined, { enabled: user?.role === "admin", retry: false });
   const utils = trpc.useUtils();
   const form = useForm<ArticleValues>({
     defaultValues: {
@@ -60,6 +75,7 @@ function StudioContent() {
     defaultValues: { sourceType: "manual_trend_snapshot", sourceReference: "", silo: "paid_message_learning", buyerQuestion: "", summary: "", sourceWindow: "" },
   });
   const scheduleForm = useForm<QueueScheduleValues>({ defaultValues: { cron: "0 0 9 * * 1" } });
+  const marketResearchForm = useForm<MarketResearchValues>({ defaultValues: { title: "", lane: "market_conditions", sourceReference: "", sourceScope: "", observation: "", limitation: "", interpretation: "", decision: "hold", ownerName: "Market conditions researcher", reviewTrigger: "" } });
   const contentType = form.watch("contentType");
   const status = form.watch("status");
   const isResearch = contentType !== "article";
@@ -73,6 +89,7 @@ function StudioContent() {
   const createSignal = trpc.contentQueue.createSignal.useMutation({ onSuccess: () => { signalForm.reset(); signals.refetch(); } });
   const approveSignal = trpc.contentQueue.approveSignal.useMutation({ onSuccess: () => signals.refetch() });
   const enableSchedule = trpc.contentQueue.enableSchedule.useMutation({ onSuccess: () => queue.refetch() });
+  const createMarketResearch = trpc.marketResearch.create.useMutation({ onSuccess: () => { marketResearchForm.reset(); marketResearch.refetch(); } });
 
   if (loading) return <div className="studio-state"><LoaderCircle className="spin" /> Loading your studio…</div>;
   if (!user) return <div className="studio-state"><h1>Sign in to manage Insights.</h1><button className="button button-primary" onClick={() => startLogin()}>Sign in</button></div>;
@@ -146,6 +163,27 @@ function StudioContent() {
         <div className="studio-list">{signals.data?.length ? signals.data.map(signal => <div key={signal.id}><strong>{signal.buyerQuestion}</strong><span>{signal.silo.replaceAll("_", " ")} · {signal.sourceType.replaceAll("_", " ")} · {signal.status}</span><p>{signal.summary}</p><p><b>Source contract:</b> {signal.sourceReference} · {signal.sourceWindow}</p>{signal.status === "pending" && <button className="text-link" type="button" onClick={() => approveSignal.mutate({ id: signal.id })} disabled={approveSignal.isPending}>Approve for draft generation</button>}</div>) : <p>No private signals yet. Add a minimized, source-named signal for review.</p>}</div>
         <h3>Generated draft audit</h3>
         <div className="studio-list">{briefRecords.data?.length ? briefRecords.data.map(record => <div key={record.id}><strong>Signal #{record.signalId} · {record.status.replaceAll("_", " ")}</strong><span>{record.model} · draft insight {record.draftInsightId || "not created"}</span>{record.errorCode && <p><b>Run note:</b> {record.errorCode}</p>}</div>) : <p>No queue records yet. Approved signals remain private until a scheduled run claims them.</p>}</div>
+      </section>
+      <section className="studio-card inquiries-card">
+        <h2>Market-research task force</h2>
+        <p className="studio-queue-note">Capture a source-bounded market observation, its limitation, and one accountable next decision. These records are private decision inputs. They cannot publish, contact anyone, alter budgets, or create a public claim automatically.</p>
+        <div className="studio-queue-status"><p><b>Recommended starting cadence:</b> monthly source-review meeting with a named evidence reviewer. <b>Not enabled:</b> weekly private digest, external delivery, public publication, and any automatic action.</p></div>
+        <form className="studio-form studio-signal-form" onSubmit={marketResearchForm.handleSubmit(values => createMarketResearch.mutate(values))}>
+          <h3>Add a private market record</h3>
+          <label>Record title<input {...marketResearchForm.register("title", { required: true, minLength: 12, maxLength: 180 })} /></label>
+          <label>Research lane<select {...marketResearchForm.register("lane")}><option value="market_conditions">Market conditions</option><option value="buyer_and_category">Buyer and category</option><option value="channel_and_platform">Channel and platform</option><option value="competitive_context">Competitive context</option><option value="authority_and_content">Authority and content</option></select></label>
+          <label>Public source URL<input type="url" placeholder="https://" {...marketResearchForm.register("sourceReference", { required: true })} /></label>
+          <label>Source scope and method<textarea rows={3} placeholder="Publisher, date, sample or reporting scope, geography, and source type." {...marketResearchForm.register("sourceScope", { required: true, minLength: 20 })} /></label>
+          <label>Source-supported observation<textarea rows={3} placeholder="State only what the source directly supports. Do not paste private client, visitor, account, or prospect data." {...marketResearchForm.register("observation", { required: true, minLength: 30 })} /></label>
+          <label>Limitation<textarea rows={3} placeholder="Name the source, time-period, sample, sponsor, or applicability limit." {...marketResearchForm.register("limitation", { required: true, minLength: 20 })} /></label>
+          <label>Coreweaver working interpretation<textarea rows={3} placeholder="Keep this separate from the source fact; do not imply a result or recommendation beyond the evidence." {...marketResearchForm.register("interpretation", { required: true, minLength: 30 })} /></label>
+          <label>Private next decision<select {...marketResearchForm.register("decision")}><option value="hold">Hold</option><option value="investigate">Investigate</option><option value="content_brief">Prepare private content brief</option><option value="improve_public_explanation">Improve a public explanation</option><option value="defer">Defer</option></select></label>
+          <label>Accountable owner or role<input {...marketResearchForm.register("ownerName", { required: true, minLength: 2 })} /></label>
+          <label>Review trigger<input placeholder="New source, policy change, service change, or review date" {...marketResearchForm.register("reviewTrigger", { required: true, minLength: 10 })} /></label>
+          {createMarketResearch.error && <p className="studio-error">{createMarketResearch.error.message}</p>}
+          <button className="button button-primary" disabled={createMarketResearch.isPending}>{createMarketResearch.isPending ? "Saving…" : "Save private market record"}</button>
+        </form>
+        <div className="studio-list">{marketResearch.data?.length ? marketResearch.data.map(record => <div key={record.id}><strong>{record.title}</strong><span>{record.lane.replaceAll("_", " ")} · {record.status} · {record.decision.replaceAll("_", " ")}</span><p><b>Observation:</b> {record.observation}</p><p><b>Source contract:</b> {record.sourceReference} · {record.sourceScope}</p><p><b>Limitation:</b> {record.limitation}</p><p><b>Interpretation:</b> {record.interpretation}</p><p><b>Owner and trigger:</b> {record.ownerName} · {record.reviewTrigger}</p><MarketResearchReview record={record} /></div>) : <p>No private market records yet. Save one source-bounded observation for review.</p>}</div>
       </section>
       <section className="studio-card inquiries-card">
         <h2>Case-study evidence queue</h2>

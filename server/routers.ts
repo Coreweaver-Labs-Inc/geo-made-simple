@@ -1,6 +1,6 @@
 import { COOKIE_NAME } from "@shared/const";
 import { TRPCError } from "@trpc/server";
-import { approveContentTrendSignal, createCaseStudyIntake, createContactSubmission, createContentTrendSignal, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, ensureContentBriefQueue, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listContentBriefRecords, listContentTrendSignals, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listPublishedCaseStudies, listPublishedInsights, updateCaseStudyHandoff, updateContentBriefQueue, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
+import { approveContentTrendSignal, createCaseStudyIntake, createContactSubmission, createContentTrendSignal, createGtmAccount, createGtmContact, createGtmOpportunity, createGtmRequest, createGtmSupportCase, createGtmWorkItem, createInsight, createMarketResearchRecord, ensureContentBriefQueue, getPublishedCaseStudyBySlug, getPublishedInsightBySlug, listCaseStudyIntakes, listContactSubmissions, listContentBriefRecords, listContentTrendSignals, listGtmAccounts, listGtmContacts, listGtmOpportunities, listGtmRequests, listGtmSupportCases, listGtmWorkItems, listInsightsForStudio, listMarketResearchRecords, listPublishedCaseStudies, listPublishedInsights, reviewMarketResearchRecord, updateCaseStudyHandoff, updateContentBriefQueue, updateGtmAccount, updateGtmContact, updateGtmOpportunity, updateGtmRequest, updateGtmSupportCase, updateGtmWorkItem } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { createHeartbeatJob, updateHeartbeatJob } from "./_core/heartbeat";
 import { notifyOwner } from "./_core/notification";
@@ -8,7 +8,7 @@ import { fingerprintContentSignal } from "./contentQueue";
 import { guideSupportInquiry } from "./supportAssistant";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, publicProcedure, router } from "./_core/trpc";
-import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, contentBriefQueueScheduleSchema, contentTrendSignalApprovalSchema, contentTrendSignalSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema, supportAssistantSchema } from "./contentSchemas";
+import { caseStudyHandoffSchema, caseStudyIntakeSchema, caseStudySlugSchema, contactSubmissionSchema, contentBriefQueueScheduleSchema, contentTrendSignalApprovalSchema, contentTrendSignalSchema, gtmAccountSchema, gtmAccountUpdateSchema, gtmContactSchema, gtmContactUpdateSchema, gtmOpportunitySchema, gtmOpportunityUpdateSchema, gtmRequestSchema, gtmRequestUpdateSchema, gtmSupportCaseSchema, gtmSupportCaseUpdateSchema, gtmWorkItemSchema, gtmWorkItemUpdateSchema, insightDraftSchema, insightSlugSchema, marketResearchRecordSchema, marketResearchReviewSchema, supportAssistantSchema } from "./contentSchemas";
 
 export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
@@ -179,6 +179,17 @@ export const appRouter = router({
       }, "");
       await updateContentBriefQueue(queue.id, { isEnabled: true, cronExpression: input.cron, scheduleCronTaskUid: job.taskUid, model: queue.model, lastRunAt: queue.lastRunAt });
       return { success: true, taskUid: job.taskUid } as const;
+    }),
+  }),
+  marketResearch: router({
+    list: adminProcedure.query(() => listMarketResearchRecords()),
+    create: adminProcedure.input(marketResearchRecordSchema).mutation(async ({ input }) => {
+      await createMarketResearchRecord({ ...input, status: "draft", reviewerName: null, reviewConfirmed: false });
+      return { success: true } as const;
+    }),
+    review: adminProcedure.input(marketResearchReviewSchema).mutation(async ({ input }) => {
+      await reviewMarketResearchRecord(input.id, { status: input.status, reviewerName: input.reviewerName ?? null, reviewConfirmed: input.reviewConfirmed });
+      return { success: true } as const;
     }),
   }),
   caseStudies: router({
