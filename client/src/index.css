@@ -697,6 +697,26 @@ p { color: var(--ink-soft); line-height: 1.7; }
 .resource-cluster-card .text-link { margin-top: auto; }
 .child-topic-share { margin-top: 1.4rem; }
 
+.video-answer-guide { margin: 0 0 4rem; padding: clamp(1.5rem, 4vw, 3rem); border: 1px solid color-mix(in srgb, var(--brass) 42%, transparent); background: linear-gradient(145deg, color-mix(in srgb, var(--teal) 7%, transparent), rgba(255, 253, 249, .7)); }
+.video-answer-guide-intro { max-width: 48rem; }
+.video-answer-guide-intro > span { color: var(--brass); font: .68rem/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.video-answer-guide-intro h2 { margin: .7rem 0; max-width: 30rem; }
+.video-answer-guide-intro p { margin: 0; }
+.video-answer-guide-chat { display: grid; gap: .85rem; margin-top: 1.5rem; }
+.video-answer-guide-log { display: grid; gap: .7rem; max-height: 29rem; overflow-y: auto; padding-right: .25rem; }
+.video-answer-message { max-width: 52rem; padding: .95rem 1rem; border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); background: rgba(255, 254, 249, .85); }
+.video-answer-message.is-user { justify-self: end; max-width: 42rem; border-color: color-mix(in srgb, var(--teal) 30%, transparent); background: color-mix(in srgb, var(--teal) 9%, transparent); }
+.video-answer-message p { margin: 0; }
+.video-answer-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: .75rem !important; }
+.video-answer-links a { display: inline-flex; align-items: center; gap: .25rem; color: var(--ink); font: .72rem/1.3 var(--mono); text-decoration: underline; text-underline-offset: .2rem; }
+.video-answer-prompts { display: flex; flex-wrap: wrap; gap: .5rem; }
+.video-answer-prompts button { border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent); background: transparent; padding: .55rem .7rem; color: var(--ink); font: .73rem/1.25 var(--mono); text-align: left; cursor: pointer; transition: background-color 160ms var(--ease-out), transform 160ms var(--ease-out); }
+.video-answer-prompts button:hover, .video-answer-prompts button:focus-visible { background: color-mix(in srgb, var(--teal) 10%, transparent); }
+.video-answer-prompts button:active { transform: scale(.97); }
+.video-answer-input { display: grid; gap: .7rem; }
+.video-answer-input textarea { width: 100%; resize: vertical; border: 1px solid color-mix(in srgb, var(--ink) 28%, transparent); background: rgba(255, 254, 249, .94); color: var(--ink); padding: .8rem; font: inherit; }
+.video-answer-input .button { justify-self: start; }
+
 @media (max-width: 800px) {
   .site-header { width: min(100% - 2rem, 1440px); }
   .menu-toggle { display: inline-flex; }
@@ -783,6 +803,8 @@ p { color: var(--ink-soft); line-height: 1.7; }
   .topic-decision { padding-left: 1.2rem; }
   .topic-related-links a { grid-template-columns: 1fr auto; }
   .topic-related-links span { grid-column: 1 / -1; }
+  .video-answer-guide { margin: 0 0 3rem; padding: 1.25rem; }
+  .video-answer-message.is-user { max-width: 100%; }
 }
 
 @media (max-width: 540px) {

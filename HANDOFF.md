@@ -23,6 +23,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | Method page | `/method` includes sticky navigation, decision gates, a source-safe “Method at work” example, and the exploratory-only Earthward Foundry pathway. |
 | Publishing governance | Private Studio research and field briefs need sources, method, named reviewer, and confirmed claim review before publication. Intake/case-study material remains private until separately authorized. |
 | Market-research task force | Private Studio workspace supports source-bounded market observations, limitations, interpretations, owners, review triggers, and explicit next decisions. It has no public route, automated publication, external delivery, budget authority, or polling loop. |
+| Video-content foundation | Approved 16:9 cornerstone-video brief, source-backed production system, final-review script, and deterministic Method-page video-answer guide are ready. No video has been generated, embedded, or published. |
 | Communications infrastructure | Hostinger Mail and Vapi callbacks remain authenticated, minimized, private, and draft-only; no autonomous external actions are enabled. |
 
 ## Recently Published Public Work
@@ -51,6 +52,8 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `market-research-source-notes-2026-08.md` | Verified public source notes for the first market-condition review, including source-specific applicability limits. |
 | `market-conditions-swot-2026-08.md` | Source-cited internal SWOT and near-term decision agenda; it is not a forecast, market ranking, or outcome claim. |
 | `market-research-decision-register-template.md` | Reusable monthly private-review record and no-automation cadence decision. |
+| `video-content-system-2026-08.md` | Source-backed high-value B2B video system, approved answer scope, accessibility rules, measurement boundary, and production gates. |
+| `coreweaver-cornerstone-video-script-v1.md` | Reviewed production draft: narration, shot plan, captions, asset rules, CTA, derivative plan, and final publication checklist. |
 | `editorial-review-2026-08.md` | Editor-in-chief review used to guide the Start Here paths, first-engagement record, FAQ normalization, resource labels, and Method-at-work example. |
 
 ## Key Implementation Files
@@ -63,6 +66,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `client/src/pages/Topics.tsx` | Public B2B Growth Topics hub with resource-purpose labels and deterministic topic search. |
 | `client/src/pages/Faq.tsx` | Searchable and accessible FAQ with source-safe answers and FAQPage schema. |
 | `client/src/pages/Methodology.tsx` | Public methodology narrative, sticky table of contents, decision gates, Method-at-work example, and Earthward Foundry boundary. |
+| `client/src/components/VideoAnswerGuide.tsx`, `client/src/lib/videoAnswerGuide.ts` | Public browser-local deterministic video-answer guide that links only to approved public routes and returns transparent fallbacks for unapproved questions. |
 | `client/src/ssr/prefetch.ts` | SSR title, canonical-path, keyword, and route prefetch handling for public routes. |
 | `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and all implemented child guides through content refresh. |
 | `server/_core/index.ts` | Dynamic sitemap route; includes all implemented child guides through content refresh in the public fixed-path list. |
@@ -81,6 +85,8 @@ The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/ski
 
 The market-research task-force foundation passed database migration review and application; private table-field verification; source-record and SWOT documentation; protected Studio visual review; focused schema tests; TypeScript; production client/SSR build; and the full non-external regression suite with **73 tests in 28 files**. The existing live Hostinger credential integration check remains separately documented as non-OK and was not changed.
 
+The video-content foundation passed source review, approved production brief and script creation, focused deterministic-answer and Method-page tests, TypeScript, production client/SSR build, raw SSR verification of the public answer guide, and desktop/mobile Method-page visual review. The full non-external regression suite passed **76 tests in 29 files**. The initial video remains a draft artifact until a named editor, claim reviewer, accessibility reviewer, and publishing owner approve the rendered master, captions, transcript, audio, and final routes.
+
 > **Known environment behavior:** `CANONICAL_ORIGIN` is not set in local development, so the dynamic local `/sitemap.xml` intentionally returns a 404. The static fallback sitemap is updated. Confirm that `CANONICAL_ORIGIN=https://coreweaverlabs.com` is configured before relying on the dynamic sitemap in production.
 
 > **Non-blocking build note:** the client bundle still emits the existing chunk-size warning above 500 kB. Do not present this as a production failure; consider code-splitting only as a separately scoped performance task.
@@ -89,10 +95,11 @@ The market-research task-force foundation passed database migration review and a
 
 1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work. Load the `geo-made-simple` skill for GEO, discovery, resource-system, Signal Note, claim-ledger, or evidence-led publishing work.
 2. Hold the first **monthly private market-source review** using `market-research-decision-register-template.md`. Keep sources, limits, interpretations, and next decisions separate; do not enable a weekly digest until an owner approves a permitted source registry and private report destination.
-3. Prepare the **B2B buyer-language audit** child-guide brief only after selecting current primary sources, defining one distinct cross-route decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that terminology alignment changes conversion, platform behavior, or commercial outcomes.
-4. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
-5. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
-6. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.
+3. Before generating or publishing the first video, complete the final checklist in `coreweaver-cornerstone-video-script-v1.md`: named editor, claim reviewer, accessibility reviewer, publishing owner, final transcript/captions, rights-cleared inputs, end-card URL, and render review. Do not publish a derivative before the 16:9 master is approved.
+4. Prepare the **B2B buyer-language audit** child-guide brief only after selecting current primary sources, defining one distinct cross-route decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that terminology alignment changes conversion, platform behavior, or commercial outcomes.
+5. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
+6. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
+7. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.
 
 ## Non-Negotiable Guardrails
 
