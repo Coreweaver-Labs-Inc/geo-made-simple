@@ -9,6 +9,11 @@ export type TopicWorksheet = {
   title: string;
   description: string;
   fields: TopicWorksheetField[];
+  export?: {
+    filename: string;
+    label: string;
+    hint: string;
+  };
 };
 
 export type Topic = {
@@ -63,9 +68,9 @@ export const topics: Topic[] = [
     resourceType: "Start here",
     description: "A practical guide to making mid-market B2B expertise, services, and buyer language easier to find and understand in search.",
     kicker: "Search clarity for B2B teams",
-    buyerProblem: "B2B SEO becomes difficult when the pages, evidence, and buyer language around a company tell disconnected stories. Useful search work starts by making the commercial information people need easier to locate, interpret, and maintain.",
-    approach: "Coreweaver Labs treats SEO as an evidence and information-architecture system. The work connects buyer questions, service pages, source material, technical priorities, and review routines before activity is expanded.",
-    includes: ["A buyer-question and service-language baseline", "Claim, source, and information-architecture review", "A prioritized roadmap that can be owned and revisited"],
+    buyerProblem: "B2B SEO becomes difficult when the pages, evidence, and buyer language around a company tell disconnected stories. Useful search work starts by locating the current public explanation a buyer needs, then making its purpose, support, and relationship to adjacent pages easier to inspect and maintain.",
+    approach: "Coreweaver Labs treats SEO as an evidence and information-architecture system. The work connects buyer questions, source-of-truth pages, service language, source material, technical priorities, and review routines before activity is expanded.",
+    includes: ["A buyer-question and current-public-explanation baseline", "Claim, source, page-purpose, and information-architecture review", "A prioritized roadmap with named ownership and review triggers"],
     boundary: "A clear SEO system can make work more reviewable. It does not guarantee rankings, traffic, leads, or revenue.",
     serviceLink: { href: "/services", label: "Explore evidence-led B2B SEO services" },
     relatedResources: [{ href: "/framework", label: "The ARM Framework" }, { href: "/research", label: "Research methods and source standards" }, { href: "/insights/a-practical-signal-audit", label: "What a practical signal audit should reveal" }],
@@ -78,9 +83,9 @@ export const topics: Topic[] = [
     resourceType: "Decision guide",
     description: "A practical guide to buyer education, category perspective, and governed content operations for mid-market B2B teams.",
     kicker: "Content that teaches a buyer something useful",
-    buyerProblem: "A busy B2B team can publish frequently and still leave its buyers unclear about the category, the company’s point of view, or the next decision. The issue is often not volume; it is whether the content works together as useful buyer education.",
-    approach: "Coreweaver Labs connects editorial planning to real buyer questions, current source material, category perspective, distribution choices, and a repeatable review habit. The aim is a commercial story that can be taught and maintained.",
-    includes: ["Research-led editorial priorities", "Content models that connect expertise to buyer decisions", "Voice, claim, and refresh governance"],
+    buyerProblem: "A busy B2B team can publish frequently and still leave its buyers unclear about the category, the company’s point of view, or the next decision. The issue is often not volume; it is whether the content works together as useful buyer education and whether an existing page should be updated, merged, qualified, retired, or developed into a distinct contribution.",
+    approach: "Coreweaver Labs connects editorial planning to real buyer questions, current source material, category perspective, distribution choices, and a repeatable review habit. The aim is a commercial story that can be taught, inspected, and maintained without treating a refresh as a volume tactic.",
+    includes: ["Research-led editorial priorities and current support checks", "Content models that connect expertise to buyer decisions and adjacent source-of-truth pages", "Voice, claim, ownership, and refresh-decision governance"],
     boundary: "Publishing useful content does not guarantee demand, citations, pipeline, or revenue. It creates material that can be inspected, improved, and used consistently.",
     serviceLink: { href: "/services", label: "Explore evidence-led Content Marketing services" },
     relatedResources: [{ href: "/research", label: "Research methods and editorial standards" }, { href: "/framework", label: "The ARM Framework" }, { href: "/insights/representation-is-an-operating-concern", label: "Representation is now an operating concern" }],
@@ -93,9 +98,9 @@ export const topics: Topic[] = [
     resourceType: "Decision guide",
     description: "A practical guide to coordinating B2B paid media, landing-page clarity, message testing, and reviewable reporting.",
     kicker: "Paid media that tests a clear commercial story",
-    buyerProblem: "Paid media can create more activity without creating more learning when the audience, offer, landing page, and sales story are disconnected. A useful paid-media system needs a clear proposition and a way to review what each test actually teaches.",
-    approach: "Coreweaver Labs approaches paid ads as a coordinated message and learning system. It connects audience, channel, creative, landing-page continuity, and measurement review so decisions can be documented rather than treated as platform theater.",
-    includes: ["Audience, channel, and message strategy", "Creative and landing-page continuity", "Campaign operations with reviewable reporting"],
+    buyerProblem: "Paid media can create more activity without creating more learning when the audience, offer, landing page, and sales story are disconnected. A useful paid-media system needs a clear proposition, the same buyer question and evidence boundary from message to destination, and a way to review what each test actually teaches.",
+    approach: "Coreweaver Labs approaches paid ads as a coordinated message and learning system. It connects audience, channel, creative, landing-page continuity, shared buyer language, and measurement review so decisions can be documented rather than treated as platform theater.",
+    includes: ["Audience, channel, and shared buyer-question strategy", "Creative, landing-page, and evidence-boundary continuity", "Campaign operations with reviewable delivery observations"],
     boundary: "Paid-media work does not guarantee leads, cost efficiency, pipeline, revenue, or return on ad spend. Platforms, buyer behavior, and markets remain independent.",
     serviceLink: { href: "/services", label: "Explore evidence-led B2B Paid Ads services" },
     relatedResources: [{ href: "/framework", label: "The ARM Framework" }, { href: "/faq#faq-services", label: "Service scope and no-guarantee FAQ answers" }, { href: "/insights/measurement-without-vanity-metrics", label: "Measure presence without chasing vanity metrics" }],
@@ -167,6 +172,35 @@ export const childTopics: ChildTopic[] = [
     searchTerms: ["buyer enablement", "buying group", "buying committee", "content helps buyers decide", "buyer education", "decision content", "content marketing", "thought leadership", "content strategy", "help buyers understand"],
   },
   {
+    parentSlug: "b2b-content-marketing",
+    slug: "content-refresh",
+    label: "B2B content refresh",
+    title: "B2B content refresh: update, merge, qualify, retire, or create",
+    seoTitle: "B2B content refresh decision guide",
+    description: "A practical guide to deciding whether an existing B2B page should be updated, merged, qualified, retired, or developed into a distinct new resource—without treating freshness or volume as a result claim.",
+    kicker: "Decide what an existing page should become",
+    buyerProblem: "A B2B team can keep publishing while older pages still carry an unclear buyer question, outdated support, a duplicated explanation, or no obvious owner. The useful question is not how to make every page look fresh. It is whether this page still earns its place in the public system and what the smallest responsible next action should be.",
+    decision: "Decide whether the existing page should be updated, merged into a clearer source-of-truth route, qualified with current limits, retired through the appropriate review, or developed into a distinct contribution that resolves a new buyer decision.",
+    approach: "Coreweaver Labs treats content refresh as a decision and evidence practice. The review begins with the page’s current buyer question, public support, purpose, adjacent routes, and owner. It then records any material change and selects one bounded action, keeping technical canonical or redirect work downstream of the editorial decision and technical review.",
+    includes: ["A page-purpose and buyer-question check that distinguishes a real decision gap from a calendar-driven update", "A current-support and claim-boundary review that makes material changes and missing qualifiers visible", "An action record for updating, merging, qualifying, retiring, or developing a distinct source-backed contribution"],
+    boundary: "A content-refresh decision does not guarantee freshness, ranking movement, AI visibility, traffic, demand, citations, conversion, leads, pipeline, or revenue. It does not authorize deletion, redirects, or legal/compliance decisions without the relevant owner and technical review.",
+    serviceLink: { href: "/services", label: "Discuss evidence-led Content Marketing systems" },
+    relatedResources: [{ href: "/topics/b2b-content-marketing", label: "B2B Content Marketing systems" }, { href: "/topics/b2b-content-marketing/buyer-enablement", label: "B2B buyer enablement content" }, { href: "/topics/b2b-seo/website-information-architecture", label: "B2B website information architecture" }, { href: "/topics/content-governance/claim-ledger", label: "A B2B claim ledger" }, { href: "/research", label: "Research methods and editorial standards" }, { href: "/method", label: "The Coreweaver Method" }],
+    searchTerms: ["b2b content refresh", "update merge or retire content", "outdated website content", "should we update this page", "content refresh decision", "merge duplicate content", "qualify an outdated claim", "content maintenance", "content governance", "refresh old b2b content"],
+    worksheet: {
+      title: "A blank content-refresh worksheet",
+      description: "Use one record for one existing public page. The fields below are deliberately blank and stay only in this browser; they are not submitted, stored, or treated as a verified content audit.",
+      fields: [
+        { label: "Existing page and buyer decision", hint: "Name the public page and the question a buyer should be able to resolve there. Do not paste private traffic, customer, or account information." },
+        { label: "Current support and material change", hint: "Identify the source that supports the page today and the changed fact, scope, offer, ownership, or limitation that makes a review useful." },
+        { label: "Page purpose and adjacent route", hint: "State what this page uniquely explains and which nearby source-of-truth page may overlap, complement it, or need to receive a handoff." },
+        { label: "Reader and claim boundary", hint: "Describe what a reader still needs and which uncertainty, qualification, or limit must remain visible after the action." },
+        { label: "Named owner and review trigger", hint: "Identify the person or role responsible for the decision and the source, service, or structural change that requires another review." },
+        { label: "Decision and next action", hint: "Choose one bounded action: update, merge, qualify, retire through the appropriate review, or develop a distinct new contribution." },
+      ],
+    },
+  },
+  {
     parentSlug: "b2b-paid-ads",
     slug: "message-landing-page-alignment",
     label: "B2B paid-message and landing-page alignment",
@@ -230,6 +264,11 @@ export const childTopics: ChildTopic[] = [
     worksheet: {
       title: "A blank AI-answer-review worksheet",
       description: "Use one record for one important buyer question. The fields below are deliberately blank and stay only in this browser; they are not submitted, stored, or treated as a verified assessment of any AI system.",
+      export: {
+        filename: "coreweaver-ai-answer-review.txt",
+        label: "Download a private text copy",
+        hint: "The download is created only in this browser and saved to your device. No worksheet contents are submitted, stored, or transmitted by Coreweaver Labs.",
+      },
       fields: [
         { label: "Buyer question and answer context", hint: "State the question a buyer is trying to resolve and describe the public context that made a review useful. Do not paste private transcripts or customer material." },
         { label: "Current public source-of-truth page", hint: "Link or name the public page that should explain the relevant service, method, fact, or limitation in current language." },

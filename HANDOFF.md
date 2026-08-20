@@ -15,7 +15,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | Area | Current state |
 |---|---|
 | Public authority system | `/topics`, `/research`, `/method`, `/faq`, `/case-studies`, and `/insights` form a connected evidence-led reader path. |
-| Implemented child guides | Website information architecture, buyer enablement, paid-message alignment, B2B claim ledger, and AI answer review are public child routes beneath their parent topic pillars. |
+| Implemented child guides | Website information architecture, buyer enablement, content refresh, paid-message alignment, B2B claim ledger, and AI answer review are public child routes beneath their parent topic pillars. |
 | Claim-ledger guide | `/topics/content-governance/claim-ledger` provides a six-field blank worksheet for statement, source, scope/limitation, owner, review trigger, and action. It remains browser-local, accepts no submission, and instructs readers not to enter private or customer-specific material. |
 | Signal Notes | Two reviewed field briefs are published with named author, reviewer, primary-source references, explicit method notes, limitations, and contextual public links. |
 | Reader guidance | Homepage Resources and the `/topics` cards use the shared resource-purpose vocabulary: **Start here**, **Decision guide**, **Working method**, and **Research standard**. |
@@ -30,6 +30,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 |---|---|---|
 | `/topics/content-governance/claim-ledger` | **A B2B claim ledger: connecting public statements to current support.** Includes a blank, non-client-specific worksheet and links to Content Governance, Research, Case Studies, FAQ evidence answers, and Method. | It does not turn an unsupported assertion into evidence, replace legal/compliance review, authorize private material, or promise commercial outcomes. |
 | `/topics/ai-representation/ai-answer-review` | **AI answer review for B2B brands.** Includes a blank browser-local worksheet that connects a buyer question, source-of-truth page, observable ambiguity, support/limitation, owner, and next action. | It does not diagnose, control, verify, correct, or guarantee the behavior of any third-party AI system, nor promise citation, visibility, traffic, trust, leads, pipeline, or revenue. |
+| `/topics/b2b-content-marketing/content-refresh` | **B2B content refresh: update, merge, qualify, retire, or create.** Includes a blank browser-local six-field decision worksheet that connects page purpose, buyer question, current support, adjacent routes, owner, and next action. | It does not promise freshness, ranking movement, AI visibility, traffic, demand, citations, conversion, leads, pipeline, or revenue; it does not authorize deletion, redirect, legal, or compliance decisions. |
 | `/insights/useful-resource-route-not-page-pile` | **Signal Note 001 — “A useful resource is a route, not a pile of pages.”** Author: Mason Nguyen. Reviewer: Coreweaver research editor. | It is an operating interpretation of current Google guidance, not a performance study or visibility promise. |
 | `/insights/claim-boundary-before-distribution` | **Signal Note 002 — “A B2B claim needs a boundary before it needs distribution.”** Author: Mason Nguyen. Reviewer: Coreweaver research editor. Database record ID: `30001`. | It is an editorial operating interpretation about source, scope, limitation, ownership, and review; it is not a compliance standard, trust claim, or commercial-result promise. |
 
@@ -43,21 +44,23 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 | `expanded-hub-spoke-content-map.md` | Child-guide briefs, source boundaries, link architecture, and governed sequence. The claim-ledger route was priority 4; the next candidate is AI answer review only after a distinct source plan and review brief exist. |
 | `keyword-cloud-silo-expansion-2026-08.md` | Current coverage audit, buyer-language cloud, source-aware next-wave priorities, measurement loop, and publication gate. The next planned guide after AI answer review is content refresh. |
 | `ai-answer-review-guide-brief.md` | Approved source contract, claim ledger, internal-link plan, boundary, worksheet design, and publication gate for the implemented AI answer review guide. |
+| `buyer-language-audit-2026-08.md` | Cross-route terminology standard and implementation record for SEO, Content Marketing, and Paid Ads, preserving their distinct reader decisions and no-guarantee boundaries. |
+| `content-refresh-guide-brief.md` | Source contract, claim ledger, internal-link plan, boundary, worksheet design, and publication gate for the implemented B2B content-refresh guide. |
 | `editorial-review-2026-08.md` | Editor-in-chief review used to guide the Start Here paths, first-engagement record, FAQ normalization, resource labels, and Method-at-work example. |
 
 ## Key Implementation Files
 
 | File | Responsibility |
 |---|---|
-| `client/src/lib/topicContent.ts` | Five topic pillars, five implemented child guides, deterministic search terms, reader-purpose labels, and optional browser-local worksheet structure. |
-| `client/src/pages/ChildTopicDetail.tsx` | Reusable child-guide rendering, structured data, sharing, related links, and optional browser-local worksheet. |
+| `client/src/lib/topicContent.ts` | Five topic pillars, six implemented child guides, deterministic search terms, reader-purpose labels, and optional browser-local worksheet structure. |
+| `client/src/pages/ChildTopicDetail.tsx` | Reusable child-guide rendering, structured data, sharing, related links, browser-local worksheets, and opt-in local text export where configured. |
 | `client/src/pages/InsightDetail.tsx` | Public field-brief rendering, author disclosure, social sharing, reviewed source records, and slug-scoped related-resource paths. |
 | `client/src/pages/Topics.tsx` | Public B2B Growth Topics hub with resource-purpose labels and deterministic topic search. |
 | `client/src/pages/Faq.tsx` | Searchable and accessible FAQ with source-safe answers and FAQPage schema. |
 | `client/src/pages/Methodology.tsx` | Public methodology narrative, sticky table of contents, decision gates, Method-at-work example, and Earthward Foundry boundary. |
 | `client/src/ssr/prefetch.ts` | SSR title, canonical-path, keyword, and route prefetch handling for public routes. |
-| `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and the claim-ledger guide. |
-| `server/_core/index.ts` | Dynamic sitemap route; includes the claim-ledger guide in the public fixed-path list. |
+| `client/public/sitemap.xml` | Static sitemap fallback; includes both Signal Notes and all implemented child guides through content refresh. |
+| `server/_core/index.ts` | Dynamic sitemap route; includes all implemented child guides through content refresh in the public fixed-path list. |
 | `AGENTS.md` and `agent-training-playbook.md` | Cross-agent operating rules, evidence requirements, publication gates, and handoff protocol. |
 | `/home/ubuntu/skills/geo-made-simple/SKILL.md` | Reusable future-agent skill for evidence-led GEO, crawlable B2B resource systems, entity clarity, source-aware publishing, claim-ledger governance, Signal Notes, and validation. |
 | `/home/ubuntu/skills/geo-made-simple/references/geo-made-simple-templates.md` | Reusable templates for resource briefs, claim-ledger records, Signal Note review records, discovery validation, governed automation contracts, and handoffs. |
@@ -65,7 +68,7 @@ The active authority strategy is now the **Evidence Ledger sprint**: publish onl
 
 ## Validation Record
 
-The current sequence has passed focused component tests, TypeScript checks, and production client plus SSR builds after each discrete checkpoint. The claim-ledger guide passed six focused tests, raw SSR title/canonical/worksheet/link checks, static sitemap verification, and desktop review. The reader-guidance and FAQ/Method refinements passed nine focused tests, TypeScript, production build, desktop/mobile visual review, and raw SSR checks. The second Signal Note passed focused Insight-detail tests, database verification, TypeScript, production build, raw SSR checks for its reviewed field record, two primary source URLs, five contextual links, sitemap inclusion, and desktop review. The AI answer review guide passed focused topic, page, and hub tests; TypeScript; production client/SSR build; desktop/mobile review; static sitemap verification; and raw SSR checks for title, structured data, worksheet, and five contextual links. The full regression suite passed **69 tests in 27 files** when the separately documented live Hostinger credential integration test was excluded; that external credential test remains non-OK and unchanged.
+The current sequence has passed focused component tests, TypeScript checks, and production client plus SSR builds after each discrete checkpoint. The claim-ledger guide passed six focused tests, raw SSR title/canonical/worksheet/link checks, static sitemap verification, and desktop review. The reader-guidance and FAQ/Method refinements passed nine focused tests, TypeScript, production build, desktop/mobile visual review, and raw SSR checks. The second Signal Note passed focused Insight-detail tests, database verification, TypeScript, production build, raw SSR checks for its reviewed field record, two primary source URLs, five contextual links, sitemap inclusion, and desktop review. The AI answer review guide passed focused topic, page, and hub tests; TypeScript; production client/SSR build; desktop/mobile review; static sitemap verification; and raw SSR checks for title, structured data, worksheet, and five contextual links. The buyer-language and content-refresh expansion passed focused worksheet-export, hub, data-model, and content-refresh tests; TypeScript; production client/SSR build; desktop/mobile review; and raw SSR checks for title, structured data, worksheet, boundary, five contextual links, and sitemap registration. The full regression suite passed **71 tests in 28 files** when the separately documented live Hostinger credential integration test was excluded; that external credential test remains non-OK and unchanged.
 
 The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/skill-creator/scripts/quick_validate.py`. It contains no runtime integrations, scripts, credentials, or autonomous publishing capability.
 
@@ -76,7 +79,7 @@ The reusable `geo-made-simple` skill was validated with `/home/ubuntu/skills/ski
 ## Next Recommended Session
 
 1. Read `HANDOFF.md`, `AGENTS.md`, `todo.md`, `best-in-class-authority-roadmap.md`, and `expanded-hub-spoke-content-map.md` before adding public work. Load the `geo-made-simple` skill for GEO, discovery, resource-system, Signal Note, claim-ledger, or evidence-led publishing work.
-2. Prepare the **B2B content refresh** child-guide brief only after selecting current primary sources, defining one buyer decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that freshness, publishing volume, or a refresh changes rankings.
+2. Prepare the **B2B buyer-language audit** child-guide brief only after selecting current primary sources, defining one distinct cross-route decision, documenting a limitation, and identifying at least two contextual inbound links. Do not claim that terminology alignment changes conversion, platform behavior, or commercial outcomes.
 3. Continue Signal Notes only when each note has a distinct contribution, named author, named reviewer, source references, method note, limitation, and scoped internal links. The content queue may draft privately; an editor alone decides publication.
 4. If additional FAQ or design changes are requested, preserve the Signal Ledger design tokens and accessibility behavior rather than introducing a parallel visual system.
 5. Before the next checkpoint, run focused tests, `pnpm check`, `pnpm build`, raw SSR checks, a relevant desktop/mobile review, and read the full `todo.md`.

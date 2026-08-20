@@ -5,8 +5,8 @@ describe("expanded topic content", () => {
   it("retrieves approved child guides beneath their correct parent topics", () => {
     expect(getChildTopic("b2b-seo", "website-information-architecture")?.title).toBe("B2B website information architecture");
     expect(getChildTopic("b2b-content-marketing", "buyer-enablement")?.title).toBe("B2B buyer enablement content");
-    expect(getChildTopicsForParent("b2b-seo")).toHaveLength(1);
-    expect(getChildTopicsForParent("b2b-content-marketing")).toHaveLength(1);
+    expect(getChildTopicsForParent("b2b-content-marketing")).toHaveLength(2);
+    expect(getChildTopic("b2b-content-marketing", "content-refresh")?.title).toBe("B2B content refresh: update, merge, qualify, retire, or create");
     expect(getChildTopic("b2b-paid-ads", "message-landing-page-alignment")?.title).toBe("B2B paid ads and landing-page alignment");
     expect(getChildTopicsForParent("b2b-paid-ads")).toHaveLength(1);
     expect(getChildTopic("content-governance", "claim-ledger")?.title).toBe("A B2B claim ledger: connecting public statements to current support");
@@ -18,6 +18,7 @@ describe("expanded topic content", () => {
   it("matches natural-language buyer problems to the relevant implemented guide without an external AI call", () => {
     expect(searchTopicLibrary("buyers cannot find the right service page")[0]?.href).toBe("/topics/b2b-seo/website-information-architecture");
     expect(searchTopicLibrary("we need content that helps a buying group decide")[0]?.href).toBe("/topics/b2b-content-marketing/buyer-enablement");
+    expect(searchTopicLibrary("should we update merge or retire this old page")[0]?.href).toBe("/topics/b2b-content-marketing/content-refresh");
     expect(searchTopicLibrary("our ad message does not match the landing page")[0]?.href).toBe("/topics/b2b-paid-ads/message-landing-page-alignment");
     expect(searchTopicLibrary("we need clearer ownership and support for public claims")[0]?.href).toBe("/topics/content-governance/claim-ledger");
     expect(searchTopicLibrary("we need to inspect an AI answer about our company")[0]?.href).toBe("/topics/ai-representation/ai-answer-review");

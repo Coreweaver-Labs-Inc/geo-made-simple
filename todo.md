@@ -220,3 +220,7 @@
 - [x] Research source-safe B2B intent clusters and define a prioritized next-wave keyword-cloud and content-silo expansion plan.
 - [x] Implement the next source-safe child guide with contextual internal links, SSR metadata, structured data, sitemap discovery, and review boundaries.
 - [x] Validate the expanded keyword-cloud system, record the evidence and handoff, and preserve draft-only publishing safeguards.
+- [x] Audit and align buyer-language cues across the public SEO, Content Marketing, and Paid Ads routes without flattening their distinct decisions.
+- [x] Add a privacy-safe browser-local export action to the AI answer-review worksheet without storing, submitting, or transmitting worksheet contents.
+- [x] Build the B2B content-refresh decision guide with source-safe content, a browser-local worksheet, internal links, SSR metadata, structured data, and sitemap discovery.
+- [x] Validate the buyer-language audit, local export behavior, content-refresh route, responsive experience, public crawler output, tests, and production build; then update the handoff.
